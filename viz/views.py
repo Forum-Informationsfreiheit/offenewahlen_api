@@ -4,4 +4,4 @@ from django.http import HttpResponse
 # Create your views here.
 
 def index(request):
-	return HttpResponse('Hello, world. Du bist auf der Website zur Nationalratswahl 2017.')
+	return HttpResponse('Hier kommen die Visualisierungen.')

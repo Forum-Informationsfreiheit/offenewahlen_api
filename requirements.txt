@@ -1,8 +1,11 @@
 certifi==2017.4.17
 chardet==3.0.4
+dj-database-url==0.4.2
 Django==1.11.3
+gunicorn==19.7.1
 idna==2.5
 pytz==2017.2
 requests==2.18.1
 six==1.10.0
 urllib3==1.21.1
+whitenoise==3.3.0

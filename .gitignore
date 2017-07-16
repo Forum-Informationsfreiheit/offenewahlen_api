@@ -8,3 +8,4 @@ notes.md
 *.pyo
 *~
 docs/
+*.sqlite3

@@ -7,9 +7,7 @@ from django.template import loader
 def index(request):
 	template = loader.get_template('viz/index.html')
 	return render(request, 'viz/index.html')
-	#return HttpResponse(template.render(request))
 
 def stats(request):
 	template = loader.get_template('viz/stats.html')
 	return render(request, 'viz/stats.html')
-	#return HttpResponse(template.render(request))

@@ -2,7 +2,7 @@
 
 Hier soll gemeinsam die Heroku-App mit den Visualisierungen der Ergebnisse der Nationalratswahl 2017 erstellt werden.
 
-Alle nötigen Infos sowie die Dokumentation findest du im **[Wiki](https://github.com/OKFNat/offenewahlen-nrw17/wiki)**.
+**Alle nötigen Infos sowie die Dokumentation findest du im [Wiki](https://github.com/OKFNat/offenewahlen-nrw17/wiki)**.
 
 Die App wird am 15. Oktober gegen 17:15 Uhr unter [nrw17.offenewahlen.at](https://nrw17.offenewahlen.at) online gehen.
 

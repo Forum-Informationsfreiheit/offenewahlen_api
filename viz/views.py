@@ -5,3 +5,6 @@ from django.http import HttpResponse
 
 def index(request):
 	return HttpResponse('Hier kommen die Visualisierungen.')
+
+def stats(request):
+	return HttpResponse('Hier kommen die Statistiken.')

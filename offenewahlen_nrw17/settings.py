@@ -30,7 +30,12 @@ SECRET_KEY = '$x33hwfkh1ov_zcs4cv9o%t%%anrwf3#($q(=sg%vv%%(ab&5b'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['nrw17-offenewahlenat-staging.herokuapp.com']
+ALLOWED_HOSTS = [
+    'nrw17-offenewahlenat-staging.herokuapp.com',
+    'nrw17-offenewahlenat.herokuapp.com',
+    'nrw17-staging.offenewahlen.at',
+    'nrw17.offenewahlen.at'
+]
 
 
 # Application definition

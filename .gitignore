@@ -9,3 +9,4 @@ notes.md
 *~
 docs/
 *.sqlite3
+migrations/

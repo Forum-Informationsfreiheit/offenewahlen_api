@@ -2,7 +2,7 @@ from django.db import models
 
 class Election(models.Model):
 	id = models.AutoField(primary_key=True)
-	eligible_voter = models.IntegerField(default=-1)
+	eligible_voters = models.IntegerField(default=-1)
 	votes = models.IntegerField(default=-1)
 	valid = models.IntegerField(default=-1)
 	invalid = models.IntegerField(default=-1)

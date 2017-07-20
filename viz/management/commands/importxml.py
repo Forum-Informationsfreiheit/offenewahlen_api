@@ -1,10 +1,12 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.utils import timezone
-from viz.models import Election
+from viz.models import Election, RawData
 import json
 import xml.etree.ElementTree as ET
 import pprint
 import requests
+import datetime
+import hashlib
 
 class Command(BaseCommand):
 
@@ -14,7 +16,7 @@ class Command(BaseCommand):
 			config = json.load(config_file)
 
 		r = requests.get(config['url_xml'])
-
+		
 		# convert xml to dict
 		data = []
 		root = ET.fromstring(r.text)
@@ -25,44 +27,50 @@ class Command(BaseCommand):
 				tmp.update({elem.tag: elem.text})
 			data.append(tmp)
 
-		pprint.pprint(data)
-
 		# check data
-		is_wrong = False
-		for mun in data:
-			print(mun['spatial_id'])
-			party_sum = 0
-			for party in config['parties']:
-				party_sum += int(mun[party])
-			print(int(mun['valid']) == party_sum)
-			print(int(mun['votes']) == int(mun['valid']) + int(mun['invalid']))
-			print(int(mun['eligible_voters']) >= int(mun['valid']))
+		# is_wrong = False
+		# for mun in data:
+		# 	print(mun['spatial_id'])
+		# 	party_sum = 0
+		# 	for party in config['parties']:
+		# 		party_sum += int(mun[party])
+		# 	print(int(mun['valid']) == party_sum)
+		# 	print(int(mun['votes']) == int(mun['valid']) + int(mun['invalid']))
+		# 	print(int(mun['eligible_voters']) >= int(mun['valid']))
 
 			# check if timestamp is between first closing of polling station and now.
-			# die restlichen checks sind nur statistisch (Verteilungen)
 
 		#print('all checks: '+str(is_wrong))
+		# 2017-10-15 15:23:38Z
 
-		# import to database
+		timestamp_now = timezone.now()
+
+		# store raw data in database
+		raw = RawData(
+				timestamp = timestamp_now,
+				hash = hashlib.md5(r.text.encode()),
+				content = r.text,
+				header = r.headers
+			)
+		raw.save()
+
+		# store results in database
 		for mun in data:
 			ele = Election(
-				eligible_voters=mun['eligible_voters'],
-				votes=mun['votes'],
-				valid=mun['valid'],
-				invalid=mun['invalid'],
-				spatial_id=mun['spatial_id'],
-				ts_result=mun['timestamp'],
-				spoe=mun['spoe'],
-				fpoe=mun['fpoe'],
-				oevp=mun['oevp'],
-				neos=mun['neos'],
-				gruene=mun['gruene'],
-				kpoe=mun['kpoe'],
-				is_final=False,
-				ts_storage=timezone.now())
+				eligible_voters = mun['eligible_voters'],
+				votes = mun['votes'],
+				valid = mun['valid'],
+				invalid = mun['invalid'],
+				spatial_id = mun['spatial_id'],
+				ts_result = datetime.datetime.strptime(mun['timestamp'], "%Y-%m-%d %H:%M:%SZ"),
+				spoe = mun['spoe'],
+				fpoe = mun['fpoe'],
+				oevp = mun['oevp'],
+				neos = mun['neos'],
+				gruene = mun['gruene'],
+				kpoe = mun['kpoe'],
+				is_final = False,
+				ts_storage = timestamp_now
+			)
 			ele.save()
-
-		#YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ]
-
-
 

@@ -17,6 +17,13 @@ class Election(models.Model):
 	kpoe = models.IntegerField(default=-1)
 	is_final = models.BooleanField()
 
+class RawData(models.Model):
+	id = models.AutoField(primary_key=True)
+	timestamp = models.DateTimeField('creation date of BMI xml')
+	hash = models.CharField(max_length=100)
+	content = models.TextField()
+	header = models.TextField()
+
 # class Party(models.Model):
 # 	id = models.AutoField()
 # 	party_id = models.CharField(max_length=20)

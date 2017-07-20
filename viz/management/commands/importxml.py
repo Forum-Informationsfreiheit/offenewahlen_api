@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.utils import timezone
-from viz.models import Election, RawData
+from viz.models import MunicipalityResult, RawData, PartyResult
 import json
 import xml.etree.ElementTree as ET
 import pprint
@@ -16,8 +16,10 @@ class Command(BaseCommand):
 			config = json.load(config_file)
 
 		r = requests.get(config['url_xml'])
+
+		# check, if xml is already downloaded and imported via RawData-hashes
 		
-		# convert xml to dict
+		# if not, convert xml to dict
 		data = []
 		root = ET.fromstring(r.text)
 
@@ -50,13 +52,14 @@ class Command(BaseCommand):
 				timestamp = timestamp_now,
 				hash = hashlib.md5(r.text.encode()),
 				content = r.text,
-				header = r.headers
+				header = r.headers,
+				dataformat = 'xml'
 			)
 		raw.save()
 
 		# store results in database
 		for mun in data:
-			ele = Election(
+			result = MunicipalityResults(
 				eligible_voters = mun['eligible_voters'],
 				votes = mun['votes'],
 				valid = mun['valid'],
@@ -72,5 +75,5 @@ class Command(BaseCommand):
 				is_final = False,
 				ts_storage = timestamp_now
 			)
-			ele.save()
+			result.save()
 

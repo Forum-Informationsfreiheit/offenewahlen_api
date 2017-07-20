@@ -1,50 +1,7 @@
 from django.db import models
 
-class MunicipalityResult(models.Model):
-	id = models.AutoField(primary_key=True)
-	eligible_voters = models.IntegerField(default=-1)
-	votes = models.IntegerField(default=-1)
-	valid = models.IntegerField(default=-1)
-	invalid = models.IntegerField(default=-1)
-	spatial_id = models.ForeignKey(MunicipalityResult, on_delete=models.CASCADE)
-	ts_result = models.DateTimeField('timestamp of bmi result')
-	ts_storage = models.DateTimeField('timestamp of database storage')
-	is_final = models.BooleanField()
-
-	def __str__(self):
-		return "%s %s" % (self.spatial_id, self.ts_result)
-
-	class Meta:
-        ordering = ('ts_result', 'spatial_id')
-
-class PartyResult(models.Model):
-	id = models.AutoField(primary_key=True)
-	municipality_result = models.ForeignKey(MunicipalityResult, on_delete=models.CASCADE)
-	party = models.ForeignKey(Party, on_delete=models.CASCADE)
-	votes = models.IntegerField(default=-1)
-
-	def __str__(self):
-		return "%s %s %s" % (self.municipality_result, self.party, self.votes)
-
-	class Meta:
-        ordering = ('municipality_result', 'party')
-
-class RawData(models.Model):
-	id = models.AutoField(primary_key=True)
-	timestamp = models.DateTimeField('creation date of BMI xml')
-	hash = models.CharField(max_length=100)
-	content = models.TextField()
-	header = models.TextField()
-	dataformat = models.CharField(max_length=10)
-
-	def __str__(self):
-		return "%s %s %s" % (self.timestamp, self.hash, self.dataformat)
-
-	class Meta:
-        ordering = ('timestamp')
-
 class Party(models.Model):
-	id = models.AutoField()
+	id = models.AutoField(primary_key=True)
 	party_id = models.CharField(max_length=20)
 	wikidata_id = models.CharField(max_length=20)
 	name = models.CharField(max_length=200)
@@ -56,10 +13,10 @@ class Party(models.Model):
 		return "%s" % (self.short)
 
 	class Meta:
-        ordering = ('short')
+		ordering = ('short',)
 
 class Municipality(models.Model):
-	id = models.AutoField()
+	id = models.AutoField(primary_key=True)
 	spatial_id = models.CharField(max_length=20)
 	name = models.CharField(max_length=100)
 	district = models.CharField(max_length=100)
@@ -69,7 +26,49 @@ class Municipality(models.Model):
 		return "%s %s" % (self.spatial_id, self.district)
 
 	class Meta:
-        ordering = ('spatial_id')
+		ordering = ('spatial_id',)
+
+class MunicipalityResult(models.Model):
+	id = models.AutoField(primary_key=True)
+	spatial_id = models.ForeignKey(Municipality, on_delete=models.PROTECT)
+	eligible_voters = models.IntegerField(default=-1)
+	votes = models.IntegerField(default=-1)
+	valid = models.IntegerField(default=-1)
+	invalid = models.IntegerField(default=-1)
+	ts_result = models.DateTimeField('timestamp of bmi result')
+	is_final = models.BooleanField()
+
+	def __str__(self):
+		return "%s %s" % (self.spatial_id, self.ts_result)
+
+	class Meta:
+		ordering = ('ts_result', 'spatial_id',)
+
+class PartyResult(models.Model):
+	id = models.AutoField(primary_key=True)
+	municipality = models.ForeignKey(MunicipalityResult, on_delete=models.PROTECT)
+	party = models.ForeignKey(Party, on_delete=models.PROTECT)
+	votes = models.IntegerField(default=-1)
+
+	def __str__(self):
+		return "%s %s %s" % (self.municipality_result, self.party, self.votes)
+
+	class Meta:
+		ordering = ('municipality', 'party',)
+
+class RawData(models.Model):
+	id = models.AutoField(primary_key=True)
+	timestamp = models.DateTimeField('creation date of BMI xml')
+	hash = models.CharField(max_length=100)
+	content = models.TextField()
+	header = models.TextField()
+	dataformat = models.CharField(max_length=10)
+
+	def __str__(self):
+		return "%s" % (self.timestamp)
+
+	class Meta:
+		ordering = ('timestamp',)
 
 # class PollingStation(models.Model):
 # 	id = models.AutoField()

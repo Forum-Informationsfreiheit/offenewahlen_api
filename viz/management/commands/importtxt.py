@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.utils import timezone
-from viz.models import MunicipalityResult, RawData, PartyResult
+from viz.models import MunicipalityResult, RawData, PartyResult, RawData
 import json
 import requests
 import datetime

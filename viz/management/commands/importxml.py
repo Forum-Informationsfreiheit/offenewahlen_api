@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.utils import timezone
-from viz.models import MunicipalityResult, RawData, PartyResult
+from viz.models import MunicipalityResult, RawData, PartyResult, Municipality, RawData
 import json
 import xml.etree.ElementTree as ET
 import pprint
@@ -59,21 +59,14 @@ class Command(BaseCommand):
 
 		# store results in database
 		for mun in data:
-			result = MunicipalityResults(
+			result = MunicipalityResult(
 				eligible_voters = mun['eligible_voters'],
 				votes = mun['votes'],
 				valid = mun['valid'],
 				invalid = mun['invalid'],
-				spatial_id = mun['spatial_id'],
+				#spatial_id = mun['spatial_id'],
 				ts_result = datetime.datetime.strptime(mun['timestamp'], "%Y-%m-%d %H:%M:%SZ"),
-				spoe = mun['spoe'],
-				fpoe = mun['fpoe'],
-				oevp = mun['oevp'],
-				neos = mun['neos'],
-				gruene = mun['gruene'],
-				kpoe = mun['kpoe'],
-				is_final = False,
-				ts_storage = timestamp_now
+				is_final = False
 			)
 			result.save()
 

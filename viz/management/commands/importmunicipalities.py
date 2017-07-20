@@ -7,13 +7,20 @@ import datetime
 class Command(BaseCommand):
 
 	def handle(self, *args, **options):
-		# import json
+		# import 
 
+		# convert to dict
 
-		# convert json to dict
+		# check data
 
-		
-		# check data => see importxml
+		# store data in database
 
-		# store raw data in database => see importxml
+		for mun in data:
+			m = MunicipalityResult(
+				spatial_id = mun[''],
+				name = mun[''],
+				district = mun[''],
+				state = mun['']
+			)
+			m.save()
 

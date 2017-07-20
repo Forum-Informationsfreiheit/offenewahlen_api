@@ -1,4 +1,4 @@
-{% extends "viz/base.html" %}
+{% extends "viz/base.dtl" %}
 
 {% block title %}NRW17 - Visulisierungen{% endblock %}
 
@@ -6,9 +6,4 @@
 	<h1>Visualisierungen</h1>
 	<p>Hier folgen demnächst die ersten Visualisierungen zu Wahlen.</p>
 {% endblock %}
-
-
-
-
-
 

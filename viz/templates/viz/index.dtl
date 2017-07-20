@@ -1,0 +1,63 @@
+{% extends "viz/base.dtl" %}
+
+{% block title %}NRW17 - Visulisierungen{% endblock %}
+
+{% block content %}
+	<div class="main-grid">
+		<div class="centered-cell">
+			<div class="intro-text">
+				<h1>Wahldatenvisualisierungen</h1>
+				<h2>Nationalratswahl 2017</h2>
+				<p>
+
+				</p>
+			</div>
+			<div class="countdown-timer">
+				<div class="item">
+					{% include "viz/includes/svg_timer.dtl" %}
+
+					<div class="center">
+						<div>
+							<div id="countdown-days" class="time">--</div>
+							<div class="label">Tage</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="item">
+					{% include "viz/includes/svg_timer.dtl" %}
+
+					<div class="center">
+						<div>
+							<div id="countdown-hours" class="time">--</div>
+							<div class="label">Stunden</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="item">
+					{% include "viz/includes/svg_timer.dtl" %}
+
+					<div class="center">
+						<div>
+							<div id="countdown-minutes" class="time">--</div>
+							<div class="label">Minuten</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="item">
+					{% include "viz/includes/svg_timer.dtl" %}
+
+					<div class="center">
+						<div>
+							<div id="countdown-seconds" class="time">--</div>
+							<div class="label">Sekunden</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+

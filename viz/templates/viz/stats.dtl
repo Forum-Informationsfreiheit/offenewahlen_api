@@ -1,4 +1,4 @@
-{% extends "viz/base.html" %}
+{% extends "viz/base.dtl" %}
 
 {% block title %}NRW17 - Statistiken{% endblock %}
 

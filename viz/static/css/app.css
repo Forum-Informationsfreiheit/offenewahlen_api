@@ -1,6 +1,25 @@
 body {
-  background-color: #edf8fb;
+  background-color: #ef3340;
   margin: 0;
+}
+
+h1 {
+  font-family: sans-serif;
+  color: white;
+  font-weight: 300;
+}
+
+h2 {
+  font-family: sans-serif;
+  color: white;
+  font-weight: 400;
+}
+
+.main-grid {
+  display: grid;
+  align-content: center;
+  width: 100%;
+  height: 100vh;
 }
 
 .no-margin {
@@ -22,3 +41,72 @@ body {
   align-items: center;
   width: 100%;
 }
+
+.countdown-timer {
+  display: grid;
+  grid-template-columns: repeat(4, 200px);
+  font-family: sans-serif;
+  text-align: center;
+  color: #fff;
+}
+
+@media screen and (max-width: 900px) {
+  .countdown-timer {
+    grid-template-columns: repeat(2, 200px);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .countdown-timer {
+    grid-template-columns: repeat(2, 170px);
+  }
+}
+
+
+.countdown-timer .item {
+  position: relative;
+  height: 200px;
+  display: flex;
+  align-items: center;
+}
+
+.countdown-timer .center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  z-index: 1;
+}
+
+.countdown-timer .time {
+  font-size: 40px;
+  font-weight: 300;
+  padding: 10px 0;
+}
+
+.countdown-timer .label {
+  font-size: 19px;
+  font-family: sans-serif;
+  text-align: center;
+  font-weight: 300;
+  padding: 10px 0;
+}
+
+.countdown-timer .timer-circle {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.intro-text {
+  text-align: center;
+}
+
+.centered-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+

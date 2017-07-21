@@ -1,5 +1,5 @@
 {% extends "viz/base.dtl" %}
-{% load static %}
+{% load staticfiles %}
 
 {% block title %}NRW17 - Visulisierungen{% endblock %}
 

@@ -1,0 +1,12 @@
+{
+  "environments": {
+    "test": {
+      "scripts": {
+        "test": "nose viz/tests"
+      },
+      "addons":[
+        "heroku-postgresql"
+      ]
+    }
+  }
+}

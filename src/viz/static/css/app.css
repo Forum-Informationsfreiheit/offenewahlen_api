@@ -1,11 +1,9 @@
 
 /* 1.0 Body */
 
-
 body {
   margin: 0;
 }
-
 
 /* 2.0 Typography */
 
@@ -49,7 +47,7 @@ h6:first-child {
 
 h1 {
   font-size: 24px;
-  font-size: 1.5rem;
+  font-size: 2.6rem;
   font-weight: 300;
 }
 
@@ -727,6 +725,10 @@ object {
 /**
  * .0 - Waiting Page
  */
+
+.page-waiting {
+  margin: 20px 0px;
+}
 
 .intro-text img {
   margin-right: 10px;

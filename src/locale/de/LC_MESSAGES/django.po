@@ -43,10 +43,10 @@ msgid "Seconds"
 msgstr "Sekunden"
 
 msgid "Waiting Title"
-msgstr "Wahldaten - Visualisierung"
+msgstr "#NRW17 Visualisierung"
 
 msgid "Waiting Subtitle"
-msgstr "Nationalratswahl: 15. Oktober 2017 - 17:00 Uhr"
+msgstr "15. Oktober 2017 - 17:00 Uhr"
 
 msgid "Website Title"
 msgstr "#NRW17 Visualisierung | Offene Wahlen Österreich"

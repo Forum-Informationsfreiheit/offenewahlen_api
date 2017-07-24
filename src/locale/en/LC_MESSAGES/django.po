@@ -30,10 +30,10 @@ msgid "Hungarian"
 msgstr "Hungarian"
 
 msgid "Waiting Title"
-msgstr "Election Data - Visualization"
+msgstr "#NRW17 Visualization"
 
 msgid "Waiting Subtitle"
-msgstr "Austrian National Council Election: 15th of October 2017 - 17:00"
+msgstr "15th of October 2017 - 17:00"
 
 msgid "Website Title"
 msgstr "#NRW17 Visualization | Offene Wahlen Österreich"

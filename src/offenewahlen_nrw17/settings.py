@@ -36,6 +36,7 @@ STATICFILES_DIRS = (
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '$x33hwfkh1ov_zcs4cv9o%t%%anrwf3#($q(=sg%vv%%(ab&5b'
 
@@ -97,7 +98,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'offenewahlen_nrw17.wsgi.application'
 
-
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
@@ -146,9 +146,6 @@ LANGUAGES = (
     ('en', _('English')),
     ('hu', _('Hungarian')),
 )
-
-STATIC_URL = "/static/"
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 TIME_ZONE = 'Europe/Vienna'
 

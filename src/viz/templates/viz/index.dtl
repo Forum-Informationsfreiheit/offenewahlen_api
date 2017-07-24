@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% load i18n %}
 
-{% block title %}Nationalratswahl 2017 Visualisierung{% endblock %}
+{% block title %}{% trans 'Website Title' %}{% endblock %}
 
 {% block content %}
 <div class="page-waiting">

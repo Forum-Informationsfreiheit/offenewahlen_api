@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-24 21:31+0200\n"
+"POT-Creation-Date: 2017-07-24 22:50+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,30 +18,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: offenewahlen_nrw17/settings.py:140
+#: offenewahlen_nrw17/settings.py:145
 msgid "German"
 msgstr ""
 
-#: offenewahlen_nrw17/settings.py:141
+#: offenewahlen_nrw17/settings.py:146
 msgid "English"
 msgstr ""
 
-#: offenewahlen_nrw17/settings.py:142
+#: offenewahlen_nrw17/settings.py:147
 msgid "Hungarian"
-msgstr ""
-
-#: viz/templates/viz/index.dtl:19
-msgid "Days"
-msgstr ""
-
-#: viz/templates/viz/index.dtl:28
-msgid "Hours"
-msgstr ""
-
-#: viz/templates/viz/index.dtl:37
-msgid "Minutes"
-msgstr ""
-
-#: viz/templates/viz/index.dtl:46
-msgid "Seconds"
 msgstr ""

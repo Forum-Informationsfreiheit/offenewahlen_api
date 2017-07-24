@@ -11,3 +11,4 @@ docs/
 *.sqlite3
 migrations/
 config.json
+*.mo

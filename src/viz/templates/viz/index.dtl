@@ -7,7 +7,7 @@
 {% block content %}
 <div class="page-waiting">
 	<div class="intro-text">
-		<h1><a class="ow-logo" href="http://offenewahlen.at" title="Offene Wahlen Österreich"><img src="{% static 'img/offene-wahlen.svg' %}">{% trans 'Waiting Title' %}</a></h1>
+		<h1><a class="ow-logo" href="http://offenewahlen.at" title="Offene Wahlen Österreich"><img src="{% static 'img/offene-wahlen.svg' %}"></a>{% trans 'Waiting Title' %}</h1>
 		<p class="lead">{% trans 'Waiting Subtitle' %}</p>
 	</div>
 	<div class="countdown">

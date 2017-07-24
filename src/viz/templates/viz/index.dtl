@@ -15,7 +15,7 @@
 
 			<div class="content">
 				<div id="countdown-days" class="time">--</div>
-				<div class="label">Tage</div>
+				<div class="label">{% trans 'Tage' %}</div>
 			</div>
 		</div>
 
@@ -24,7 +24,7 @@
 
 			<div class="content">
 				<div id="countdown-hours" class="time">--</div>
-				<div class="label">Stunden</div>
+				<div class="label">{% trans 'Stunden' %}</div>
 			</div>
 		</div>
 
@@ -33,7 +33,7 @@
 
 			<div class="content">
 				<div id="countdown-minutes" class="time">--</div>
-				<div class="label">Minuten</div>
+				<div class="label">{% trans 'Minuten' %}</div>
 			</div>
 		</div>
 
@@ -42,7 +42,7 @@
 
 			<div class="content">
 				<div id="countdown-seconds" class="time">--</div>
-				<div class="label">Sekunden</div>
+				<div class="label">{% trans 'Sekunden' %}</div>
 			</div>
 		</div>
 	</div>

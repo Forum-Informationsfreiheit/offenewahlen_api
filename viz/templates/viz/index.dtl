@@ -1,70 +1,52 @@
 {% extends "viz/base.dtl" %}
 {% load staticfiles %}
 
-{% block title %}NRW17 - Visulisierungen{% endblock %}
+{% block title %}Nationalratswahl 2017 Visualisierung{% endblock %}
 
 {% block content %}
-	<div class="main-grid">
-		<div class="centered-cell">
-			<div class="intro-text">
-				<h1>Wahldatenvisualisierungen</h1>
-				<p class="lead">Nationalratswahl 2017</p>
+<div class="page-waiting">
+	<div class="intro-text">
+		<h1><a class="ow-logo" href="http://offenewahlen.at" title="Offene Wahlen Österreich"><img src="{% static 'img/offene-wahlen.svg' %}"></a>Wahldaten-Visualisierung</h1>
+		<p class="lead">Nationalratswahl 2017: 15. Oktober 2017 - 17:00 Uhr</p>
+	</div>
+	<div class="countdown">
+		<div class="item col-sm-3 col-xs-6">
+			{% include "viz/includes/svg_timer.dtl" %}
+
+			<div class="content">
+				<div id="countdown-days" class="time">--</div>
+				<div class="label">Tage</div>
 			</div>
-			<div class="countdown-timer">
-				<div class="item">
-					{% include "viz/includes/svg_timer.dtl" %}
+		</div>
 
-					<div class="center">
-						<div>
-							<div id="countdown-days" class="time">--</div>
-							<div class="label">Tage</div>
-						</div>
-					</div>
-				</div>
+		<div class="item col-sm-3 col-xs-6">
+			{% include "viz/includes/svg_timer.dtl" %}
 
-				<div class="item">
-					{% include "viz/includes/svg_timer.dtl" %}
-
-					<div class="center">
-						<div>
-							<div id="countdown-hours" class="time">--</div>
-							<div class="label">Stunden</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="item">
-					{% include "viz/includes/svg_timer.dtl" %}
-
-					<div class="center">
-						<div>
-							<div id="countdown-minutes" class="time">--</div>
-							<div class="label">Minuten</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="item">
-					{% include "viz/includes/svg_timer.dtl" %}
-
-					<div class="center">
-						<div>
-							<div id="countdown-seconds" class="time">--</div>
-							<div class="label">Sekunden</div>
-						</div>
-					</div>
-				</div>
+			<div class="content">
+				<div id="countdown-hours" class="time">--</div>
+				<div class="label">Stunden</div>
 			</div>
+		</div>
 
-			<div id="offenewahlen">
-				<a href="http://offenewahlen.at" title="Offene Wahlen Österreich"><img src="{% static 'img/offene-wahlen.svg' %}"></a>
-				<p class="text-center">Ein Community-Projekt von Open Knowledge Österreich.</p>
+		<div class="item col-sm-3 col-xs-6">
+			{% include "viz/includes/svg_timer.dtl" %}
+
+			<div class="content">
+				<div id="countdown-minutes" class="time">--</div>
+				<div class="label">Minuten</div>
 			</div>
+		</div>
 
-			<div id="footer">
-				
+		<div class="item col-sm-3 col-xs-6">
+			{% include "viz/includes/svg_timer.dtl" %}
+
+			<div class="content">
+				<div id="countdown-seconds" class="time">--</div>
+				<div class="label">Sekunden</div>
 			</div>
 		</div>
 	</div>
+
+</div>
 {% endblock %}
 

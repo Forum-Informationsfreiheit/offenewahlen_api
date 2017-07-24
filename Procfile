@@ -1,1 +1,1 @@
-web: gunicorn offenewahlen_nrw17.wsgi --log-file -
+web: gunicorn --pythonpath src offenewahlen_nrw17.wsgi --log-file -

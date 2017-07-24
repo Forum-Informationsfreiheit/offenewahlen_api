@@ -104,7 +104,7 @@ DATABASES['default'] = db_from_env
 DATABASES['default'].update(db_from_env)
 
 TEST_DATABASES = {
-    'default': dj_database_url.config(env='TEST_DATABASE_URL')
+    'default': dj_database_url.config(env='test')
 }
 
 # Password validation

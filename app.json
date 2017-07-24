@@ -2,7 +2,7 @@
   "environments": {
     "test": {
       "scripts": {
-        "test": "nose viz/tests"
+        "test": "python manage.py test"
       },
       "addons":[
         "heroku-postgresql"

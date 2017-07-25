@@ -17,7 +17,7 @@ class Party(models.Model):
 
 class Municipality(models.Model):
 	id = models.AutoField(primary_key=True)
-	spatial_id = models.CharField(max_length=20)
+	spatial_id = models.CharField(max_length=20, null=True, default=None)
 	name = models.CharField(max_length=100)
 	district = models.CharField(max_length=100)
 	state = models.CharField(max_length=100)
@@ -30,7 +30,8 @@ class Municipality(models.Model):
 
 class MunicipalityResult(models.Model):
 	id = models.AutoField(primary_key=True)
-	spatial_id = models.ForeignKey(Municipality, on_delete=models.PROTECT)
+	spatial_id = models.ForeignKey(Municipality,
+		on_delete=models.PROTECT, null=True, default=None)
 	eligible_voters = models.IntegerField(default=-1)
 	votes = models.IntegerField(default=-1)
 	valid = models.IntegerField(default=-1)

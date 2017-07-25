@@ -8,20 +8,19 @@ import requests
 import datetime
 import hashlib
 
+
 class Command(BaseCommand):
-
 	def handle(self, *args, **options):
-		# make http request
-		with open("config.json") as config_file:    
-			config = json.load(config_file)
-
-		r = requests.get(config['url_xml'])
+		if 'local_path' in options.keys():
+			xml_data, xml_header = self.get_local_data(options['local_path'])
+		else:
+			xml_data, xml_header = self.get_network_data(options)
 
 		# check, if xml is already downloaded and imported via RawData-hashes
 		
 		# if not, convert xml to dict
 		data = []
-		root = ET.fromstring(r.text)
+		root = ET.fromstring(xml_data)
 
 		for municipality in root.iter('municipality'):
 			tmp = {}
@@ -50,23 +49,68 @@ class Command(BaseCommand):
 		# store raw data in database
 		raw = RawData(
 				timestamp = timestamp_now,
-				hash = hashlib.md5(r.text.encode()),
-				content = r.text,
-				header = r.headers,
+				hash = hashlib.md5(xml_data.encode()),
+				content = xml_data,
+				header = xml_header,
 				dataformat = 'xml'
 			)
 		raw.save()
 
 		# store results in database
 		for mun in data:
+			time_data = datetime.datetime.strptime(
+					mun['timestamp'], "%Y-%m-%d %H:%M:%SZ")
+			time_data = timezone.make_aware(
+				time_data, timezone.get_current_timezone())
 			result = MunicipalityResult(
 				eligible_voters = mun['eligible_voters'],
 				votes = mun['votes'],
 				valid = mun['valid'],
 				invalid = mun['invalid'],
 				#spatial_id = mun['spatial_id'],
-				ts_result = datetime.datetime.strptime(mun['timestamp'], "%Y-%m-%d %H:%M:%SZ"),
+				ts_result = time_data,
 				is_final = False
 			)
 			result.save()
 
+	def get_local_data(self, local_path):
+		"""
+		Get the data from a local directory.
+		"""
+		with open(local_path) as test_data_file:
+			test_data = test_data_file.read()
+
+		return (test_data, '')
+
+
+	def get_network_data(self, options):
+		"""
+		Get the data from a network location.
+		"""
+		import_url = self._get_input_url(options)
+
+		if import_url == '':
+			print('No import url supplied!')
+			return ''
+
+		# make http request
+		r = requests.get(import_url)
+		return (r.text, r.header)
+
+	def _get_input_url(self, options):
+		"""
+		Gets the import path from the kwargs or the config.json
+		"""
+		import_url = ''
+
+		if 'import_url' in options.keys():
+			import_url = options['import_url']
+
+		try:
+			with open("config.json") as config_file:
+				config = json.load(config_file)
+				import_url = config['url_xml']
+		except:
+			print("Config file not found!")
+
+		return import_url

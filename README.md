@@ -29,3 +29,13 @@ Folgende Basisdaten wurden gesammelt, um die Ergebnisse darstellen zu können.
 - `data/test/example.xml`: Simulierte **Ergebnis-XML** Bundeswahlbehörde (BMI).
 
 
+## Kommandos
+
+Testdatensatz von lokalem Pfad importieren
+
+    $ python manage.py importxml --local_path ~/.../offenewahlen-nrw17/data/example.xml
+
+Tests durchführen
+
+    $ python manage.py test
+

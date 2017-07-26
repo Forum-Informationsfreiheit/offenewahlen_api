@@ -10,6 +10,13 @@ import hashlib
 
 
 class Command(BaseCommand):
+	def add_arguments(self, parser):
+		parser.add_argument(
+			'--local_path',
+			dest='local_path',
+			help='Specify a file path to import from',
+		)
+
 	def handle(self, *args, **options):
 		if 'local_path' in options.keys():
 			xml_data, xml_header = self.get_local_data(options['local_path'])

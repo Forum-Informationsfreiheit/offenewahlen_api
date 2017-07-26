@@ -20,12 +20,33 @@ msgstr ""
 
 #: offenewahlen_nrw17/settings.py:145
 msgid "German"
-msgstr ""
+msgstr "Német"
 
 #: offenewahlen_nrw17/settings.py:146
 msgid "English"
-msgstr ""
+msgstr "Angol"
 
 #: offenewahlen_nrw17/settings.py:147
 msgid "Hungarian"
-msgstr ""
+msgstr "Magyar"
+
+msgid "Days"
+msgstr "Nap"
+
+msgid "Hours"
+msgstr "Óras"
+
+msgid "Minutes"
+msgstr "Perc"
+
+msgid "Seconds"
+msgstr "Másodperc"
+
+msgid "Waiting Title"
+msgstr "#NRW17 Megjelenítés"
+
+msgid "Waiting Subtitle"
+msgstr "Október 15, 2017 - 17:00"
+
+msgid "Website Title"
+msgstr "#NRW17 Megjelenítés | Offene Wahlen Österreich"

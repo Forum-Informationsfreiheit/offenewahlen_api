@@ -1,13 +1,12 @@
 # Ergebnis Dashboard zur Nationalratswahl 2017
 
-Hier soll gemeinsam die Heroku-App mit den Visualisierungen der Ergebnisse der Nationalratswahl 2017 erstellt werden.
+In diesem Repository wird gemeinsam der Code, sowie die Dokumentation und Vorgangsweise für das Projekt **#NRW17 Visualisierung** organisiert. Dabei handelt es sich um eine Django-App mit einem HTML5 + JavaScript (D3.js, Bootstrap, jQuery) Frontend, welche auf Heroku gehostet wird.
 
-**Alle nötigen Infos sowie die Dokumentation findest du im [Wiki](https://github.com/OKFNat/offenewahlen-nrw17/wiki), die Tasks werden via [Issue](https://github.com/okfnat/offenewahlen-nrw17/issues) organisiert.**
+**Alle nötigen Infos sowie die Dokumentation zu dem Projekt findest du im [Wiki](https://github.com/OKFNat/offenewahlen-nrw17/wiki), die Tasks werden via [Issue](https://github.com/okfnat/offenewahlen-nrw17/issues) koordiniert.**
 
-Die App wird am 15. Oktober gegen 17:15 Uhr unter [nrw17.offenewahlen.at](https://nrw17.offenewahlen.at) online gehen.
+Die Visualisierung wird am 15. Oktober kurz nach 17:00 Uhr unter [nrw17.offenewahlen.at](https://nrw17.offenewahlen.at) online gehen.
 
-Dies ist ein Open Source Projekt, daher freuen wir uns über jedes [Issue](https://github.com/okfnat/offenewahlen-nrw17/issues) das erstellt oder gefixt wird und jeden anderen Beitrag wenn auch noch so klein.
+Dies ist ein Open Source Projekt, daher freuen wir uns über jede helfende Hand. Näheres, wie du mitmachenkannst erfährst du [hier](https://github.com/OKFNat/offenewahlen-nrw17/wiki#mitmachen).
 
 
-Das Beispiel-XML `example.xml` ist für Testzwecke online unter [http://stefankasberger.at/wp-content/uploads/example.xml](http://stefankasberger.at/wp-content/uploads/example.xml) aufzufinden.
 

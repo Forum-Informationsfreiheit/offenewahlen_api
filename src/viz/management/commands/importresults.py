@@ -23,8 +23,9 @@ class Command(BaseCommand):
 		else:
 			xml_data, xml_header = self.get_network_data(options)
 
+		self.write_raw_data_to_database(xml_data, xml_header)
+
 		# check, if xml is already downloaded and imported via RawData-hashes
-		
 		# if not, convert xml to dict
 		data = []
 		root = ET.fromstring(xml_data)
@@ -53,17 +54,6 @@ class Command(BaseCommand):
 
 		timestamp_now = timezone.now()
 
-		# store raw data in database
-		raw = RawData(
-				timestamp = timestamp_now,
-				hash = hashlib.md5(xml_data.encode()),
-				content = xml_data,
-				header = xml_header,
-				dataformat = 'xml'
-			)
-		raw.save()
-
-		# store results in database
 		for mun in data:
 			time_data = datetime.datetime.strptime(
 					mun['timestamp'], "%Y-%m-%d %H:%M:%SZ")
@@ -80,10 +70,25 @@ class Command(BaseCommand):
 			)
 			result.save()
 
+	def write_raw_data_to_database(self, xml_data, xml_header):
+		"""
+		Write raw data into table.
+		"""
+		timestamp_now = timezone.now()
+
+		raw = RawData(
+			timestamp = timestamp_now,
+			hash = hashlib.md5(xml_data.encode()),
+			content = xml_data,
+			header = xml_header,
+			dataformat = 'xml')
+		raw.save()
+
 	def get_local_data(self, local_path):
 		"""
 		Get the data from a local directory.
 		"""
+		print("Importing data from: {}".format(local_path))
 		with open(local_path) as test_data_file:
 			test_data = test_data_file.read()
 
@@ -121,3 +126,4 @@ class Command(BaseCommand):
 			print("Config file not found!")
 
 		return import_url
+

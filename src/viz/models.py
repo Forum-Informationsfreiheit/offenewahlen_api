@@ -58,7 +58,6 @@ class PartyResult(models.Model):
 		ordering = ('municipality', 'party',)
 
 class RawData(models.Model):
-	id = models.AutoField(primary_key=True)
 	timestamp = models.DateTimeField('creation date of BMI xml')
 	hash = models.CharField(max_length=100)
 	content = models.TextField()

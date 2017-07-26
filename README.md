@@ -11,3 +11,13 @@ Dies ist ein Open Source Projekt, daher freuen wir uns über jedes [Issue](https
 
 Das Beispiel-XML `example.xml` ist für Testzwecke online unter [http://stefankasberger.at/wp-content/uploads/example.xml](http://stefankasberger.at/wp-content/uploads/example.xml) aufzufinden.
 
+## Kommandos
+
+Testdatensatz von lokalem Pfad importieren
+
+    $ python manage.py importxml --local_path ~/.../offenewahlen-nrw17/data/example.xml
+
+Tests durchführen
+
+    $ python manage.py test
+

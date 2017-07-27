@@ -1,5 +1,19 @@
 from django.db import models
 
+class Election(models.Model):
+	id = models.AutoField(primary_key=True)
+	name = models.CharField(max_length=200)
+	short_name = models.CharField(max_length=100)
+	election_type = models.CharField(max_length=100)
+	spatial_dimension = models.CharField(max_length=100)
+	election_day = models.DateTimeField('timestamp of election day')
+
+	def __str__(self):
+		return "%s" % (self.short_name)
+
+	class Meta:
+		ordering = ('short',)
+
 class Party(models.Model):
 	id = models.AutoField(primary_key=True)
 	party_id = models.CharField(max_length=20)

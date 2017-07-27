@@ -141,10 +141,15 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale/'),
 )
 
+# http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGES = (
     ('de', _('German')),
     ('en', _('English')),
     ('hu', _('Hungarian')),
+    ('hr', _('Croatian')),
+    ('sl', _('Slovenia')),
+    ('sk', _('Slovak')),
+    ('cz', _('Czech')),
 )
 
 TIME_ZONE = 'Europe/Vienna'

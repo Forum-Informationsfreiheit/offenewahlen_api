@@ -834,6 +834,12 @@ object {
   width: 100%;
 }
 
+.footer .language a {
+  font-size: 14.6px;
+  color: #888;
+  margin-bottom: 30px;
+}
+
 /**
  * .0 - Media Queries
  */
@@ -856,6 +862,7 @@ object {
   }
   .newsletter-form {
     margin-top: 40px;
+    margin-bottom: 40px;
   }
 }
 
@@ -881,6 +888,7 @@ object {
   }
   .newsletter-form {
     margin-top: 60px;
+    margin-bottom: 60px;
   }
 }
 
@@ -891,7 +899,7 @@ object {
   }
   .newsletter-form {
     margin-top: 100px;
-    margin-bottom: 70px;
+    margin-bottom: 100px;
   }
 }
 

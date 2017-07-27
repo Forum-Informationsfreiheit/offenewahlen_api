@@ -52,7 +52,6 @@ ALLOWED_HOSTS = [
     '0.0.0.0'
 ]
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -63,6 +62,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #'django.contrib.sitemaps'
     #'django.contrib.static_precompiler',
 ]
 

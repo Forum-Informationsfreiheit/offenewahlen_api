@@ -1,6 +1,6 @@
-# Ergebnis Dashboard zur Nationalratswahl 2017
+# #NRW17 Visualisierung
 
-In diesem Repository wird gemeinsam der Code, sowie die Dokumentation und Vorgangsweise für das Projekt **#NRW17 Visualisierung** organisiert. Dabei handelt es sich um eine Django-App mit einem HTML5 + JavaScript (D3.js, Bootstrap, jQuery) Frontend, welche auf Heroku gehostet wird.
+In diesem Repository wird gemeinsam der Code, sowie die Dokumentation und Vorgangsweise für das Projekt **#NRW17 Visualisierung** organisiert. Dabei handelt es sich um eine Django-App mit einem HTML5 + JavaScript (D3.js, Bootstrap, jQuery) Frontend, welche auf Heroku läuft. Alles ist Open Source und mit einem Open Data Ethos (wenn auch die Rohdaten bis jetzt noch nicht Open Data sind, aber mal sehen).
 
 **Alle nötigen Infos sowie die Dokumentation zu dem Projekt findest du im [Wiki](https://github.com/OKFNat/offenewahlen-nrw17/wiki), die Tasks werden via [Issue](https://github.com/okfnat/offenewahlen-nrw17/issues) koordiniert.**
 

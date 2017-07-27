@@ -6,8 +6,9 @@
 
 {% block content %}
 <div class="page-waiting">
-	<div class="intro-text text-center">
-		<h1><a class="ow-logo" href="http://offenewahlen.at" title="Offene Wahlen Österreich"><img src="{% static 'img/offene-wahlen.svg' %}"></a>{% trans 'Waiting Title' %}</h1>
+	<div class="intro text-center">
+		<a class="ow-logo" href="http://offenewahlen.at" title="Offene Wahlen Österreich"><img src="{% static 'img/offene-wahlen.svg' %}"></a><span> + </span><a href="https://github.com/OKFNat/offenewahlen-nrw17/wiki" title="#NRW17 Wiki {% trans 'at' %} GitHub"><i class="fa fa-github" aria-hidden="true"></i></a>
+		<h1>{% trans 'Waiting Title' %}</h1>
 		<p class="lead">{% trans 'Waiting Subtitle' %}</p>
 	</div>
 	<div class="countdown">
@@ -48,6 +49,42 @@
 		</div>
 	</div>
 
+	<div class="newsletter-form text-center col-xs-12 col-sm-6 col-sm-offset-3">
+		<div class="newsletter-content">
+			<h2>{% trans 'Newsletter Headline' %}</h2>
+			<div class="row">
+				<div class="newsletter-detail col-xs-12 col-sm-offset-2 col-sm-8">{% trans 'Newsletter Detail' %}.</div>
+			</div>
+		</div>
+		<div id="mc_embed_signup">
+			<form action="//okfn.us6.list-manage.com/subscribe/post?u=fad98e7fc5a76b79765f0c2b5&amp;id=6b3001676b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate form-inline" target="_blank" novalidate="novalidate">
+
+				<div class="mc-field-group form-group col-xs-12 col-sm-7">
+					<input value="{% trans 'Newsletter Email' %}" name="EMAIL" class="form-control required email" id="mce-EMAIL" aria-required="true" type="email">
+				</div>
+
+				<!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+				<div style="position: absolute; left: -5000px;" aria-hidden="true"><input name="b_fad98e7fc5a76b79765f0c2b5_6b3001676b" tabindex="-1" value="" type="text"></div>
+				<button type="submit" class="col-sm-offset-1 col-sm-4 button btn btn-default" value="Anmelden" name="subscribe" id="mc-embedded-subscribe">{% trans 'Newsletter Subscribe Button' %}</button>
+
+				<div id="mce-responses" class="clear">
+					<div class="response" id="mce-error-response" style="display:none"></div>
+					<div class="response" id="mce-success-response" style="display:none"></div>
+				</div>
+		  </form>
+		</div>
+	</div>
 </div>
+{% endblock %}
+
+{% block footer %}
+
+<!--
+<select class="form-control language">
+	<option>DE</option>
+	<option>EN</option>
+	<option>HU</option>
+</select>
+-->
 {% endblock %}
 

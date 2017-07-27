@@ -840,7 +840,7 @@ object {
 
 @media (min-width: 430px) {
   .countdown {
-    margin-top: 70px;
+    margin-top: 60px;
   }
   .countdown .item {
     height: 180px;
@@ -855,7 +855,7 @@ object {
     font-size: 19px;
   }
   .newsletter-form {
-    margin-top: 70px;
+    margin-top: 40px;
   }
 }
 
@@ -868,7 +868,7 @@ object {
     height: 48px;
   }
   .countdown {
-    margin-top: 100px;
+    margin-top: 80px;
   }
   .countdown .item {
     height: 250px;
@@ -880,14 +880,14 @@ object {
     font-size: 32px;
   }
   .newsletter-form {
-    margin-top: 70px;
+    margin-top: 60px;
   }
 }
 
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {
   .countdown {
-    margin-top: 150px;
+    margin-top: 100px;
   }
   .newsletter-form {
     margin-top: 100px;

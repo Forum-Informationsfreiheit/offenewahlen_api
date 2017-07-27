@@ -65,3 +65,7 @@ msgstr "Email-Adresse"
 
 msgid "at"
 msgstr "auf"
+
+msgid "and"
+msgstr "und"
+

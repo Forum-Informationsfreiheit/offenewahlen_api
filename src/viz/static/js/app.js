@@ -63,3 +63,7 @@ let target_ids = {
 
 let count = new CountDown("2017-10-15T17:00", target_ids);
 
+$('#mce-EMAIL').on('focus', function () {
+   	$(this).val("");
+});
+

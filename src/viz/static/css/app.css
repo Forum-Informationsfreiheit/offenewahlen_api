@@ -54,28 +54,28 @@ h1 {
 h2 {
   color: #666;
   font-size: 20px;
-  font-size: 1.25rem;
+  font-size: 2.4rem;
   font-weight: 300;
 }
 
 h3 {
   color: #333;
   font-size: 18px;
-  font-size: 1.125rem;
+  font-size: 2.1rem;
   font-weight: 300;
 }
 
 h4 {
   color: #333;
   font-size: 16px;
-  font-size: 1rem;
+  font-size: 1.6rem;
   font-weight: 800;
 }
 
 h5 {
   color: #767676;
   font-size: 13px;
-  font-size: 0.8125rem;
+  font-size: 1.3rem;
   font-weight: 800;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -84,13 +84,16 @@ h5 {
 h6 {
   color: #333;
   font-size: 15px;
-  font-size: 0.9375rem;
+  font-size: 1.2rem;
   font-weight: 800;
 }
 
 p {
   margin: 0 0 1.5em;
   padding: 0;
+  font-size: 16px;
+  line-height: 24px;
+  font-size: 1.5rem;
 }
 
 dfn,
@@ -730,28 +733,38 @@ object {
   margin: 20px 0px;
 }
 
-.intro-text img {
-  margin-right: 10px;
-}
-
-.intro-text h1 a {
+.intro h1 a {
   box-shadow: none;
 }
 
-.intro-text .ow-logo {
+.intro .ow-logo {
   display: inline-block;
+  height: 48px;
 }
 
-.intro-text .ow-logo img {
+.intro .ow-logo img {
   height: 44px;
+}
+
+.intro span {
+  font-size: 33px;
+  height: 48px;
+  vertical-align: bottom;
+}
+
+.intro .fa-github {
+  font-size: 48px;
+  vertical-align: bottom;
 }
 
 .countdown {
   margin-top: 50px;
   position: relative;
   width: 100%;
+  height: auto;
   font-family: 'Open Sans', sans-serif;
   text-align: center;
+  overflow: hidden;
 }
 
 .countdown .item {
@@ -791,13 +804,43 @@ object {
   font-size: 10px;
 }
 
+.newsletter-form {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.newsletter-form .newsletter-detail {
+  font-size: 14.6px;
+  color: #888;
+}
+
+.newsletter-form #mc_embed_signup {
+  margin-top: 30px;
+  overflow: hidden;
+}
+
+.newsletter-form #mce-EMAIL,
+.newsletter-form #mc-embedded-subscribe {
+  border: 2px solid #777;
+  height: 100%;
+}
+
+.newsletter-form #mc-embedded-subscribe:hover {
+  background-color: #ccc;
+}
+
+.newsletter-form #mce-EMAIL {
+  color: #999;
+  width: 100%;
+}
+
 /**
  * .0 - Media Queries
  */
 
 @media (min-width: 430px) {
   .countdown {
-    margin-top: 80px;
+    margin-top: 70px;
   }
   .countdown .item {
     height: 180px;
@@ -811,6 +854,9 @@ object {
   .countdown .label {
     font-size: 19px;
   }
+  .newsletter-form {
+    margin-top: 70px;
+  }
 }
 
 /* Small devices (tablets, 768px and up) */
@@ -818,11 +864,11 @@ object {
   h1 {
     font-size: 44px;
   }
-  .intro-text .ow-logo img {
+  .intro .ow-logo img {
     height: 48px;
   }
   .countdown {
-    margin-top: 120px;
+    margin-top: 100px;
   }
   .countdown .item {
     height: 250px;
@@ -833,12 +879,19 @@ object {
   .countdown .time {
     font-size: 32px;
   }
+  .newsletter-form {
+    margin-top: 70px;
+  }
 }
 
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {
   .countdown {
-    margin-top: 250px;
+    margin-top: 150px;
+  }
+  .newsletter-form {
+    margin-top: 100px;
+    margin-bottom: 70px;
   }
 }
 

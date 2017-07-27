@@ -33,7 +33,23 @@ msgid "Waiting Title"
 msgstr "#NRW17 Visualization"
 
 msgid "Waiting Subtitle"
-msgstr "15th of October 2017 - 17:00"
+msgstr "15th of October 2017 - 17:00 o'clock"
 
 msgid "Website Title"
 msgstr "#NRW17 Visualization | Offene Wahlen Österreich"
+
+msgid "Newsletter Subscribe Button"
+msgstr "Subscribe"
+
+msgid "Newsletter Headline"
+msgstr "Subscribe for the Newsletter"
+
+msgid "Newsletter Detail"
+msgstr "Get updates about Events and Project-Activities from Offene Wahlen Österreich"
+
+msgid "Newsletter Email"
+msgstr "Email-Address"
+
+msgid "at"
+msgstr "at"
+

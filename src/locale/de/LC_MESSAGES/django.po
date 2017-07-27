@@ -50,3 +50,18 @@ msgstr "15. Oktober 2017 - 17:00 Uhr"
 
 msgid "Website Title"
 msgstr "#NRW17 Visualisierung | Offene Wahlen Österreich"
+
+msgid "Newsletter Subscribe Button"
+msgstr "Anmelden"
+
+msgid "Newsletter Headline"
+msgstr "Melde dich für den Newsletter an"
+
+msgid "Newsletter Detail"
+msgstr "Erhalte Updates zu Veranstaltungen und Projekt-Aktivitäten von Offene Wahlen Österreich"
+
+msgid "Newsletter Email"
+msgstr "Email-Adresse"
+
+msgid "at"
+msgstr "auf"

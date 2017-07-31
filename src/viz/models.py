@@ -6,9 +6,21 @@ class Election(models.Model):
 	short_name = models.CharField(max_length=100)
 	election_type = models.CharField(max_length=100)
 	election_id = models.CharField(max_length=20) # from BMI
+	wikidata_id = models.CharField(max_length=20)
 	administrative_level = models.CharField(max_length=100) # municipality, district, state, federal
 	election_day = models.DateTimeField('timestamp of election day') # yyyy-mm-dd
 
+	def __str__(self):
+		return "%s" % (self.short_name)
+
+	class Meta:
+		ordering = ('short',)
+
+class RegionalElectoralDistrict(models.Model):
+	id = models.AutoField(primary_key=True)
+	full_name = models.CharField(max_length=50)
+	short_name = models.CharField(max_length=2)
+	
 	def __str__(self):
 		return "%s" % (self.short_name)
 
@@ -33,6 +45,8 @@ class Party(models.Model):
 class Municipality(models.Model):
 	id = models.AutoField(primary_key=True)
 	municipality_id = models.CharField(max_length=20) #Gemeindekennziffer
+	municipality_code = models.CharField(max_length=20) #Gemeindecode
+	regional_electoral_district = models.ForeignKey(RegionalElectoralDistrict, on_delete=models.PROTECT)
 	name = models.CharField(max_length=100)
 	district = models.CharField(max_length=100)
 	state = models.CharField(max_length=100)

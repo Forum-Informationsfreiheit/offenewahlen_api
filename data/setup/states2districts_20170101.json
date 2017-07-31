@@ -1,0 +1,163 @@
+{
+  "1": {
+    "name": "Burgenland",
+    "districts": {
+        "1": "Eisenstadt",
+        "2": "Rust",
+        "3": "Eisenstadt-Umgebung",
+        "4": "Güssing",
+        "5": "Jennersdorf",
+        "6": "Mattersburg",
+        "7": "Neusiedl am See",
+        "8": "Oberpullendorf",
+        "9": "Oberwart"
+    }
+  },
+  "2": {
+    "name": "Kärnten",
+    "districts": {
+        "1": "Klagenfurt",
+        "2": "Villach",
+        "3": "Hermagor",
+        "4": "Klagenfurt-Land",
+        "5": "Sankt Veit an der Glan",
+        "6": "Spittal an der Drau",
+        "7": "Villach-Land",
+        "8": "Völkermarkt",
+        "9": "Volfsberg",
+        "10": "Feldkirchen"
+    }
+  },
+  "3": {
+    "name": "Niederösterreich",
+    "districts": {
+        "1": "Krems an der Donau",
+        "2": "Sankt Pölten",
+        "3": "Waidhofen an der Ybbs",
+        "4": "Wiener Neustadt",
+        "5": "Amstetten",
+        "6": "Baden",
+        "7": "Bruck an der Leitha",
+        "8": "Gänserndorf",
+        "9": "Gmünd",
+        "10": "Hollabrun",
+        "11": "Horn",
+        "12": "Korneuburg",
+        "13": "Krems-Land",
+        "14": "Lilienfeld",
+        "15": "Melk",
+        "16": "Mistelbach",
+        "17": "Mödling",
+        "18": "Neunkirchen",
+        "19": "Sankt Pölten-Land",
+        "20": "Scheibbs",
+        "21": "Tulln",
+        "22": "Waidhofen an der Thaya",
+        "23": "Wiener Neustadt-Land",
+        "25": "Zwettl"
+    }
+  },
+  "4": {
+    "name": "Oberösterreich",
+    "districts": {
+        "1": "Linz",
+        "2": "Steyr",
+        "3": "Wels",
+        "4": "Braunau am Inn",
+        "5": "Eferding",
+        "6": "Freistadt",
+        "7": "Gmunden",
+        "8": "Grieskirchen",
+        "9": "Kirchdorf an der Krems",
+        "10": "Linz-Land",
+        "11": "Perg",
+        "12": "Ried im Innkreis",
+        "13": "Rohrbach",
+        "14": "Schärding",
+        "15": "Steyr-Land",
+        "16": "Urfahr-Umgebung",
+        "17": "Vöcklabruck",
+        "18": "Wels-Land"
+    }
+  },
+  "5": {
+    "name": "Salzburg",
+    "districts": {
+        "1": "Salzburg",
+        "2": "Hallein",
+        "3": "Salzburg-Umgebung",
+        "4": "Sankt Johann im Pongau",
+        "5": "Tamsweg",
+        "6": "Zell am See"
+    }
+  },
+  "6": {
+    "name": "Steiermark",
+    "districts": {
+        "1": "Graz",
+        "3": "Deutschlandsberg",
+        "6": "Graz-Umgebung",
+        "10": "Leibnitz",
+        "11": "Leoben",
+        "12": "Liezen",
+        "14": "Murau",
+        "16": "Voitsberg",
+        "17": "Weiz",
+        "20": "Murtal",
+        "21": "Bruck-Mürzzuschlag",
+        "22": "Hartberg-Fürstenfeld",
+        "23": "Südoststeiermark"
+    }
+  },
+  "7": {
+    "name": "Tirol",
+    "districts": {
+        "1": "Innsbruck-Stadt",
+        "2": "Imst",
+        "3": "Innsbruck-Land",
+        "4": "Kitzbühel",
+        "5": "Kufstein",
+        "6": "Landeck",
+        "7": "Lienz",
+        "8": "Reutte",
+        "9": "Schwaz"
+    }
+  },
+  "8": {
+    "name": "Vorarlberg",
+    "districts": {
+        "1": "Bludenz",
+        "2": "Bregenz",
+        "3": "Dornbirn",
+        "4": "Feldkirch"
+    }
+  },
+  "9": {
+    "name": "Wien",
+    "districts": {
+        "1": "Innere Stadt",
+        "2": "Leopoldstadt",
+        "3": "Landstraße",
+        "4": "Wieden",
+        "5": "Margareten",
+        "6": "Mariahilf",
+        "7": "Neubau",
+        "8": "Josefstadt",
+        "9": "Alsergrund",
+        "10": "Favoriten",
+        "11": "Simmering",
+        "12": "Meidling",
+        "13": "Hietzing",
+        "14": "Penzing",
+        "15": "Rudolfsheim-Fünfhaus",
+        "16": "Ottakring",
+        "17": "Hernals",
+        "18": "Währing",
+        "19": "Döbling",
+        "20": "Brigittenau",
+        "21": "Floridsdorf",
+        "22": "Donaustadt",
+        "23": "Liesing"
+   }
+  }
+}

@@ -39,3 +39,13 @@ Tests durchführen
 
     $ python manage.py test
 
+## Kommandos
+
+Testdatensatz von lokalem Pfad importieren
+
+    $ python manage.py importxml --local_path ~/.../offenewahlen-nrw17/data/example.xml
+
+Tests durchführen
+
+    $ python manage.py test
+

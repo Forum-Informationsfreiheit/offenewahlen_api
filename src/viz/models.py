@@ -14,7 +14,7 @@ class Election(models.Model):
 		return "%s" % (self.short_name)
 
 	class Meta:
-		ordering = ('short',)
+		ordering = ('short_name',)
 
 class RegionalElectoralDistrict(models.Model):
 	id = models.AutoField(primary_key=True)
@@ -25,7 +25,7 @@ class RegionalElectoralDistrict(models.Model):
 		return "%s" % (self.short_name)
 
 	class Meta:
-		ordering = ('short',)
+		ordering = ('short_name',)
 
 class Party(models.Model):
 	id = models.AutoField(primary_key=True)
@@ -40,7 +40,7 @@ class Party(models.Model):
 		return "%s" % (self.short)
 
 	class Meta:
-		ordering = ('short',)
+		ordering = ('short_name',)
 
 class Municipality(models.Model):
 	id = models.AutoField(primary_key=True)
@@ -53,7 +53,7 @@ class Municipality(models.Model):
 		return "%s %s" % (self.municipality_id, self.district)
 
 	class Meta:
-		ordering = ('municipality_id',)
+		ordering = ('id',)
 
 class MunicipalityResult(models.Model):
 	id = models.AutoField(primary_key=True)
@@ -70,7 +70,7 @@ class MunicipalityResult(models.Model):
 		return "%s %s" % (self.municipality_id, self.ts_result)
 
 	class Meta:
-		ordering = ('ts_result', 'municipality_id',)
+		ordering = ('ts_result', 'id',)
 
 class PartyResult(models.Model):
 	id = models.AutoField(primary_key=True)

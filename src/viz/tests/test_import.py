@@ -15,11 +15,11 @@ class ImportTest(TestCase):
 	def test_run(self):
 		test_path = os.path.dirname(os.path.realpath(__file__))
 		local_data_file = test_path + '/data/test_data.xml'
-		call_command('importxml', local_path=local_data_file)
+		call_command('importresults', local_path=local_data_file)
 		number_of_results = RawData.objects.count()
 		self.assertEqual(number_of_results, 1)
 
-		call_command('importxml', local_path=local_data_file)
+		call_command('importresults', local_path=local_data_file)
 		number_of_results = RawData.objects.count()
 		self.assertEqual(number_of_results, 2)
 

@@ -14,7 +14,7 @@ class Election(models.Model):
 		return "%s" % (self.short_name)
 
 	class Meta:
-		ordering = ('short',)
+		ordering = ('short_name',)
 
 class RegionalElectoralDistrict(models.Model):
 	id = models.AutoField(primary_key=True)
@@ -25,7 +25,7 @@ class RegionalElectoralDistrict(models.Model):
 		return "%s" % (self.short_name)
 
 	class Meta:
-		ordering = ('short',)
+		ordering = ('short_name',)
 
 class Party(models.Model):
 	id = models.AutoField(primary_key=True)
@@ -40,13 +40,11 @@ class Party(models.Model):
 		return "%s" % (self.short)
 
 	class Meta:
-		ordering = ('short',)
+		ordering = ('short_name',)
 
 class Municipality(models.Model):
 	id = models.AutoField(primary_key=True)
-	municipality_id = models.CharField(max_length=20) #Gemeindekennziffer
-	municipality_code = models.CharField(max_length=20) #Gemeindecode
-	regional_electoral_district = models.ForeignKey(RegionalElectoralDistrict, on_delete=models.PROTECT)
+	spatial_id = models.CharField(max_length=20, null=True, default=None)
 	name = models.CharField(max_length=100)
 	district = models.CharField(max_length=100)
 	state = models.CharField(max_length=100)
@@ -55,11 +53,12 @@ class Municipality(models.Model):
 		return "%s %s" % (self.municipality_id, self.district)
 
 	class Meta:
-		ordering = ('municipality_id',)
+		ordering = ('id',)
 
 class MunicipalityResult(models.Model):
 	id = models.AutoField(primary_key=True)
-	municipality_id = models.ForeignKey(Municipality, on_delete=models.PROTECT)
+	spatial_id = models.ForeignKey(Municipality,
+		on_delete=models.PROTECT, null=True, default=None)
 	eligible_voters = models.IntegerField(default=-1)
 	votes = models.IntegerField(default=-1)
 	valid = models.IntegerField(default=-1)
@@ -71,7 +70,7 @@ class MunicipalityResult(models.Model):
 		return "%s %s" % (self.municipality_id, self.ts_result)
 
 	class Meta:
-		ordering = ('ts_result', 'municipality_id',)
+		ordering = ('ts_result', 'id',)
 
 class PartyResult(models.Model):
 	id = models.AutoField(primary_key=True)
@@ -86,12 +85,11 @@ class PartyResult(models.Model):
 		ordering = ('municipality', 'party',)
 
 class RawData(models.Model):
-	id = models.AutoField(primary_key=True)
-	timestamp = models.DateTimeField('creation date of raw file')
-	hash = models.CharField(max_length=100) # hash of raw file
-	content = models.TextField() # raw data
-	header = models.TextField() # http header result
-	dataformat = models.CharField(max_length=10) # xml, csv, json, txt
+	timestamp = models.DateTimeField('creation date of BMI xml')
+	hash = models.CharField(max_length=100)
+	content = models.TextField()
+	header = models.TextField()
+	dataformat = models.CharField(max_length=10)
 
 	def __str__(self):
 		return "%s" % (self.timestamp)

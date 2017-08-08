@@ -12,7 +12,6 @@
 	<meta http-equiv="cleartype" content="on">
 	<meta http-equiv="expires" content="0">
 	<link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.png' %}">
-
 	<!-- jQuery 3 -->
 	<script 	src="https://code.jquery.com/jquery-3.2.1.min.js"
 				integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="

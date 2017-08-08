@@ -1,9 +1,0 @@
-{% extends "viz/base.dtl" %}
-
-{% block title %}NRW17 - Statistiken{% endblock %}
-
-{% block content %}
-	<h1>Statistiken</h1>
-	<p>Hier folgen demnächst die ersten Statistiken um die Korrektheit und Komplettheit der Daten bei Wahlen zu validieren.</p>
-{% endblock %}
-

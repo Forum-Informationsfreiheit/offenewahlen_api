@@ -10,7 +10,7 @@ Dies ist ein Open Source Projekt, daher freuen wir uns über jede helfende Hand.
 
 ## Daten
 
-Die von uns zusammen getragenen Daten sind die erste Grundlage für die App. Wir erheben keinen Anspruch auf Vollständigkeit oder Korrektheit, glauben aber das die Datenlage schon recht okay ist für den Start. Uns ist dabei ein Crowd-Souring Zugang wichtig. Also wenn du einen Fehler findest, Daten für die Anreicherung oder neue Daten hast -> meld dich bitte! Weiters wollen wir die Daten kontinuierlich in Wikidata importieren um Wikidata so als den primären Ort für Identifier rund um Wahlen zu etablieren.
+Die von uns zusammen getragenen Daten sind die erste Grundlage für die App. Wir erheben keinen Anspruch auf Vollständigkeit oder Korrektheit, glauben aber das die Datenlage schon recht okay ist für den Start. Uns ist dabei ein **Crowd-Souring** Zugang wichtig. Also wenn du einen Fehler findest, Daten für die Anreicherung oder neue Daten hast -> **meld dich bitte!** Weiters wollen wir die Daten kontinuierlich in Wikidata importieren um Wikidata so als den primären Ort für Identifier rund um Wahlen zu etablieren.
 
 Nähere Infos zu den einzelnen Daten findet man unter [Dokumentieren#Datenmodelle](https://github.com/OKFNat/offenewahlen-nrw17/wiki/Dokumentieren#datenmodelle).
 

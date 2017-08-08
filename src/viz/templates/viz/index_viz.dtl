@@ -1,0 +1,12 @@
+{% extends "viz/base.dtl" %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block title %}{% trans 'Website Title' %}{% endblock %}
+
+{% block content %}
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+

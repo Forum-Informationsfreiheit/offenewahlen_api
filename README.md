@@ -4,11 +4,12 @@
 
 *#NRW17 Visualisierung* ist eine Visualisierung der Ergebnisse der 26. österreichischen Nationalratswahl am 15. Oktober 2017. Ziel ist es, eine spannende und informative Aufbereitung der Informationen für sämtliche BesucherInnen anzubieten. Dabei handelt es sich um eine gemeinsam entwickelte Web-App, welche die Daten am Wahltag vom Bundesinnenministerium um 17 Uhr holt, in eine Datenbank speichert und mittels verschiedenen Visualisierungen online für alle online verfügbar macht.
 
+![Offene Wahlen](https://github.com/OKFNat/offenewahlen-at/blob/master/images/logos/ow-at.png)
 
 Die Visualisierung wird am 15. Oktober kurz nach 17:00 Uhr unter **[nrw17.offenewahlen.at](https://nrw17.offenewahlen.at)** online gehen.
 
 
-*#NRW17 Visualisierung* ein Teil von dem Projekt [Offene Wahlen Österreich](https://offenwahlen.at), koordiniert vom Verein [Open Knowledge Österreich](https://okfn.at).
+*#NRW17 Visualisierung* ist ein Teil von dem Projekt [Offene Wahlen Österreich](https://offenwahlen.at), koordiniert vom Verein [Open Knowledge Österreich](https://okfn.at).
 
 
 Wir möchten uns herzlich beim Bundesministerium für Inneres für den unkomplizierten Zugang zu den Ergebnissen am Wahltag bedanken! 
@@ -35,12 +36,16 @@ In diesem GitHub-Repository wird gemeinsam der Code entwickelt, die Dokumentatio
 
 Die Django-App läuft auf MacOS, Win und Linux.
 
-Um *#NRW17 Visualisierung* lokal auf deinem Rechner laufen zu lassen, benötigst du Python 3 ([hier](https://www.python.org/downloads/)), pip ([hier](https://pip.pypa.io/en/stable/), falls nötig), virtualenv ([hier](https://virtualenv.pypa.io/en/stable/) oder [hier](http://docs.python-guide.org/en/latest/dev/virtualenvs/)) und PostgreSQL ([hier](https://www.postgresql.org/)).
+Um die App lokal auf deinem Rechner laufen zu lassen, benötigst du:
+* Python 3 ([hier](https://www.python.org/downloads/))
+* pip ([hier](https://pip.pypa.io/en/stable/), falls nötig)
+* virtualenv ([hier](https://virtualenv.pypa.io/en/stable/) oder [hier](http://docs.python-guide.org/en/latest/dev/virtualenvs/))
+* PostgreSQL ([hier](https://www.postgresql.org/))
 
-Nach der erfolgten Installation: Öffne deine Shell und gehe in den Ordner, in dem du die App haben möchtest. Dort musst du das GitHub-Repository rein klonen.
+Nach erfolgreicher Installation: Öffne deine Shell und gehe in den Ordner, in dem du die App haben möchtest. Dort musst du das GitHub-Repository hinein klonen.
 
 ```bash
-git clone https://github.com/okfde/fragdenstaat_de.git
+git clone https://github.com/OKFNat/offenewahlen-nrw17.git
 ls
 ```
 
@@ -57,22 +62,21 @@ Das Virtual Environment kann nun aktiviert werden.
 source venv/bin/activate
 ```
 
-Nun kannst du in das Virtual Environment die benötigten Python Packages aus der `requirements.txt` Datei installieren. Der Vorteil: Die Packages werden nur im Virtual Environment installiert und nicht auf deinem Betriebssystem.
+Nun kannst du in das Virtual Environment die benötigten Python Packages aus der `requirements.txt` Datei installieren. Der Vorteil: Die Packages werden dadurch nur im Virtual Environment installiert und nicht auf deinem Betriebssystem.
 
 ```bash
 pip install -U -r requirements.txt
 ```
 
-Die App ist an sich jetzt schon funktionsfähig, es müssen aber noch die Datenbank initalisiert werden. Dazu muss zuerstin den `src/`-Ordner gehen, welcher der Root-Folder der Django-App ist.
+Die App ist an sich jetzt schon funktionsfähig, es muss aber noch die Datenbank initalisiert werden. Dazu in den `src/`-Ordner gehen, welcher der Root-Folder der Django-App ist.
 
 ```bash
-cd src/
 python manage.py migrate
 ```
 
-Nun sollten die Tabellen in der PostgreSQL-Datenbank angelegt sein. Dies kannst du zum Beispiel mit [pgAdmin](https://www.pgadmin.org/), eine PostgreSQL-Datenbank Client ansehen.
+Nun sollten die Tabellen in der PostgreSQL-Datenbank angelegt sein. Mit [pgAdmin](https://www.pgadmin.org/), einem PostgreSQL-GUI, kannst du dies z. B. ansehen.
 
-Wenn du `python manage.py` aufrufst, siehst du eine Liste an Befehlen, die die die Django-App zur Verfügung stellt. Um den Server lokal zu starten, benötigst du den Befehl `runserver`.
+Wenn du `python manage.py` aufrufst, siehst du eine Liste an Befehlen, die die die Django-App zur Verfügung stellt. Um den Server lokal zu starten, benötigst du den Befehl `runserver`. Beachte: du musst immer im `src/` Ordner sein, um `manage.py` ausführen zu können.
 
 ```bash
 python manage.py runserver
@@ -82,7 +86,7 @@ Wenn soweit alles gepasst hat, solltest du nun die App im Browser unter [http://
 
 ## DEVELOPMENT
 
-**Ordner-Struktur**
+### Ordner-Struktur
 
 * `src/`
   * `offenewahlen_nrw17/`: Hauptordner der Django-App.
@@ -102,9 +106,9 @@ Wenn soweit alles gepasst hat, solltest du nun die App im Browser unter [http://
 * `data/`: enthält die Daten von uns.
   * `setup/`: alle Daten, die für das Setup der App notwendig sind.
   * `test/`: alle Daten, die für die Tests notwendig sind.
-* `venv/`: ist der Ordner für das Virtual Environment. Wird zu Beginn erstellt, siehe [Install](#INSTALL).
+* `venv/`: ist der Ordner für das Virtual Environment. Wird zu Beginn erstellt, siehe [Install](#install).
 
-**Mehrsprachigkeit**
+### Mehrsprachigkeit
 
 Die Sprachfiles erstellen.
 ```bash
@@ -112,37 +116,37 @@ cd src/
 python manage.py compilemessages
 ```
 
-**Daten importieren**
+### Daten importieren
 
 XML-Testergebnisse von lokalem Pfad importieren
 ```bash
 python manage.py importxml --local_path ../data/test/example_1.xml
 ```
 
-**Tests durchführen**
+### Tests durchführen
 
 ```bash
 python manage.py test
 ```
 
-**Unser Workflow**
+### Unser Development-Workflow
 
 Um beim Entwickeln der App mitzumachen, empfiehlt es sich zuerst mal den Stand zu den [Milestones](https://github.com/OKFNat/offenewahlen-nrw17/milestones?direction=asc&sort=due_date&state=open) und das [Board](https://github.com/OKFNat/offenewahlen-nrw17/milestones#boards?repos=96933110) mit den Issues anzusen. Mit den Milestones koordinieren wir die großen Projekt-Abschnitte, welche sich aus vielen kleineren Issues zusammen setzen, und ist der beste Startpunkt zum Verstehen des Entwicklungs-Standes. Das Board ermöglicht einfaches verwalten der Issues und ist somit die zentrale Übersicht für die Tasks.
 
 Die Entwicklung wird in drei Entwicklungs-Phasen unterteilt:
-1. Alpha: Die Kernfunktionen der einzelne Prozess-Schritte. Es soll ein Teil nach dem anderen Lauffähig werden, damit möglichst bald an allen drei Teilen parallel gearbeitet werden kann.
-2. Beta: Die Beta-Phase wird sowohl für den internen Test wie auch der Test-Wahl mit dem BMI verwendet, und muss somit alle am Wahltag benötigten Funktionen implementiert haben.
-3. Final: Die finale Version 1 der App, mit welcher am Wahltag online gegangen wird.
+1. **Alpha**: Die Kernfunktionen der einzelne Prozess-Schritte. Es soll ein Teil nach dem anderen Lauffähig werden, damit möglichst bald an allen drei Teilen parallel gearbeitet werden kann.
+2. **Beta**: Die Beta-Phase wird sowohl für den internen Test wie auch der Test-Wahl mit dem BMI verwendet, und muss somit alle am Wahltag benötigten Funktionen implementiert haben.
+3. **Final**: Die finale Version 1 der App, mit welcher am Wahltag online gegangen wird.
 
-Unterteilt ist die Reihenfolge je Entwicklungs-Phase immer:
-1. Datenimport: Zuerst müssen die notwendigen Daten in die Datenbank importiert werden.
-2. Datenauslieferung: Die Datenbank liefert die benötigten Daten an das Frontend aus.
-3. Frontend: Enthält die Visualisierungen und die Statistik-Seite und alles sonstige, was via Browser zugänglich ist.
+Unterteilt ist die Reihenfolge je Entwicklungs-Phase immer in:
+1. **Datenimport**: Zuerst müssen die notwendigen Daten in die Datenbank importiert werden.
+2. **Datenauslieferung**: Die Datenbank liefert die benötigten Daten an das Frontend aus.
+3. **Frontend**: Enthält die Visualisierungen und die Statistik-Seite und alles sonstige, was via Browser zugänglich ist.
 4. Deployment: Wenn die drei Datenverarbeitungs-Prozesse abgeschlossen ist, wird die App deployed und die nächste Entwicklungs-Phase kann beginnen.
 
-**Selber coden**
+### Selber coden
 
-Lies zuerst den Absatz davor (Unser Workflow). Dann *forke* dieses Repo und *clone* es auf deinen Rechner um die App lokal zum Laufen bringen (siehe [Install](#INSTALL). Dann such dir am besten ein Issue aus dem [Board](https://github.com/OKFNat/offenewahlen-nrw17/milestones#boards?repos=96933110) und versuch es zu lösen. Wenn du Fragen hast, kannst du dich jederzeit via Email (info@offenewahlen.at) oder unter [Kontakt](http://offenewahlen.at/kontakt) melden. Nachdem du das Issue erledigt hast, musst du die Änderungen mittels Pull Request an dieses GitHub Repository hochladen. 
+Lies zuerst den Absatz davor (Unser Workflow). Dann *forke* dieses Repo und *clone* es auf deinen Rechner um die App lokal zum Laufen bringen (siehe [Install](#install). Dann such dir am besten ein Issue aus dem [Board](https://github.com/OKFNat/offenewahlen-nrw17/milestones#boards?repos=96933110) und versuch es zu lösen. Wenn du Fragen hast, kannst du dich jederzeit via Email (info@offenewahlen.at) oder unter [Kontakt](http://offenewahlen.at/kontakt) melden. Nachdem du das Issue erledigt hast, musst du die Änderungen mittels Pull Request an dieses GitHub Repository hochladen. 
 
 Eine Person vom Team (vermutlich Stefan oder Christopher), werden dann den Pull Request reviewen. Wenn es Probleme gibt, werden wir dies im Pull Request kommentieren, wenn nicht werden wir *mergen*.
 
@@ -166,7 +170,7 @@ Wenn du das Projekt gerne ehrenamtlich unterstützen möchtest, melde dich einfa
 
 Anbei eine paar Ideen, wie man sich bei dem Team einbringen kann:
 - **Fehler melden**: Wenn du einen Fehler gefunden hast, erstelle bitte ein [Issue](https://github.com/OKFNat/offenewahlen-nrw17/issues/new) dazu. Immer am besten mit Screenshot und möglichst exakter Fehlerbeschreibung.
-- **Fehler beheben**: Sieh dir die [Issues](https://github.com/OKFNat/offenewahlen-nrw17/issues) an und schließe eines. Nähere Infos unter **[Development](#DEVELOPMENT)**.
+- **Fehler beheben**: Sieh dir die [Issues](https://github.com/OKFNat/offenewahlen-nrw17/issues) an und schließe eines. Nähere Infos unter **[Development](#development)**.
 - **Web-Design / Grafik**: mach bei der Daten-Visualisierung am Frontend mit. Auch GrafikerInnen für Logos etc. sind gesucht.
 - **Web-Entwicklung, UX/UI**: alles was mit klassicher Website-Entwicklung zu tun hat - vor allem Frontend UX/UI. Von HTML5 über CSS3 bis hin zu JavaScript (jQuery, Bootstrap, D3).
 - **Django EntwicklerIn**: die App ist mit dem Web-Framework Django umgesetzt. Daher ist hier Know-How sehr gesucht.
@@ -184,16 +188,13 @@ Wenn du Fragen hast, kannst du dich jederzeit via Email (info@offenewahlen.at) o
 Für die App werden verschiedene Daten als Grundlage verwendet. Einige werden von anderen übernommen, andere von uns selber zusammen getragen. Beachte: Wir erheben keinen Anspruch auf Vollständigkeit oder Korrektheit, die Qualität der vorhandenen Daten sollte aber recht gut sein. Unser Ziel ist es, erst mal alle notwendigen Daten für die *#NRW17 Visualisierung* zusammen zu tragen. Danach sollen diese Schritt für Schritt erweitert werden. Wir freuen uns sehr über jede Unterstützung dabei. Wenn du einen Fehler findest, oder selber spannende Daten besitzt - **meld dich bitte!** 
 
 
-Die so gesammelten und kuratierten Daten werden kontinuierlich in Wikidata importiert, um dies als primäres Repository für Unique-Identifiers rund um Wahlen aufzubauen. Dazu gibt es mit [OKFNat/offenewahlen-wikidata](https://github.com/OKFNat/offenewahlen-wikidata) ein eigenes Repository mit weiteren Infos.
+Die Basis-Daten dienen zum Setup der App und als Datengrundlage, um die Ergebnisse passend visualisieren zu können. Die Test-Daten werden zum Testen der einzelnen Prozess-Schritte verwendet. Dies ermöglicht ein verifizieren der App auf seine verschiedenen Funktionen - vom Datenimport bis hin zu Visualisierung.
 
 
-Die Basis-Daten dienen zum Setup der App und als Datengrundlage, um die Ergebnisse passend visualisieren zu können. 
+Die so gesammelten und kuratierten Daten werden kontinuierlich in **Wikidata** importiert, um dies als primäres Repository für Unique-Identifiers rund um Wahlen aufzubauen. Dazu gibt es mit [OKFNat/offenewahlen-wikidata](https://github.com/OKFNat/offenewahlen-wikidata) ein eigenes Repository mit weiteren Infos.
 
 
-Die Test-Daten werden zum Testen der einzelnen Prozess-Schritte verwendet. Dies ermöglicht ein verifizieren der App auf seine verschiedenen Funktionen - vom Datenimport bis hin zu Visualisierung.
-
-
-Nähere Infos zu den einzelnen Daten findet man unter **[DATA.md](DATA.md)**.
+Nähere Infos zu den einzelnen Daten findest du unter **[DATA.md](DATA.md)**.
 
 
 ## COPYRIGHT

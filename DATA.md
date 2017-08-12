@@ -10,7 +10,7 @@ Die Basis-Daten dienen zum Setup der App und als Datengrundlage, um die Ergebnis
 
 Liste mit Gemeinden. `data/setup/municipalities_20170101.json`
 
-Enthält alle Gemeinden Österreichs am Stichtag 1. 1. 2017. An sich komplett, Fehler oder Verbesserungen aber bitte melden, siehe [mitmachen](README.md).
+Enthält alle Gemeinden Österreichs am Stichtag 1. 1. 2017. An sich komplett, Fehler oder Verbesserungen aber bitte melden, siehe [mitmachen](README.md#mitmachen).
 
 Versionen:
 - raw: CSV file `municipalities_20170101_1.csv`
@@ -31,7 +31,7 @@ Attribute:
 
 Liste mit Parteien. `data/setup/parties.json`
 
-Enthält alle Parteien die für die Visualisierung notwendig sind. Wird kontinuierlich erweitert, [mitmachen](README.md) erwünscht.
+Enthält alle Parteien die für die Visualisierung notwendig sind. Wird kontinuierlich erweitert, [mitmachen](README.md#mitmachen) erwünscht.
 
 Attribute:
 - full_name: Vollständiger Name der Partei
@@ -45,7 +45,7 @@ Attribute:
 
 Liste mit Wahlen. `data/setup/elections.json`
 
-Enthält alle Wahlen die für die Visualisierung notwendig sind. Wird kontinuierlich erweitert, [mitmachen](README.md) erwünscht.
+Enthält alle Wahlen die für die Visualisierung notwendig sind. Wird kontinuierlich erweitert, [mitmachen](README.md#mitmachen) erwünscht.
 
 Attribute:
 - full_name: Vollständige Bezeichnung der Wahl
@@ -59,7 +59,7 @@ Attribute:
 
 Mapping von Bezirken zu jedem Bundesland. `data/setup/states2districts_20170101.json`
 
-Enthält zu allen Bundesländern sämtliche enthaltene Bezirke am Stichtag 1. 1. 2017. An sich komplett, Fehler oder Verbesserungen aber bitte melden, siehe [mitmachen](README.md).
+Enthält zu allen Bundesländern sämtliche enthaltene Bezirke am Stichtag 1. 1. 2017. An sich komplett, Fehler oder Verbesserungen aber bitte melden, siehe [mitmachen](README.md#mitmachen).
 
 Attribute:
 - NAME_DISTRICT: Bezirksname
@@ -86,7 +86,7 @@ Datenmodell:
 
 Mapping von Gemeinden zu den Regionalwahlkreisen. `data/setup/regional-electoral-district2municipalities_20170101.json`
 
-Mapping aller Regionalwahlkreise mit den darin enthaltenen Gemeinden am Stichtag 1. 1. 2017. An sich komplett, Fehler oder Verbesserungen aber bitte melden, siehe [mitmachen](README.md).
+Mapping aller Regionalwahlkreise mit den darin enthaltenen Gemeinden am Stichtag 1. 1. 2017. An sich komplett, Fehler oder Verbesserungen aber bitte melden, siehe [mitmachen](README.md#mitmachen).
 
 Attribute:
 - MUNICIPALITY_CODE: Gemeinde-Code

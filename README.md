@@ -34,7 +34,7 @@ In diesem GitHub-Repository wird gemeinsam der Code entwickelt, die Dokumentatio
 
 Die Django-App läuft auf MacOS, Win und Linux.
 
-**Benötigte Software installieren**
+**1. Benötigte Software installieren**
 
 Um die App lokal auf deinem Rechner laufen zu lassen, benötigst du:
 * Python 3 ([hier](https://www.python.org/downloads/))
@@ -42,7 +42,7 @@ Um die App lokal auf deinem Rechner laufen zu lassen, benötigst du:
 * virtualenv ([hier](https://virtualenv.pypa.io/en/stable/) oder [hier](http://docs.python-guide.org/en/latest/dev/virtualenvs/))
 * PostgreSQL ([hier](https://www.postgresql.org/))
 
-**#NRW17 Django-App installieren**
+**2. GitHub Repository runterladen**
 
 Nach erfolgreicher Installation der benötigten Software: Öffne deine Shell und gehe in den Ordner, in dem du die App haben möchtest. Dort musst du das GitHub-Repository hinein klonen.
 
@@ -50,6 +50,8 @@ Nach erfolgreicher Installation der benötigten Software: Öffne deine Shell und
 git clone https://github.com/OKFNat/offenewahlen-nrw17.git
 ls
 ```
+
+**3. Setup Virtual Environment**
 
 Du solltest das runtergeladene Repository in deinem Ordner sehen. Geh in den Root-Ordner und erstelle darin das Virtual Environment.
 
@@ -81,6 +83,8 @@ Nun kannst du in das Virtual Environment die benötigten Python Packages aus der
 pip install -U -r requirements.txt
 ```
 
+**4. Datenbank initialisieren**
+
 Die App ist an sich jetzt schon funktionsfähig, es muss aber noch die Datenbank initalisiert werden. Dazu in den `src/`-Ordner gehen, welcher der Root-Folder der Django-App ist.
 
 ```bash
@@ -89,11 +93,14 @@ python manage.py migrate
 
 Nun sollten die Tabellen in der PostgreSQL-Datenbank angelegt sein. Mit [pgAdmin](https://www.pgadmin.org/), einem PostgreSQL-GUI, kannst du dies z. B. ansehen.
 
+**5. Django Commands ausführen**
 Wenn du `python manage.py` aufrufst, siehst du eine Liste an Befehlen, die die die Django-App zur Verfügung stellt. Um den Server lokal zu starten, benötigst du den Befehl `runserver`. Beachte: du musst immer im `src/` Ordner sein, um `manage.py` ausführen zu können.
 
 ```bash
 python manage.py runserver
 ```
+
+**6. Django-App im Browser**
 
 Wenn soweit alles gepasst hat, solltest du nun die App im Browser unter [http://localhost:8000](http://localhost:8000) sehen können.
 

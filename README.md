@@ -93,18 +93,70 @@ python manage.py migrate
 
 Nun sollten die Tabellen in der PostgreSQL-Datenbank angelegt sein. Mit [pgAdmin](https://www.pgadmin.org/), einem PostgreSQL-GUI, kannst du dies z. B. ansehen.
 
-**5. Django Commands ausführen**
+**5. Django-Befehle ausführen**
+
 Wenn du `python manage.py` aufrufst, siehst du eine Liste an Befehlen, die die die Django-App zur Verfügung stellt. Um den Server lokal zu starten, benötigst du den Befehl `runserver`. Beachte: du musst immer im `src/` Ordner sein, um `manage.py` ausführen zu können.
 
 ```bash
 python manage.py runserver
 ```
 
-**6. Django-App im Browser**
+**6. Django-App im Browser anzeigen**
 
 Wenn soweit alles gepasst hat, solltest du nun die App im Browser unter [http://localhost:8000](http://localhost:8000) sehen können.
 
 ## DEVELOPMENT
+
+### Daten importieren
+
+XML-Testergebnisse von lokalem Pfad importieren
+```bash
+python manage.py importxml --local_path ../data/test/example_1.xml
+```
+
+### Tests durchführen
+
+```bash
+python manage.py test
+```
+
+### Unser Development-Workflow
+
+Um beim Entwickeln der App mitzumachen, empfiehlt es sich zuerst mal den Stand zu den [Milestones](https://github.com/OKFNat/offenewahlen-nrw17/milestones?direction=asc&sort=due_date&state=open) und das [Board](https://github.com/OKFNat/offenewahlen-nrw17/milestones#boards?repos=96933110) mit den Issues anzusehen. Mit den Milestones koordinieren wir die großen Projekt-Abschnitte, welche sich aus vielen kleineren Issues zusammen setzen, und ist der beste Startpunkt zum Verstehen des Entwicklungs-Standes. Das Board ermöglicht einfaches verwalten der Issues und ist somit die zentrale Übersicht für die Tasks.
+
+Die Entwicklung wird in drei Entwicklungs-Phasen unterteilt:
+1. **Alpha**: Die Kernfunktionen der einzelne Prozess-Schritte. Es soll ein Teil nach dem anderen Lauffähig werden, damit möglichst bald an allen drei Teilen parallel gearbeitet werden kann.
+2. **Beta**: Die Beta-Phase wird sowohl für den internen Test wie auch der Test-Wahl mit dem BMI verwendet, und muss somit alle am Wahltag benötigten Funktionen implementiert haben.
+3. **Final**: Die finale Version 1 der App, mit welcher am Wahltag online gegangen wird.
+
+Unterteilt ist die Reihenfolge je Entwicklungs-Phase immer in:
+1. **Datenimport**: Zuerst müssen die notwendigen Daten in die Datenbank importiert werden.
+2. **Datenauslieferung**: Die Datenbank liefert die benötigten Daten an das Frontend aus.
+3. **Frontend**: Enthält die Visualisierungen und die Statistik-Seite und alles sonstige, was via Browser zugänglich ist.
+4. Deployment: Wenn die drei Datenverarbeitungs-Prozesse abgeschlossen ist, wird die App deployed und die nächste Entwicklungs-Phase kann beginnen.
+
+### Selber coden
+
+Lies zuerst den Absatz davor (Unser Workflow). Dann *forke* dieses Repo und *clone* es auf deinen Rechner um die App lokal zum Laufen bringen (siehe [Install](#install)). Dann such dir am besten ein Issue aus dem [Board](https://github.com/OKFNat/offenewahlen-nrw17/milestones#boards?repos=96933110) und versuch es zu lösen. Wenn du Fragen hast, kannst du dich jederzeit via Email (info@offenewahlen.at) oder unter [Kontakt](http://offenewahlen.at/kontakt) melden. Nachdem du das Issue erledigt hast, musst du die Änderungen mittels Pull Request an dieses GitHub Repository hochladen. 
+
+Eine Person vom Team (vermutlich Stefan oder Christopher), werden dann den Pull Request reviewen. Wenn es Probleme gibt, werden wir dies im Pull Request kommentieren, wenn nicht werden wir *mergen*.
+
+
+**Ersten Schritte**
+
+1. [Wiki](https://github.com/OKFNat/offenewahlen-nrw17/wiki) lesen.
+2. Dieses Repository ansehen.
+3. [Milestones](https://github.com/OKFNat/offenewahlen-nrw17/milestones?direction=asc&sort=due_date&state=open) ansehen.
+4. Task-Management via [Board](https://github.com/OKFNat/offenewahlen-nrw17/milestones#boards?repos=96933110) ansehen.
+
+
+**Ressourcen zum Lernen**
+
+* Python: [Kurs @ Udacity](https://de.udacity.com/course/programming-foundations-with-python--ud036/), [The Hitchhiker's Guide to Python](http://docs.python-guide.org/en/latest/)
+* Django: [Tutorial](https://docs.djangoproject.com/en/1.11/intro/tutorial01/), [The Django Book](https://djangobook.com/)
+* JavaScript: [Kurs @ Udacity](https://de.udacity.com/course/javascript-basics--ud804/)
+* jQuery: [Kurs @ Udacity](https://de.udacity.com/course/intro-to-jquery--ud245/)
+* D3.js: [Kurs @ Udacity](https://de.udacity.com/course/data-visualization-and-d3js--ud507/)
 
 ### Ordner-Struktur
 
@@ -136,48 +188,6 @@ cd src/
 python manage.py compilemessages
 ```
 
-### Daten importieren
-
-XML-Testergebnisse von lokalem Pfad importieren
-```bash
-python manage.py importxml --local_path ../data/test/example_1.xml
-```
-
-### Tests durchführen
-
-```bash
-python manage.py test
-```
-
-### Unser Development-Workflow
-
-Um beim Entwickeln der App mitzumachen, empfiehlt es sich zuerst mal den Stand zu den [Milestones](https://github.com/OKFNat/offenewahlen-nrw17/milestones?direction=asc&sort=due_date&state=open) und das [Board](https://github.com/OKFNat/offenewahlen-nrw17/milestones#boards?repos=96933110) mit den Issues anzusen. Mit den Milestones koordinieren wir die großen Projekt-Abschnitte, welche sich aus vielen kleineren Issues zusammen setzen, und ist der beste Startpunkt zum Verstehen des Entwicklungs-Standes. Das Board ermöglicht einfaches verwalten der Issues und ist somit die zentrale Übersicht für die Tasks.
-
-Die Entwicklung wird in drei Entwicklungs-Phasen unterteilt:
-1. **Alpha**: Die Kernfunktionen der einzelne Prozess-Schritte. Es soll ein Teil nach dem anderen Lauffähig werden, damit möglichst bald an allen drei Teilen parallel gearbeitet werden kann.
-2. **Beta**: Die Beta-Phase wird sowohl für den internen Test wie auch der Test-Wahl mit dem BMI verwendet, und muss somit alle am Wahltag benötigten Funktionen implementiert haben.
-3. **Final**: Die finale Version 1 der App, mit welcher am Wahltag online gegangen wird.
-
-Unterteilt ist die Reihenfolge je Entwicklungs-Phase immer in:
-1. **Datenimport**: Zuerst müssen die notwendigen Daten in die Datenbank importiert werden.
-2. **Datenauslieferung**: Die Datenbank liefert die benötigten Daten an das Frontend aus.
-3. **Frontend**: Enthält die Visualisierungen und die Statistik-Seite und alles sonstige, was via Browser zugänglich ist.
-4. Deployment: Wenn die drei Datenverarbeitungs-Prozesse abgeschlossen ist, wird die App deployed und die nächste Entwicklungs-Phase kann beginnen.
-
-### Selber coden
-
-Lies zuerst den Absatz davor (Unser Workflow). Dann *forke* dieses Repo und *clone* es auf deinen Rechner um die App lokal zum Laufen bringen (siehe [Install](#install)). Dann such dir am besten ein Issue aus dem [Board](https://github.com/OKFNat/offenewahlen-nrw17/milestones#boards?repos=96933110) und versuch es zu lösen. Wenn du Fragen hast, kannst du dich jederzeit via Email (info@offenewahlen.at) oder unter [Kontakt](http://offenewahlen.at/kontakt) melden. Nachdem du das Issue erledigt hast, musst du die Änderungen mittels Pull Request an dieses GitHub Repository hochladen. 
-
-Eine Person vom Team (vermutlich Stefan oder Christopher), werden dann den Pull Request reviewen. Wenn es Probleme gibt, werden wir dies im Pull Request kommentieren, wenn nicht werden wir *mergen*.
-
-**Ressourcen zum Lernen**
-
-- Python: [Kurs @ Udacity](https://de.udacity.com/course/programming-foundations-with-python--ud036/), [The Hitchhiker's Guide to Python](http://docs.python-guide.org/en/latest/)
-- Django: [Tutorial](https://docs.djangoproject.com/en/1.11/intro/tutorial01/), [The Django Book](https://djangobook.com/)
-- JavaScript: [Kurs @ Udacity](https://de.udacity.com/course/javascript-basics--ud804/)
-- jQuery: [Kurs @ Udacity](https://de.udacity.com/course/intro-to-jquery--ud245/)
-- D3.js: [Kurs @ Udacity](https://de.udacity.com/course/data-visualization-and-d3js--ud507/)
-
 ## DOKUMENTATION
 
 Die Dokumentation findet in diesem Repository in den Files [README.md](README.md) und [DATA.md](DATA.md) sowie dem dazugehörigen [GitHub Wiki](https://github.com/OKFNat/offenewahlen-nrw17/wiki) statt. Das Wiki ist eine frei zugängliche Wissens-Sammlung rund um die App und für alle offen zum Verwenden und Verändern. 
@@ -201,6 +211,14 @@ Anbei eine paar Ideen, wie man sich bei dem Team einbringen kann:
 - **Funding**: Wir suchen passende Funding-Möglichkeiten, um das Projekt kontinuierlich weiter wachsen zu lassen und zu verbessern. Wenn du eine Idee hast, wie man zu Förderungen kommt oder mit uns gemeinsam einreichen möchtest, meld dich bitte.
 - **[Spenden](http://offenewahlen.at/spenden)**: Du kannst uns auch finanziell unterstützen, indem du eine kleine Spende da lässt. Das Geld wird Projekt-bezogen verwendet und dient zum Verbessern der verschiedenen Aktivitäten von Offene Wahlen Österreich - von der #NRW17-App über den Datenstandard bis hin zum Abhalten von Coding-Workshops.
 
+**Ersten Schritte**
+
+Es empfiehlt sich, zu Beginn die Dokumentation und unser Projekt-Management kurz anzusehen, um einen Überblick zum Projekt zu bekommen:
+* [Wiki](https://github.com/OKFNat/offenewahlen-nrw17/wiki) durchgehen.
+* Dieses Repository durchgehen.
+* [Milestones](https://github.com/OKFNat/offenewahlen-nrw17/milestones?direction=asc&sort=due_date&state=open) ansehen.
+* Task-Management via [Board](https://github.com/OKFNat/offenewahlen-nrw17/milestones#boards?repos=96933110) ansehen.
+
 Wenn du Fragen hast, kannst du dich jederzeit via Email (info@offenewahlen.at) oder unter [Kontakt](http://offenewahlen.at/kontakt) melden.
 
 ## DATEN
@@ -219,7 +237,11 @@ Nähere Infos zu den einzelnen Daten findest du unter **[DATA.md](DATA.md)**.
 
 ## COPYRIGHT
 
-Sämtlicher von uns entwickelter Quellcode steht unter der [MIT](https://opensource.org/licenses/MIT)-Lizenz frei zur verfügung.
+Sämtlicher von uns entwickelter Quellcode ist Open Source und steht unter der [MIT](https://opensource.org/licenses/MIT)-Lizenz frei zur verfügung. 
 
-Alle Materialien wie Texte, Bilder und Folien die im Rahmen dieses Projektes erstellt werden, stehen unter CC BY 4.0, soweit nicht explizit anders erwähnt.
+
+Von uns genutzte Software ist alles Open Source.
+
+
+Alle Materialien wie Texte, Bilder und Folien die im Rahmen dieses Projektes erstellt werden, stehen unter [Creative Commons CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), soweit nicht explizit anders erwähnt.
 

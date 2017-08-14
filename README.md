@@ -1,7 +1,5 @@
 # #NRW17 Visualisierung
 
-**Beschreibung**
-
 *#NRW17 Visualisierung* ist eine Visualisierung der Ergebnisse der 26. österreichischen Nationalratswahl am 15. Oktober 2017. Ziel ist es, eine spannende und informative Aufbereitung der Informationen für sämtliche BesucherInnen anzubieten. Dabei handelt es sich um eine gemeinsam entwickelte Web-App, welche die Daten am Wahltag vom Bundesinnenministerium um 17 Uhr holt, in eine Datenbank speichert und mittels verschiedenen Visualisierungen online für alle online verfügbar macht.
 
 ![Offene Wahlen](https://github.com/OKFNat/offenewahlen-at/blob/master/images/logos/ow-at.png)
@@ -36,20 +34,24 @@ In diesem GitHub-Repository wird gemeinsam der Code entwickelt, die Dokumentatio
 
 Die Django-App läuft auf MacOS, Win und Linux.
 
+**Benötigte Software installieren**
+
 Um die App lokal auf deinem Rechner laufen zu lassen, benötigst du:
 * Python 3 ([hier](https://www.python.org/downloads/))
 * pip ([hier](https://pip.pypa.io/en/stable/), falls nötig)
 * virtualenv ([hier](https://virtualenv.pypa.io/en/stable/) oder [hier](http://docs.python-guide.org/en/latest/dev/virtualenvs/))
 * PostgreSQL ([hier](https://www.postgresql.org/))
 
-Nach erfolgreicher Installation: Öffne deine Shell und gehe in den Ordner, in dem du die App haben möchtest. Dort musst du das GitHub-Repository hinein klonen.
+**#NRW17 Django-App installieren**
+
+Nach erfolgreicher Installation der benötigten Software: Öffne deine Shell und gehe in den Ordner, in dem du die App haben möchtest. Dort musst du das GitHub-Repository hinein klonen.
 
 ```bash
 git clone https://github.com/OKFNat/offenewahlen-nrw17.git
 ls
 ```
 
-Jetzt solltest du das runtergeladene Repository in deinem Ordner sehen. Geh jetzt in den Root-Ordner rein und erstelle das Virtual Environment.
+Du solltest das runtergeladene Repository in deinem Ordner sehen. Geh in den Root-Ordner und erstelle darin das Virtual Environment.
 
 ```bash
 cd offenewahlen-nrw17/
@@ -61,6 +63,17 @@ Das Virtual Environment kann nun aktiviert werden.
 ```bash
 source venv/bin/activate
 ```
+
+Nach dem Erstellen und Aktivieren des Virtual Environment sollte man checken, welche Python Version im Virtual Environment verwendet wird.
+
+```bash
+python --version
+```
+
+Dies sollte eine Python 3.x Version ausgeben. Wenn nicht, gibt es zwei Möglichkeiten, dies zu fixen:
+1. Den Link der beim Ausführen von `which python` innerhalb des Virtual Environments ausgegeben wird auf den Pfad von Python 3 setzen (z. B. auf Ubuntu/Linux: `ln -s venv/bin/python /usr/bin/python3`).
+2. Den Pfad für Python 3 beim Erstellen des Virtual Environment mittels `-p`-Flag übergeben (z. B. auf Ubuntu/Linux: `virtalenv venv -p=/usr/bin/python3`).
+3. Beim folgenden Ausführen von Befehlen `python3` statt `python` verwenden.
 
 Nun kannst du in das Virtual Environment die benötigten Python Packages aus der `requirements.txt` Datei installieren. Der Vorteil: Die Packages werden dadurch nur im Virtual Environment installiert und nicht auf deinem Betriebssystem.
 

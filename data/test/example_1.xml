@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <election_result>
 	<municipality>
-	    <spatial_id>41747</spatial_id>
+	    <spatial_id>10101</spatial_id>
 	    <eligible_voters>3467</eligible_voters>
 	    <votes>3579</votes>
 	    <valid>3531</valid>
@@ -15,7 +15,7 @@
 	    <timestamp>2017-10-15 15:23:38Z</timestamp>
 	</municipality>
 	<municipality>
-	    <spatial_id>80204</spatial_id>
+	    <spatial_id>10201</spatial_id>
 	    <eligible_voters>1091</eligible_voters>
 	    <votes>790</votes>
 	    <valid>781</valid>
@@ -29,7 +29,7 @@
 	    <timestamp>2017-10-15 15:45:32Z</timestamp>
 	</municipality>
 	<municipality>
-	    <spatial_id>70367</spatial_id>
+	    <spatial_id>20506</spatial_id>
 	    <eligible_voters>921</eligible_voters>
 	    <votes>883</votes>
 	    <valid>580</valid>
@@ -43,7 +43,7 @@
 	    <timestamp>2017-10-15 16:12:11Z</timestamp>
 	</municipality>
 	<municipality>
-	    <spatial_id>30917</spatial_id>
+	    <spatial_id>31546</spatial_id>
 	    <eligible_voters>223</eligible_voters>
 	    <votes>179</votes>
 	    <valid>177</valid>

@@ -29,35 +29,62 @@ class RegionalElectoralDistrict(models.Model):
 
 class Party(models.Model):
 	id = models.AutoField(primary_key=True)
+	short_name = models.CharField(max_length=20, default=None)
+	full_name = models.CharField(max_length=200, default=None)
+	family = models.CharField(max_length=200, default=None)
+	wikidata_id = models.CharField(max_length=20, default=None)
 	party_id = models.CharField(max_length=20) # from BMI
-	wikidata_id = models.CharField(max_length=20)
-	full_name = models.CharField(max_length=200)
-	short_name = models.CharField(max_length=20)
-	family = models.CharField(max_length=50)
+	website = models.CharField(max_length=100, default=None)
 
 	def __str__(self):
-		return "%s" % (self.short)
+		return "%s" % (self.short_name)
 
 	class Meta:
 		ordering = ('short_name',)
 
+class States(models.Model):
+	id = models.AutoField(primary_key=True)
+	short_code = models.CharField(max_length=5, null=True, default=None)
+	short_name = models.CharField(max_length=20, null=True, default=None)
+	full_name = models.CharField(max_length=100)
+
+	def __str__(self):
+		return "%s" % (self.full_name)
+
+	class Meta:
+		ordering = ('short_code',)
+
+class Districts(models.Model):
+	id = models.AutoField(primary_key=True)
+	short_code = models.CharField(max_length=5, null=True, default=None)
+	short_name = models.CharField(max_length=20, null=True, default=None)
+	full_name = models.CharField(max_length=100)
+
+	def __str__(self):
+		return "%s" % (self.full_name)
+
+	class Meta:
+		ordering = ('short_code',)
+
 class Municipality(models.Model):
 	id = models.AutoField(primary_key=True)
-	spatial_id = models.CharField(max_length=20, null=True, default=None)
+	municipality_kennzahl = models.CharField(max_length=20, null=True, default=None)
+	municipality_code = models.CharField(max_length=20, null=True, default=None)
 	name = models.CharField(max_length=100)
 	district = models.CharField(max_length=100)
 	state = models.CharField(max_length=100)
+	regional_electoral_district_id = models.ForeignKey(RegionalElectoralDistrict, on_delete=models.PROTECT, null=True, default=None)
 
 	def __str__(self):
-		return "%s %s" % (self.municipality_id, self.district)
+		return "%s %s" % (self.municipality_code, self.district)
 
 	class Meta:
-		ordering = ('id',)
+		ordering = ('municipality_code',)
 
 class MunicipalityResult(models.Model):
 	id = models.AutoField(primary_key=True)
-	spatial_id = models.ForeignKey(Municipality,
-		on_delete=models.PROTECT, null=True, default=None)
+	municipality_id = models.ForeignKey(Municipality, on_delete=models.PROTECT, null=True, default=None)
+	election_id = models.ForeignKey(Election, on_delete=models.PROTECT, null=True, default=None)
 	eligible_voters = models.IntegerField(default=-1)
 	votes = models.IntegerField(default=-1)
 	valid = models.IntegerField(default=-1)
@@ -73,15 +100,15 @@ class MunicipalityResult(models.Model):
 
 class PartyResult(models.Model):
 	id = models.AutoField(primary_key=True)
-	municipality = models.ForeignKey(MunicipalityResult, on_delete=models.PROTECT)
-	party = models.ForeignKey(Party, on_delete=models.PROTECT)
+	municipality_result_id = models.ForeignKey(MunicipalityResult, on_delete=models.PROTECT)
+	party_id = models.ForeignKey(Party, on_delete=models.PROTECT)
 	votes = models.IntegerField(default=-1)
 
 	def __str__(self):
-		return "%s %s %s" % (self.municipality_result, self.party, self.votes)
+		return "%s %s %s" % (self.municipality_result_id, self.party_id, self.votes)
 
 	class Meta:
-		ordering = ('municipality', 'party',)
+		ordering = ('municipality_result_id', 'party_id',)
 
 class RawData(models.Model):
 	timestamp = models.DateTimeField('creation date of BMI xml')
@@ -89,6 +116,8 @@ class RawData(models.Model):
 	content = models.TextField()
 	header = models.TextField()
 	dataformat = models.CharField(max_length=10)
+	election_id = models.ForeignKey(Election, on_delete=models.PROTECT, null=True, default=None)
+
 
 	def __str__(self):
 		return "%s" % (self.timestamp)

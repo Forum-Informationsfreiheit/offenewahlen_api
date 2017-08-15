@@ -1,0 +1,14 @@
+{
+	"kpoe": "kpoe",
+	"spoe": "spoe",
+	"oevp": "oevp",
+	"fpoe": "fpoe",
+	"gruene": "gruene",
+	"neos": "neos",
+	"spatial_id": "municipality_kennzahl",
+	"invalid": "invalid",
+	"valid": "valid",
+	"votes": "votes",
+	"timestamp": "timestamp",
+	"eligible_voters": "eligible_voters"
+}

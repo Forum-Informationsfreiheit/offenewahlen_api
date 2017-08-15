@@ -144,8 +144,8 @@ Eine Person vom Team (vermutlich Stefan oder Christopher), werden dann den Pull 
 
 **Ersten Schritte**
 
-1. [Wiki](https://github.com/OKFNat/offenewahlen-nrw17/wiki) lesen.
-2. Dieses Repository ansehen.
+1. Dieses Repository ansehen.
+2. [#NRW17 Visualisierung Wiki](https://github.com/OKFNat/offenewahlen-nrw17/wiki) durchgehen.
 3. [Milestones](https://github.com/OKFNat/offenewahlen-nrw17/milestones?direction=asc&sort=due_date&state=open) ansehen.
 4. Task-Management via [Board](https://github.com/OKFNat/offenewahlen-nrw17/milestones#boards?repos=96933110) ansehen.
 
@@ -214,10 +214,12 @@ Anbei eine paar Ideen, wie man sich bei dem Team einbringen kann:
 **Ersten Schritte**
 
 Es empfiehlt sich, zu Beginn die Dokumentation und unser Projekt-Management kurz anzusehen, um einen Überblick zum Projekt zu bekommen:
-* [Wiki](https://github.com/OKFNat/offenewahlen-nrw17/wiki) durchgehen.
 * Dieses Repository durchgehen.
+* [#NRW17 Visualisierung Wiki](https://github.com/OKFNat/offenewahlen-nrw17/wiki) durchgehen.
 * [Milestones](https://github.com/OKFNat/offenewahlen-nrw17/milestones?direction=asc&sort=due_date&state=open) ansehen.
 * Task-Management via [Board](https://github.com/OKFNat/offenewahlen-nrw17/milestones#boards?repos=96933110) ansehen.
+* [Offene Wahlen Österreich Wiki](https://github.com/OKFNat/offenewahlen-at/wiki) durchgehen.
+* [offenewahlen.at](https://offenewahlen.at) durchgehen.
 
 Wenn du Fragen hast, kannst du dich jederzeit via Email (info@offenewahlen.at) oder unter [Kontakt](http://offenewahlen.at/kontakt) melden.
 

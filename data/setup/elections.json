@@ -1,20 +1,18 @@
-{
-	[
-		{
-			"full_name": "Nationalratswahl in Österreich 2013",
-			"short_name": "nrw13",
-			"election_type": "Nationalratswahl",
-			"election_day": "2013-09-29",
-			"administrative_level": "national",
-			"wikidata_id": "Q1386143"
-		},
-		{
-			"full_name": "Nationalratswahl in Österreich 2017",
-			"short_name": "nrw17",
-			"election_type": "Nationalratswahl",
-			"election_day": "2017-10-15",
-			"administrative_level": "national",
-			"wikidata_id": "Q19311231"
-		}
-	]
-}
+[
+	{
+		"full_name": "Nationalratswahl in Österreich 2013",
+		"short_name": "nrw13",
+		"election_type": "Nationalratswahl",
+		"election_day": "2013-09-29",
+		"administrative_level": "national",
+		"wikidata_id": "Q1386143"
+	},
+	{
+		"full_name": "Nationalratswahl in Österreich 2017",
+		"short_name": "nrw17",
+		"election_type": "Nationalratswahl",
+		"election_day": "2017-10-15",
+		"administrative_level": "national",
+		"wikidata_id": "Q19311231"
+	}
+]

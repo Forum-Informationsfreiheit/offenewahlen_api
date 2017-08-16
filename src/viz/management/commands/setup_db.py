@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.utils import timezone
-from viz.models import PollingStation, Election, Party, RegionalElectoralDistrict, State, District
+from viz.models import PollingStation, Election, Party, RegionalElectoralDistrict, State, District, Municipality
 import json
 import datetime
 
@@ -74,7 +74,6 @@ class Command(BaseCommand):
 		"""
 
 		for party in parties:
-
 			if Party.objects.filter(short_name=party['short_name']).exists() == False:
 				p = Party(
 					wikidata_id=party['wikidata_id'],
@@ -110,19 +109,25 @@ class Command(BaseCommand):
 		"""
 
 		for mun in municipalities:
-			if PollingStation.objects.filter(municipality_kennzahl=mun['municipality_kennzahl']).exists() == False:
+			if PollingStation.objects.filter(municipality__kennzahl=mun['municipality_kennzahl']).exists() == False:
 				red = RegionalElectoralDistrict.objects.get(short_code=muns2reds[mun['municipality_code']])
 				district = District.objects.get(name=mun['district'])
 
-				p = PollingStation(
-					municipality_kennzahl = mun['municipality_kennzahl'],
-					municipality_code = mun['municipality_code'],
-					municipality_name = mun['name'],
-					type = 'municipality',
+				m = Municipality(
+					kennzahl = mun['municipality_kennzahl'],
+					code = mun['municipality_code'],
+					name = mun['name'],
 					regional_electoral_district = red,
 					district = district
 				)
-				p.save()
+				m.save()
+
+				ps = PollingStation(
+					name = 'Gemeinde ' + mun['name'],
+					type = 'municipality',
+					municipality = m
+				)
+				ps.save()
 			#else:
 			#	print('Warning: PollingStation {} already exists.'.format(mun['municipality_kennzahl']))
 

@@ -109,8 +109,6 @@ class Command(BaseCommand):
 		Write raw data into table.
 		"""
 		
-		election = Election.objects.get(short_name=config['election_short'])
-
 		raw = RawData(
 			ts_import = config['ts_import'],
 			ts_file = ts_file,
@@ -118,7 +116,7 @@ class Command(BaseCommand):
 			content = data,
 			header = header,
 			dataformat = config['file_type'],
-			election = election
+			election = config['election_object']
 		)
 		raw.save()
 
@@ -126,7 +124,7 @@ class Command(BaseCommand):
 		"""
 		Get the data from a local directory.
 		"""
-		print("Importing data from: {}".format(local_path))
+		print('Importing data from: {}'.format(local_path))
 		with open(local_path) as data_file:
 			data = data_file.read()
 
@@ -138,11 +136,11 @@ class Command(BaseCommand):
 		"""
 
 		if url == '':
-			print('No import url supplied!')
+			print('Error: No import url supplied.')
 			return ''
 
 		# make http request
-		print("Importing data from: {}".format(url))
+		print('Importing data from: {}'.format(url))
 		r = requests.get(url)
 
 		return (r.text, r.headers)
@@ -228,9 +226,9 @@ class Command(BaseCommand):
 			time_data = timezone.make_aware(time_data, timezone.get_current_timezone())
 
 			# get polling station
-			municipality_kennzahl_exists = PollingStation.objects.filter(municipality_kennzahl=mun['municipality_kennzahl']).exists()
+			municipality_kennzahl_exists = PollingStation.objects.filter(municipality__kennzahl=mun['municipality_kennzahl']).exists()
 			if municipality_kennzahl_exists == True:
-				polling_station = PollingStation.objects.get(municipality_kennzahl=mun['municipality_kennzahl'])
+				polling_station = PollingStation.objects.get(municipality__kennzahl=mun['municipality_kennzahl'])
 			else:
 				print('Warning: Polling Station {} does not exist!'.format(mun['municipality_kennzahl']))
 				polling_station = None
@@ -247,7 +245,7 @@ class Command(BaseCommand):
 			# import results
 			if result_exists == False:
 				if polling_station != None:
-					psr = PollingStationResult(
+					new_psr = PollingStationResult(
 						polling_station = polling_station,
 						election = config['election_object'],
 						eligible_voters = eligible_voters,
@@ -257,19 +255,20 @@ class Command(BaseCommand):
 						ts_result = time_data,
 						is_final = config['is_final_master']
 					)
-					psr.save()
+					new_psr.save()
 
 					for key, value in config['party_objects'].items():
 						if mun[key] == 'None':
 							votes = None
 						else:
 							votes = mun[key]
-						pr = PartyResult(
-							polling_station_result = psr,
+						new_pr = PartyResult(
+							polling_station_result = new_psr,
 							party = value,
 							votes = votes
-						)
-						pr.save()
+							)
+						new_pr.save()
+					new_psr.save()
 			#else:
 			#	print('Warning: Result already exists.')
 

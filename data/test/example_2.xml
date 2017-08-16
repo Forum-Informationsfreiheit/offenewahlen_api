@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<election_result>
+	<municipality>
+	    <spatial_id>41747</spatial_id>
+	    <eligible_voters>3467</eligible_voters>
+	    <votes>3579</votes>
+	    <valid>3531</valid>
+	    <invalid>48</invalid>
+	    <spoe>758</spoe>
+	    <fpoe>688</fpoe>
+	    <oevp>1439</oevp>
+	    <kpoe>13</kpoe>
+	    <gruene>384</gruene>
+	    <neos>249</neos>
+	    <timestamp>2017-10-15 15:23:38Z</timestamp>
+	</municipality>
+	<municipality>
+	    <spatial_id>80204</spatial_id>
+	    <eligible_voters>1091</eligible_voters>
+	    <votes>790</votes>
+	    <valid>781</valid>
+	    <invalid>9</invalid>
+	    <spoe>110</spoe>
+	    <fpoe>226</fpoe>
+	    <oevp>321</oevp>
+	    <kpoe>17</kpoe>
+	    <gruene>82</gruene>
+	    <neos>24</neos>
+	    <timestamp>2017-10-15 15:45:32Z</timestamp>
+	</municipality>
+	<municipality>
+	    <spatial_id>70367</spatial_id>
+	    <eligible_voters>921</eligible_voters>
+	    <votes>883</votes>
+	    <valid>580</valid>
+	    <invalid>303</invalid>
+	    <spoe>121</spoe>
+	    <fpoe>66</fpoe>
+	    <oevp>95</oevp>
+	    <kpoe>42</kpoe>
+	    <gruene>244</gruene>
+	    <neos>12</neos>
+	    <timestamp>2017-10-15 16:12:11Z</timestamp>
+	</municipality>
+	<municipality>
+	    <spatial_id>30917</spatial_id>
+	    <eligible_voters>223</eligible_voters>
+	    <votes>179</votes>
+	    <valid>177</valid>
+	    <invalid>2</invalid>
+	    <spoe>45</spoe>
+	    <fpoe>37</fpoe>
+	    <oevp>78</oevp>
+	    <kpoe>1</kpoe>
+	    <gruene>12</gruene>
+	    <neos>4</neos>
+	    <timestamp>2017-10-15 17:03:44Z</timestamp>
+	</municipality>
+	<municipality>
+	    <spatial_id>80204</spatial_id>
+	    <eligible_voters>1091</eligible_voters>
+	    <votes>789</votes>
+	    <valid>780</valid>
+	    <invalid>9</invalid>
+	    <spoe>110</spoe>
+	    <fpoe>226</fpoe>
+	    <oevp>321</oevp>
+	    <kpoe>17</kpoe>
+	    <gruene>82</gruene>
+	    <neos>24</neos>
+	    <timestamp>2017-10-15 15:45:32Z</timestamp>
+	</municipality>
+</election_result>

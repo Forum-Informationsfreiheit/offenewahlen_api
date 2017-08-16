@@ -175,6 +175,7 @@ Die XML-Dateien sind mit dem selben Filenamen auch online unter [http://stefanka
 Folgende Ergebnisse sind darin enthalten:
 
 **example_1.xml**
+
 1. 41747: Vöcklamarkt
   * fehler: `eligible_voters` ist kleiner als `votes`
 2. 80204: Bezau
@@ -186,6 +187,13 @@ Folgende Ergebnisse sind darin enthalten:
 4. 30917: Hirschbach
   * alles korrekt
   * `timestamp` nach 17h
+
+**example_2.xml**
+
+1. gleich
+2. Fehler korrigiert
+3. gleich
+4. gleich
 
 ### BMI Ergebnis-TXT 
 

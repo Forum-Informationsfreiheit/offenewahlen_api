@@ -68,20 +68,31 @@ class District(models.Model):
 	class Meta:
 		ordering = ('short_code',)
 
-class PollingStation(models.Model):
+class Municipality(models.Model):
 	id = models.AutoField(primary_key=True)
-	municipality_name = models.CharField(max_length=200)
-	municipality_kennzahl = models.CharField(max_length=5, default=None)
-	municipality_code = models.CharField(max_length=5, null=True, default=None)
-	type = models.CharField(max_length=30)
+	name = models.CharField(max_length=200)
+	kennzahl = models.CharField(max_length=5, default=None)
+	code = models.CharField(max_length=5, null=True, default=None)
 	regional_electoral_district = models.ForeignKey(RegionalElectoralDistrict, on_delete=models.PROTECT, default=None)
 	district = models.ForeignKey(District, on_delete=models.PROTECT, default=None)
 
 	def __str__(self):
-		return "%s %s" % (self.municipality_code, self.district)
+		return "%s" % (self.code)
 
 	class Meta:
-		ordering = ('municipality_kennzahl',)
+		ordering = ('kennzahl',)
+
+class PollingStation(models.Model):
+	id = models.AutoField(primary_key=True)
+	name = models.CharField(max_length=200, null=True, default=None)
+	type = models.CharField(max_length=30) # municipal, absentee ballot, 
+	municipality = models.ForeignKey(Municipality, on_delete=models.PROTECT, default=None)
+
+	def __str__(self):
+		return "%s" % (self.name)
+
+	class Meta:
+		ordering = ('type',)
 
 class PollingStationResult(models.Model):
 	id = models.AutoField(primary_key=True)
@@ -95,10 +106,10 @@ class PollingStationResult(models.Model):
 	is_final = models.BooleanField(default=False) # is it final approved result for the municipality?
 
 	def __str__(self):
-		return "%s %s" % (self.polling_station, self.ts_result)
+		return "%s %s" % (self.ts_result, self.polling_station)
 
 	class Meta:
-		ordering = ('ts_result', 'id',)
+		ordering = ('ts_result', 'polling_station',)
 
 class PartyResult(models.Model):
 	id = models.AutoField(primary_key=True)

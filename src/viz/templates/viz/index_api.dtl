@@ -1,0 +1,27 @@
+{% extends "viz/base.dtl" %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block title %}API - {% trans 'Website Title' %}{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+<div>
+	<h1>#NRW17 API</h1>
+	<ul>
+		<li><code>results/</code></li>
+		<li><code>raw/</code></li>
+		<li><code>base/</code></li>
+		<li><code>geometry/</code></li>
+	</ul>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+

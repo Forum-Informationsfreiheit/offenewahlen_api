@@ -4,6 +4,13 @@
 
 {% block title %}{% trans 'Website Title' %}{% endblock %}
 
+{% block head %}
+<script src="https://d3js.org/d3.v4.min.js"></script>
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
 {% block content %}
 {% endblock %}
 

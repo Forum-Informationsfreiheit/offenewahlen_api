@@ -1,8 +1,13 @@
 from django.db import models
 #from django.contrib.gis.db import models
 
+class ElectionManager(models.Manager):
+	def get_by_natural_key(self, full_name):
+	    return self.get(full_name=full_name)
 
 class Election(models.Model):
+	objects = ElectionManager()
+
 	id = models.AutoField(primary_key=True)
 	full_name = models.CharField(max_length=200)
 	short_name = models.CharField(max_length=100)
@@ -18,6 +23,9 @@ class Election(models.Model):
 
 	class Meta:
 		ordering = ('short_name',)
+
+	def natural_key(self):
+		return (self.full_name)
 
 class RegionalElectoralDistrict(models.Model):
 	id = models.AutoField(primary_key=True)
@@ -82,7 +90,13 @@ class Municipality(models.Model):
 	class Meta:
 		ordering = ('kennzahl',)
 
+class PollingStationManager(models.Manager):
+	def get_by_natural_key(self, name):
+	    return self.get(name=name)
+
 class PollingStation(models.Model):
+	objects = PollingStationManager()
+
 	id = models.AutoField(primary_key=True)
 	name = models.CharField(max_length=200, null=True, default=None)
 	type = models.CharField(max_length=30) # municipal, absentee ballot, 
@@ -94,7 +108,16 @@ class PollingStation(models.Model):
 	class Meta:
 		ordering = ('type',)
 
+	def natural_key(self):
+		return (self.name)
+
+class PollingStationResultManager(models.Manager):
+	def get_by_natural_key(self, polling_station, election):
+	    return self.get(polling_station=polling_station, election=election)
+
 class PollingStationResult(models.Model):
+	objects = PollingStationResultManager()
+
 	id = models.AutoField(primary_key=True)
 	polling_station = models.ForeignKey(PollingStation, on_delete=models.PROTECT, default=None)
 	election = models.ForeignKey(Election, on_delete=models.PROTECT, default=None)
@@ -110,6 +133,9 @@ class PollingStationResult(models.Model):
 
 	class Meta:
 		ordering = ('ts_result', 'polling_station',)
+
+	def natural_key(self):
+		return (self.polling_station, self.election)
 
 class PartyResult(models.Model):
 	id = models.AutoField(primary_key=True)

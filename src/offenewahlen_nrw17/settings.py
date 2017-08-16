@@ -49,7 +49,8 @@ ALLOWED_HOSTS = [
     'nrw17-staging.offenewahlen.at',
     'nrw17.offenewahlen.at',
     '127.0.0.1',
-    '0.0.0.0'
+    '0.0.0.0',
+    'localhost'
 ]
 
 # Application definition

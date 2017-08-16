@@ -44,6 +44,8 @@
 	</script>
 	<!-- load css -->
 	<link rel="stylesheet" href="{% static 'css/app.css' %}"/>
+	{% block head %}
+	{% endblock %}
 </head>
 <body>
 	<header id="header-main" class="header container">

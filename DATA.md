@@ -2,6 +2,42 @@
 
 Dokumentation der Datenmodelle, von Rohdaten über Datenbank bis hin zum Client. 
 
+## Identifiers
+
+**Gemeindekennzahl**
+
+* 5-stellig
+* Ziffer 1 
+  * = => Österreich
+  * von 1 aufsteigend = Bundesland
+* Ziffer 2-3
+  * 00 => Bundesland. GKZ endet dann mit 00
+  * zwei Zahlen, von 01 aufsteigend => Bezirk. GKZ endet dann mit 00.
+  * Ziffer 2 ein Buchstabe => Regional-Wahlkreis. GKZ endet dann mit 000.
+* Ziffer 4-5: 
+  * laufend von 01 startend sind die Gemeinden
+  * 99 => Wahlkarte. Davor Zeichen für Bezirk oder Wahlkreis.
+
+Beispiel:
+* Gemeinde: `10201` für Rust
+* Bezirk: `10100` für Eisenstadt
+* Bundesland: `10000` für Burgenland
+* Regionalwahlkreis: `1a1000` für Burgenland Nord
+* Wahlkarte: `1a299` für Burgenland Süd
+
+**Kürzel Wahl**
+
+Wird von uns selber definiert. Grundlage sind etablierte Kürzel, z. B. NRW für Nationalratswahl gefolgt von Jahresziffer => NRW17.
+
+* nrw13: Nationalratswahl 2013
+* nrw17: Nationalratswahl 2017
+
+**Kürzel Partei**
+
+Von uns selber definiert. Grundlage sind etablierte Kürzel.
+
+**Gemeindecode**
+
 ## Basisdaten
 
 Die Basis-Daten dienen zum Setup der App und als Datengrundlage, um die Ergebnisse passend visualisieren zu können.

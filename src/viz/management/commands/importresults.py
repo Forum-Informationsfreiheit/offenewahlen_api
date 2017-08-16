@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.utils import timezone
-from viz.models import MunicipalityResult, RawData, PartyResult, Municipality, RawData, Election, Party
+from viz.models import PollingStationResult, RawData, PartyResult, PollingStation, RawData, Election, Party
 import json
 import xml.etree.ElementTree as ET
 import pprint
@@ -43,138 +43,82 @@ class Command(BaseCommand):
 
 	def handle(self, *args, **options):
 		
-		file_path = options['file']
-		elec_short = options['election']
-		election = Election.objects.get(short_name=elec_short)
+		config = {
+			'file_path': options['file'],
+			'election_short': options['election'],
+			'election_object': Election.objects.get(short_name=options['election']),
+			'file_location': None,
+			'ts_import': timezone.now()
+		}
 
-		# get location where file is stored: web or local
-		if options['file_location'] == 'none':
-			if file_path[:4] == 'http' or file_path[:3] == 'ftp':
-				location = 'web'
-			else:
-				location = 'local'
-		else:
-			location = options['file_location']
+		config['file_location'] = self.get_file_location(config)
 
 		# get raw data
-		if location == 'local':
-			raw_data = self.get_local_data(file_path)
-			header = 'empty'
+		if config['file_location'] == 'local':
+			raw_data = self.get_local_data(config['file_path'])
+			header = None
 
-		if location == 'web':
-			raw_data, header = self.get_network_data(file_path)
+		if config['file_location'] == 'web':
+			raw_data, header = self.get_network_data(config['file_path'])
 
 		# get file type
+		config['file_type'] = self.get_file_type(options)
+
+		# store raw data in database
+		self.write_raw_data_to_database(raw_data, header, config)
+
+		# convert different raw data types to uniform data standard
+		data = self.standardize_raw_data(raw_data, config)		
+
+		# map keys of input data to database
+		data, config['party_objects'] = self.map_keys(data, options)
+			
+		# write election results to database
+		self.import_results(data, config)
+
+	def get_file_location(self, config):
+		"""
+		Get the location where the file is stored (web or local)
+		"""
+
+		if config['file_location'] == None:
+			if config['file_path'][:4] == 'http' or config['file_path'][:3] == 'ftp':
+				file_location = 'web'
+			else:
+				file_location = 'local'
+		else:
+			file_location = options['file_location']
+
+		return file_location
+
+
+	def get_file_type(self, options):
+		"""
+		Get file type from file path.
+		"""
+
 		if 'file_type' in options.keys():
 			file_type = options['file_type']
 		else: 
 			file_type = file_path.split('.')[len(file_path.split('.'))-1]
 
-		# store raw data in database
-		self.write_raw_data_to_database(raw_data, file_type, header, elec_short)
+		return file_type
 
-		# import raw data into list of dicts()
-		# create data standard
-		data = []
-		if file_type == 'xml':
-			# check, if xml is already downloaded and imported via RawData-hashes
-			# if not, convert xml to dict
-			root = ET.fromstring(raw_data)
-
-			for mun in root.iter('municipality'):
-				tmp = {}
-				for elem in mun:
-					tmp.update({elem.tag: elem.text})
-				data.append(tmp)
-		elif file_type == 'txt':
-			print('Not yet implemented')
-		elif file_type == 'json':
-			input_data = json.loads(raw_data)
-
-			for key, value in input_data.items():
-				tmp = value
-				tmp['municipality_kennzahl'] = key
-				data.append(tmp)
-		
-		# mapping von keys
-		if 'mapping_file' in options.keys():
-			with open(options['mapping_file']) as data_file:
-				mapping = json.loads(data_file.read())
-
-			new_data = []
-			for mun in data:
-				tmp = {}
-				
-				for key in mun.keys():
-					tmp[mapping[key]] = mun[key]
-				new_data.append(tmp)
-			data = new_data	
-		else: 
-			mapping = None
-			
-		# write election results to database
-		timestamp_now = timezone.now()
-
-		party_ids = {}
-		for key, value in mapping.items():
-			if Party.objects.filter(short_name=value).exists() == True:
-				party_ids[value] = Party.objects.get(short_name=value)
-
-		for mun in data:
-			if elec_short == 'nrw13':
-				time_data = datetime.datetime.now()
-				eligible_voters = 0
-
-			elif elec_short == 'nrw17':
-				time_data = datetime.datetime.strptime(mun['timestamp'], "%Y-%m-%d %H:%M:%SZ")
-				eligible_voters = mun['eligible_voters']
-			
-			time_data = timezone.make_aware(time_data, timezone.get_current_timezone())
-
-			if Municipality.objects.filter(municipality_kennzahl=mun['municipality_kennzahl']).exists() == True:
-				municipality = Municipality.objects.get(municipality_kennzahl=mun['municipality_kennzahl'])
-			else:
-				municipality = None
-
-			if MunicipalityResult.objects.filter(ts_result=time_data).exists() == False:
-				er = MunicipalityResult(
-					municipality_id = municipality,
-					election_id = election,
-					eligible_voters = eligible_voters,
-					votes = mun['votes'],
-					valid = mun['valid'],
-					invalid = mun['invalid'],
-					ts_result = time_data,
-					is_final = False
-				)
-				er.save()
-
-				for key, value in party_ids.items():
-					if mun[key] == 'None':
-						votes = 0
-					else:
-						votes = int(mun[key])
-					pr = PartyResult(
-						municipality_result_id = er,
-						party_id = value,
-						votes = votes
-					)
-					pr.save()
-
-	def write_raw_data_to_database(self, data, file_type, header, elec_short):
+	def write_raw_data_to_database(self, data, header,config, ts_file=None):
 		"""
 		Write raw data into table.
 		"""
-		ts_now = timezone.now()
-		election = Election.objects.get(short_name=elec_short)
+		
+		election = Election.objects.get(short_name=config['election_short'])
 
 		raw = RawData(
-			timestamp = ts_now,
+			ts_import = config['ts_import'],
+			ts_file = ts_file,
 			hash = hashlib.md5(data.encode()),
 			content = data,
 			header = header,
-			dataformat = file_type,
-			election_id = election
+			dataformat = config['file_type'],
+			election = election
 		)
 		raw.save()
 
@@ -198,24 +142,135 @@ class Command(BaseCommand):
 			return ''
 
 		# make http request
+		print("Importing data from: {}".format(url))
 		r = requests.get(url)
-		return (r.text, r.header)
 
-	def _get_input_url(self, options):
+		return (r.text, r.headers)
+
+	def standardize_raw_data(self, raw_data, config):
 		"""
-		Gets the import path from the kwargs or the config.json
+		Converts the raw data from different inputs to same data format (list of dicts())
 		"""
-		import_url = ''
 
-		if 'import_url' in options.keys():
-			import_url = options['import_url']
+		data = []
+		if config['file_type'] == 'xml':
+			# check, if xml is already downloaded and imported via RawData-hashes
+			# if not, convert xml to dict
+			root = ET.fromstring(raw_data)
 
-		try:
-			with open("config.json") as config_file:
-				config = json.load(config_file)
-				import_url = config['url_xml']
-		except:
-			print("Config file not found!")
+			for mun in root.iter('municipality'):
+				tmp = {}
+				for elem in mun:
+					tmp.update({elem.tag: elem.text})
+				data.append(tmp)
+		
+		elif config['file_type'] == 'txt':
+			print('Not yet implemented')
+		
+		elif config['file_type'] == 'json':
+			input_data = json.loads(raw_data)
 
-		return import_url
+			for key, value in input_data.items():
+				tmp = value
+				tmp['municipality_kennzahl'] = key
+				data.append(tmp)
+
+		return data
+
+	def map_keys(self, data, options):
+		"""
+		Maps keys of input data to database.
+		"""
+
+		if 'mapping_file' in options.keys():
+			with open(options['mapping_file']) as data_file:
+				mapping = json.loads(data_file.read())
+
+			new_data = []
+			for mun in data:
+				tmp = {}
+				
+				for key in mun.keys():
+					tmp[mapping[key]] = mun[key]
+				new_data.append(tmp)
+
+			# get party objects
+			party_ids = {}
+			for key, value in mapping.items():
+				party_exists = Party.objects.filter(short_name=value).exists()
+				if  party_exists == True:
+					party_ids[value] = Party.objects.get(short_name=value)
+				else:
+					print('Error: Party "{}" does not exist.'.format(value))
+
+		return new_data, party_ids
+
+	def import_results(self, data, config):
+		"""
+		Imports results to database.
+		"""
+
+		timestamp_now = timezone.now()
+
+		for mun in data:
+
+			# check which election
+			if config['election_short'] == 'nrw13':
+				time_data = datetime.datetime.strptime('2013-09-29', '%Y-%m-%d')
+				eligible_voters = None
+				config['is_final_master'] = True
+
+			elif config['election_short'] == 'nrw17':
+				time_data = datetime.datetime.strptime(mun['timestamp'], '%Y-%m-%d %H:%M:%SZ')
+				eligible_voters = mun['eligible_voters']
+				config['is_final_master'] = False
+			
+			time_data = timezone.make_aware(time_data, timezone.get_current_timezone())
+
+			# get polling station
+			municipality_kennzahl_exists = PollingStation.objects.filter(municipality_kennzahl=mun['municipality_kennzahl']).exists()
+			if municipality_kennzahl_exists == True:
+				polling_station = PollingStation.objects.get(municipality_kennzahl=mun['municipality_kennzahl'])
+			else:
+				print('Warning: Polling Station {} does not exist!'.format(mun['municipality_kennzahl']))
+				polling_station = None
+
+			# check if realtime data or final result
+			if config['is_final_master'] == True:
+				if polling_station == None:
+					result_exists == True
+				else:
+					result_exists = PollingStationResult.objects.filter(polling_station=polling_station, election=config['election_object']).exists()
+			else:
+				result_exists = PollingStationResult.objects.filter(ts_result=time_data).exists()
+
+			# import results
+			if result_exists == False:
+				if polling_station != None:
+					psr = PollingStationResult(
+						polling_station = polling_station,
+						election = config['election_object'],
+						eligible_voters = eligible_voters,
+						votes = mun['votes'],
+						valid = mun['valid'],
+						invalid = mun['invalid'],
+						ts_result = time_data,
+						is_final = config['is_final_master']
+					)
+					psr.save()
+
+					for key, value in config['party_objects'].items():
+						if mun[key] == 'None':
+							votes = None
+						else:
+							votes = mun[key]
+						pr = PartyResult(
+							polling_station_result = psr,
+							party = value,
+							votes = votes
+						)
+						pr.save()
+			#else:
+			#	print('Warning: Result already exists.')
+
 

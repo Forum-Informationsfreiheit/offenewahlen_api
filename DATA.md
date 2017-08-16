@@ -10,12 +10,11 @@ Die Basis-Daten dienen zum Setup der App und als Datengrundlage, um die Ergebnis
 
 Liste mit Gemeinden. `data/setup/municipalities_20170101.json`
 
-Enthält alle Gemeinden Österreichs am Stichtag 1. 1. 2017. An sich komplett, Fehler oder Verbesserungen aber bitte melden, siehe [mitmachen](README.md#mitmachen).
+Enthält alle Gemeinden Österreichs am Stichtag 1. 1. 2017. Ist die Grundlage für die Wahl-Stationen. An sich komplett, Fehler oder Verbesserungen aber bitte melden, siehe [mitmachen](README.md#mitmachen).
 
 Versionen:
 - raw: CSV file `municipalities_20170101_1.csv`
 - v1: angereichert mit Daten aus `municipalities_20170101_1.csv`
-- v2: angereichert mit Bezirken und Bundesländern aus `states2districts_20170101`
 
 Liste mit allen Gemeinden Österreichs am Stichtag 1. Januar 2017. Diese Datei wird zum Setup von #NRW17 verwendet.
 
@@ -55,7 +54,7 @@ Attribute:
 - administrative_level: federal, state, district oder municipal
 - wikidata_id: Wikidate ID des dazugehörigen Items
 
-### Bundesland 2 Bezirke Mapping (2017-01-01)
+### Mapping: Bezirk 2 Bundesland (2017-01-01)
 
 Mapping von Bezirken zu jedem Bundesland. `data/setup/states2districts_20170101.json`
 
@@ -82,9 +81,9 @@ Datenmodell:
 }
 ```
 
-### Regionalwahlkreis 2 Gemeinden Mapping (2017-01-01)
+### Mapping: Gemeinde 2 Regionalwahlkreis  (2017-01-01)
 
-Mapping von Gemeinden zu den Regionalwahlkreisen. `data/setup/regional-electoral-district2municipalities_20170101.json`
+Mapping von Gemeinden zu den Regionalwahlkreisen. `data/setup/municipalities2reds_20170101.json`
 
 Mapping aller Regionalwahlkreise mit den darin enthaltenen Gemeinden am Stichtag 1. 1. 2017. An sich komplett, Fehler oder Verbesserungen aber bitte melden, siehe [mitmachen](README.md#mitmachen).
 
@@ -116,10 +115,12 @@ Tables:
 - Election: Wahlen
 - RegionalElectoralDistrict: Regionalwahlkreise
 - Party: Parteien
-- Municipality: Gemeinden
-- MunicipalityResult: Ergebnisse auf Gemeindeebene (ohne Partei-Ergebnisse)
-- PartyResult: Partei-Ergebnisse auf Gemeindeebene
+- PollingStation: Wahl-Station. Zumeist auf Gemeindeebene
+- PollingStationResult: Ergebnisse auf Gemeindeebene (ohne Partei-Ergebnisse)
+- PartyResult: Partei-Ergebnisse zu jeder Wahl-Station.
 - RawData: Rohdaten
+- District: Bezirke
+- State: Bundesländer
 
 ## Test-Daten
 
@@ -169,10 +170,11 @@ Da das BMI vermutlich die Ergebnisse zum ersten Mal in einem neuen XML-Dateiform
 * `data/test/example_2.xml`
 * `data/test/example_2.xml`
 
-Die XML-Dateien sind auch online unter [http://stefankasberger.at/wp-content/uploads/nrw17/](http://stefankasberger.at/wp-content/uploads/nrw17/) zu finden.
+Die XML-Dateien sind mit dem selben Filenamen auch online unter [http://stefankasberger.at/wp-content/uploads/nrw17/](http://stefankasberger.at/wp-content/uploads/nrw17/) zu finden.
 
 Folgende Ergebnisse sind darin enthalten:
 
+**example_1.xml**
 1. 41747: Vöcklamarkt
   * fehler: `eligible_voters` ist kleiner als `votes`
 2. 80204: Bezau

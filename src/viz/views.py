@@ -26,6 +26,7 @@ def api(request):
 
 	return render(request, 'viz/index_api.dtl')
 
+@cache_page(60 * 60) # 60mins
 def api_result(request):
 	data = {}
 
@@ -48,7 +49,6 @@ def api_result(request):
 
 	return JsonResponse(data, safe=False)
 
-@cache_page(60 * 60) # 60mins
 def api_result_nrw13(request):
 	data = {}
 

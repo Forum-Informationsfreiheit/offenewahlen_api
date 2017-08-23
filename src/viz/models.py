@@ -53,6 +53,17 @@ class Party(models.Model):
 	class Meta:
 		ordering = ('short_name',)
 
+class List(models.Model):
+	id = models.AutoField(primary_key=True)
+	name = models.CharField(max_length=200)
+	party = models.ForeignKey(Party, on_delete=models.PROTECT, default=None)
+
+	def __str__(self):
+		return "%s" % (self.name)
+
+	class Meta:
+		ordering = ('name',)
+
 class State(models.Model):
 	id = models.AutoField(primary_key=True)
 	name = models.CharField(max_length=100)

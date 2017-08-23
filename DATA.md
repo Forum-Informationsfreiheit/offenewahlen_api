@@ -38,6 +38,25 @@ Von uns selber definiert. Grundlage sind etablierte Kürzel.
 
 **Gemeindecode**
 
+## Ergebnisdaten vom BMI
+
+Zur Nationalratswahl 2017 bietet das BMI ausgewählten NutzerInnen die Ergebnisse in Echtzeit an. Es wird zum ersten Mal die Daten neben dem alt-ehrwürdigen TXT-Format auch als CSV und JSON Datei via https geben.
+
+Einige Tage vor der Wahl (zw. 4 und 14 Tage) wird es eine Test-Wahl geben, wo die Ergebnisse der NRW13 in der aktuellen Struktur (also mit aktuellen Gemeinde-Daten), aber mit den alten Parteien, ausgeliefert werden.
+
+Die Daten enthalten immer die zuletzt aktuelle und vorhandenen Ergebnisse. Es gibt zu jeder Gemeinde maximal einen Eintrag.
+
+Es wird diese Mal abgeschätzte Daten geben, da Wahlkarten aus einem Regionalwahlkreis nicht klar einem Bezirk oder einer Gemeinde zugewiesen werden können. Daher werden je nach Bevölkerung gewichtet die RWK-Ergebnisse auf die Bezirke / Gemeinden aufgeteilt, jedoch ohne genau zu wissen, ob die Stimme wirklich aus dem/der jeweiligen Bezirk / Gemeinde gekommen ist.
+
+**TXT**
+
+Beachte: Reihenfolge der Parteien kann je nach Sprengel unterschiedlich sein.
+
+**JSON**
+
+**CSV**
+
+
 ## Basisdaten
 
 Die Basis-Daten dienen zum Setup der App und als Datengrundlage, um die Ergebnisse passend visualisieren zu können.

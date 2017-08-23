@@ -1,0 +1,98 @@
+[
+	{
+		"full_name": "Sozialdemokratische Partei Österreichs",
+		"short_name": "SPÖ",
+		"candidate_in": "0",
+		"party": "spoe"
+	},
+	{
+		"full_name": "Liste Sebastian Kurz - Die neue Volkspartei",
+		"short_name": "ÖVP",
+		"candidate_in": "0",
+		"party": "oevp"
+	},
+	{
+		"full_name": "Freiheitliche Partei Österreichs",
+		"short_name": "FPÖ",
+		"candidate_in": "0",
+		"party": "fpoe"
+	},
+	{
+		"full_name": "Die Grünen - Die Grüne Alternative",
+		"short_name": "GRÜNE",
+		"candidate_in": "0",
+		"party": "gruene"
+	},
+	{
+		"full_name": "NEOS - Das Neue Österreich gemeinsam mit Irmgard Griss, Bürgerinnen und Bürger für Freiheit und Verantwortung",
+		"short_name": "NEOS",
+		"candidate_in": "0",
+		"party": "neos"
+	},
+	{
+		"full_name": "Die Weißen - Das Recht geht vom Volk aus. Wir alle entscheiden in Österreich. Die Volksbewegung.",
+		"short_name": "WEIẞE",
+		"candidate_in": "0",
+		"party": ""
+	},
+	{
+		"full_name": "Freie Liste Österreich & FPS Liste Dr. Karl Schnell",
+		"short_name": "FLÖ",
+		"candidate_in": "0",
+		"party": ""
+	},
+	{
+		"full_name": "Kommunistische Partei Österreichs und Plattform PLUS - offene Liste",
+		"short_name": "KPÖ",
+		"candidate_in": "0",
+		"party": "kpoe"
+	},
+	{
+		"full_name": "Liste Peter Pilz",
+		"short_name": "PILZ",
+		"candidate_in": "0",
+		"party": ""
+	},
+	{
+		"full_name": "Liste Roland Düringer - Meine Stimme Gilt",
+		"short_name": "GILT",
+		"candidate_in": "0",
+		"party": ""
+	},
+	{
+		"full_name": "Sozialistische Linkspartei",
+		"short_name": "SLP",
+		"candidate_in": "Wien, Oberösterreich",
+		"party": "slp"
+	},
+	{
+		"full_name": "CPÖ - Christliche Partei Österreichs",
+		"short_name": "CPÖ",
+		"candidate_in": "Vorarlberg",
+		"party": "cpoe"
+	},
+	{
+		"full_name": "Männerpartei - für ein faires Miteinander",
+		"short_name": "M",
+		"candidate_in": "Vorarlberg",
+		"party": ""
+	},
+	{
+		"full_name": "NBZ - Neue Bewegung für die Zukunft",
+		"short_name": "NBZ",
+		"candidate_in": "Vorarlberg",
+		"party": ""
+	},
+	{
+		"full_name": "Für Österreich, Zuwanderungsstopp, Grenzschutz, Neutralität, EU-Austritt",
+		"short_name": "EUAUS",
+		"candidate_in": "Wien",
+		"party": ""
+	},
+	{
+		"full_name": "Obdachlose in der Politik",
+		"short_name": "ODP",
+		"candidate_in": "Wien",
+		"party": "odp"
+	}
+]

@@ -102,5 +102,29 @@
 		"wikidata_id": "Q700400",
 		"website": "https://www.slp.at/",
 		"description": ""
+	},
+	{
+		"full_name": "NBZ - Neue Bewegung für die Zukunft",
+		"short_name": "Die Partei NBZ",
+		"family": "",
+		"wikidata_id": "Q1979462",
+		"website": "http://nbz-partei.at/",
+		"description": ""
+	},
+	{
+		"full_name": "Liste Peter Pilz",
+		"short_name": "pilz",
+		"family": "",
+		"wikidata_id": "Q34198369",
+		"website": "https://listepilz.at/",
+		"description": ""
+	},
+	{
+		"full_name": "Obdachlose in der Politik, Österreichs christlich-liberale Satire-Volkspartei",
+		"short_name": "odp",
+		"family": "",
+		"wikidata_id": "",
+		"website": "https://jachwe.wordpress.com/",
+		"description": ""
 	}
 ]

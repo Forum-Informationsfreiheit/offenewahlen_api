@@ -15,24 +15,24 @@ class Command(BaseCommand):
 		}
 
 		# import elections
-		elections = json.loads(self.open_file('../data/setup/elections.json'))
+		elections = json.loads(self.open_file('data/setup/elections.json'))
 		self.import_elections(elections)
 
 		# import parties
-		parties = json.loads(self.open_file('../data/setup/parties.json'))
+		parties = json.loads(self.open_file('data/setup/parties.json'))
 		self.import_parties(parties, config)
 
 		# import states and districts
-		states_districts = json.loads(self.open_file('../data/setup/states2districts_20170101.json'))
+		states_districts = json.loads(self.open_file('data/setup/states2districts_20170101.json'))
 		self.import_states_districts(states_districts)
 
 		# import regional electoral districts
-		reds = json.loads(self.open_file('../data/setup/regional-electoral-districts_20170101.json'))
+		reds = json.loads(self.open_file('data/setup/regional-electoral-districts_20170101.json'))
 		self.import_reds(reds)
 
 		# import municipalities
-		municipalities = json.loads(self.open_file('../data/setup/municipalities_20170101_2.json'))
-		muns2reds = json.loads(self.open_file('../data/setup/municipalities2reds_20170101.json'))
+		municipalities = json.loads(self.open_file('data/setup/municipalities_20170101_2.json'))
+		muns2reds = json.loads(self.open_file('data/setup/municipalities2reds_20170101.json'))
 		self.import_municipalities(municipalities, muns2reds)
 
 	def open_file(self, filename,):

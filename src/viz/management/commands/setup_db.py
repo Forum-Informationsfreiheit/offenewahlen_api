@@ -65,8 +65,10 @@ class Command(BaseCommand):
 					election_day = time_data
 				)
 				e.save()
+				print('Setup Election table done.')
 			#else:
 			#	print('Warning: Election {} already exists.'.format(election['full_name']))
+
 
 	def import_parties(self, parties, config):
 		"""
@@ -84,6 +86,7 @@ class Command(BaseCommand):
 					location=config['party_location']
 				)
 				p.save()
+				print('Setup Party table done.')
 			#else:
 			#	print('Warning: Party {} already exists.'.format(party['full_name']))
 
@@ -99,6 +102,7 @@ class Command(BaseCommand):
 					short_code = key
 				)
 				red.save()
+				print('Setup RegionalElectoralDistrict table done.')
 			#else:
 			#	print('Warning: Regional Electoral District {} already exists.'.format(value))
 
@@ -121,6 +125,7 @@ class Command(BaseCommand):
 					district = district
 				)
 				m.save()
+				print('Setup Municipality table done.')
 
 				ps = PollingStation(
 					name = 'Gemeinde ' + mun['name'],
@@ -128,6 +133,7 @@ class Command(BaseCommand):
 					municipality = m
 				)
 				ps.save()
+				print('Setup PollingStation table done.')
 			#else:
 			#	print('Warning: PollingStation {} already exists.'.format(mun['municipality_kennzahl']))
 
@@ -144,6 +150,7 @@ class Command(BaseCommand):
 					name = states_districts[state_key]['name']
 				)
 				s.save()
+				print('Setup State table done.')
 				state = s
 			else:
 				#print('State {} already exists.'.format(state_key))
@@ -158,6 +165,7 @@ class Command(BaseCommand):
 						state = s
 					)
 					d.save()
+					print('Setup District table done.')
 				#else:
 				#	print('Warning: District {} already exists.'.format(value))
 

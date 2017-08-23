@@ -14,10 +14,20 @@
 <div>
 	<h1>#NRW17 API</h1>
 	<ul>
-		<li><code>results/</code></li>
-		<li><code>raw/</code></li>
-		<li><code>base/</code></li>
-		<li><code>geometry/</code></li>
+		<li><code>result/</code>: <a href="result/" title="API Result">link</a></li>
+		<li><code>base/</code>: <a href="base/party/" title="API Base">link</a>
+			<ul>
+				<li><code>party/</code>: <a href="base/party/" title="API Party">link</a></li>
+				<li><code>election/</code>: <a href="base/election/" title="API Electin">link</a></li>
+				<li><code>district/</code>: <a href="base/district/" title="API District">link</a></li>
+				<li><code>state/</code>: <a href="base/state/" title="API State">link</a></li>
+				<li><code>regionalelectoraldistrict/</code>: <a href="base/regionalelectoraldistrict/" title="API RegionalElectoralDistrict">link</a></li>
+				<li><code>municipality/</code>: <a href="base/municipality/" title="API Municipality">link</a></li>
+				<li><code>pollingstation/</code>: <a href="base/pollingstation/" title="API PollingStation">link</a></li>
+			</ul>
+		</li>
+		<li><code>geom/</code>: <a href="geom/" title="API Geometry">link</a></li>
+		<li><code>raw/</code>: <a href="raw/" title="API Raw Data">link</a></li>
 	</ul>
 </div>
 {% endblock %}

@@ -25,31 +25,59 @@ def api(request):
 
 	return render(request, 'viz/index_api.dtl')
 
-def api_results(request):
+def api_result(request):
 	result = PollingStationResult.objects.values()
 	psr_data = [entry for entry in result]
-	result = PartyResult.objects.values()
-	pr_data = [entry for entry in result]
-	result = PollingStation.objects.values()
-	ps_data = [entry for entry in result]
+	#result = PartyResult.objects.values()
+	#pr_data = [entry for entry in result]
+	#result = PollingStation.objects.values()
+	#ps_data = [entry for entry in result]
 
 	return JsonResponse(psr_data, safe=False)
 
-def api_basedata(request):
+def api_base_election(request):
 	result = Election.objects.values()
-	e_data = [entry for entry in result]
+	data = [entry for entry in result]
+
+	return JsonResponse(data, safe=False)
+
+def api_base_municipality(request):
 	result = Municipality.objects.values()
-	m_data = [entry for entry in result]
+	data = [entry for entry in result]
+
+	return JsonResponse(data, safe=False)
+
+def api_base_pollingstation(request):
+	result = PollingStation.objects.values()
+	data = [entry for entry in result]
+
+	return JsonResponse(data, safe=False)
+
+def api_base_red(request):
 	result = RegionalElectoralDistrict.objects.values()
-	red_data = [entry for entry in result]
+	data = [entry for entry in result]
+
+	return JsonResponse(data, safe=False)
+
+def api_base_district(request):
 	result = District.objects.values()
-	d_data = [entry for entry in result]
+	data = [entry for entry in result]
+
+	return JsonResponse(data, safe=False)
+
+def api_base_state(request):
 	result = State.objects.values()
-	s_data = [entry for entry in result]
+	data = [entry for entry in result]
 	result = Party.objects.values()
 	p_data = [entry for entry in result]
 
-	return JsonResponse(e_data, safe=False)
+	return JsonResponse(data, safe=False)
+
+def api_base_party(request):
+	result = Party.objects.values()
+	data = [entry for entry in result]
+
+	return JsonResponse(data, safe=False)
 
 def api_geom(request):
 

@@ -4,6 +4,7 @@ from django.template import loader
 from django.core import serializers
 from viz.models import PollingStationResult, PartyResult, PollingStation, Election, Municipality, RegionalElectoralDistrict, District, State, Party, RawData
 from django.http import JsonResponse
+from django.views.decorators.cache import cache_page
 import json
 
 def index(request):
@@ -26,17 +27,81 @@ def api(request):
 	return render(request, 'viz/index_api.dtl')
 
 def api_result(request):
-	result = PollingStationResult.objects.values()
-	psr_data = [entry for entry in result]
-	#result = PartyResult.objects.values()
-	#pr_data = [entry for entry in result]
-	#result = PollingStation.objects.values()
-	#ps_data = [entry for entry in result]
+	data = {}
 
-	return JsonResponse(psr_data, safe=False)
+	psr_query = PollingStationResult.objects.select_related().all()
+	for psr in psr_query: 
+		gkz = str(psr.polling_station.municipality.kennzahl)
+		data[gkz] = {}
+		data[gkz]['gemeinde_name'] = psr.polling_station.municipality.name
+		data[gkz]['gemeinde_code'] = psr.polling_station.municipality.code
+		data[gkz]['eligible_voters'] = psr.eligible_voters
+		data[gkz]['votes'] = psr.votes
+		data[gkz]['valid'] = psr.valid
+		data[gkz]['invalid'] = psr.invalid
+		data[gkz]['ts'] = psr.ts_result
+		data[gkz]['election'] = psr.election.short_name
+
+		pr_query = psr.partyresult_set.select_related().all()
+		for pr in pr_query:
+			data[gkz][str(pr.party)] = pr.votes
+
+	return JsonResponse(data, safe=False)
+
+@cache_page(60 * 60) # 60mins
+def api_result_nrw13(request):
+	data = {}
+
+	psr_query = PollingStationResult.objects.select_related().filter(election__short_name='nrw13').all()
+	for psr in psr_query: 
+		gkz = str(psr.polling_station.municipality.kennzahl)
+		data[gkz] = {}
+		data[gkz]['gemeinde_name'] = psr.polling_station.municipality.name
+		data[gkz]['gemeinde_code'] = psr.polling_station.municipality.code
+		data[gkz]['eligible_voters'] = psr.eligible_voters
+		data[gkz]['votes'] = psr.votes
+		data[gkz]['valid'] = psr.valid
+		data[gkz]['invalid'] = psr.invalid
+		data[gkz]['ts'] = psr.ts_result
+		data[gkz]['election'] = psr.election.short_name
+
+		pr_query = psr.partyresult_set.select_related().all()
+		for pr in pr_query:
+			data[gkz][str(pr.party)] = pr.votes
+
+	return JsonResponse(data, safe=False)
+
+@cache_page(60 * 60) # 60mins
+def api_result_nrw17(request):
+	data = {}
+
+	psr_query = PollingStationResult.objects.select_related().filter(election__short_name='nrw17').all()
+	for psr in psr_query: 
+		gkz = str(psr.polling_station.municipality.kennzahl)
+		data[gkz] = {}
+		data[gkz]['gemeinde_name'] = psr.polling_station.municipality.name
+		data[gkz]['gemeinde_code'] = psr.polling_station.municipality.code
+		data[gkz]['eligible_voters'] = psr.eligible_voters
+		data[gkz]['votes'] = psr.votes
+		data[gkz]['valid'] = psr.valid
+		data[gkz]['invalid'] = psr.invalid
+		data[gkz]['ts'] = psr.ts_result
+		data[gkz]['election'] = psr.election.short_name
+
+		pr_query = psr.partyresult_set.select_related().all()
+		for pr in pr_query:
+			data[gkz][str(pr.party)] = pr.votes
+
+	return JsonResponse(data, safe=False)
 
 def api_base_election(request):
 	result = Election.objects.values()
+	data = [entry for entry in result]
+
+	return JsonResponse(data, safe=False)
+
+def api_base_list(request):
+	result = List.objects.values()
 	data = [entry for entry in result]
 
 	return JsonResponse(data, safe=False)
@@ -68,8 +133,6 @@ def api_base_district(request):
 def api_base_state(request):
 	result = State.objects.values()
 	data = [entry for entry in result]
-	result = Party.objects.values()
-	p_data = [entry for entry in result]
 
 	return JsonResponse(data, safe=False)
 

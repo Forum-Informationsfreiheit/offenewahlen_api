@@ -153,6 +153,13 @@ LANGUAGES = (
     ('cz', _('Czech')),
 )
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'django_cache',
+    }
+}
+
 TIME_ZONE = 'Europe/Vienna'
 
 USE_I18N = True

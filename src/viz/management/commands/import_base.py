@@ -128,7 +128,7 @@ class Command(BaseCommand):
 				print('Setup Municipality table done.')
 
 				ps = PollingStation(
-					name = 'Gemeinde ' + mun['name'],
+					name = mun['name'],
 					type = 'municipality',
 					municipality = m
 				)

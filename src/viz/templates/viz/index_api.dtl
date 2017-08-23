@@ -14,16 +14,21 @@
 <div>
 	<h1>#NRW17 API</h1>
 	<ul>
-		<li><code>result/</code>: <a href="result/" title="API Result">link</a></li>
+		<li><code>result/</code>: <a href="result/" title="API Result">link</a>
+			<ul>
+				<li><code>nrw13/</code>: <a href="result/nrw13/" title="API NRW13">link</a></li>
+				<li><code>nrw17/</code>: <a href="result/nrw17/" title="API NRW17">link</a></li>
+			</ul>
+		</li>
 		<li><code>base/</code>: <a href="base/party/" title="API Base">link</a>
 			<ul>
+				<li><code>election/</code>: <a href="base/election/" title="API Election">link</a></li>
+				<li><code>pollingstation/</code>: <a href="base/pollingstation/" title="API PollingStation">link</a></li>
+				<li><code>municipality/</code>: <a href="base/municipality/" title="API Municipality">link</a></li>
 				<li><code>party/</code>: <a href="base/party/" title="API Party">link</a></li>
-				<li><code>election/</code>: <a href="base/election/" title="API Electin">link</a></li>
 				<li><code>district/</code>: <a href="base/district/" title="API District">link</a></li>
 				<li><code>state/</code>: <a href="base/state/" title="API State">link</a></li>
 				<li><code>regionalelectoraldistrict/</code>: <a href="base/regionalelectoraldistrict/" title="API RegionalElectoralDistrict">link</a></li>
-				<li><code>municipality/</code>: <a href="base/municipality/" title="API Municipality">link</a></li>
-				<li><code>pollingstation/</code>: <a href="base/pollingstation/" title="API PollingStation">link</a></li>
 			</ul>
 		</li>
 		<li><code>geom/</code>: <a href="geom/" title="API Geometry">link</a></li>

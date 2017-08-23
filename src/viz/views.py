@@ -4,7 +4,9 @@ from django.template import loader
 from django.core import serializers
 from viz.models import PollingStationResult, PartyResult, PollingStation, Election, Municipality, RegionalElectoralDistrict, District, State, Party, RawData
 from django.http import JsonResponse
-# from django.views.decorators.cache import cache_page
+from django.core.cache import cache
+from django.template.context_processors import csrf
+from django.views.decorators.cache import cache_page
 import json
 
 def index(request):
@@ -26,7 +28,7 @@ def api(request):
 
 	return render(request, 'viz/index_api.dtl')
 
-# @cache_page(60 * 60) # 60mins
+@cache_page(60 * 60) # 60mins
 def api_result(request):
 	data = {}
 
@@ -49,8 +51,12 @@ def api_result(request):
 
 	return JsonResponse(data, safe=False)
 
-# @cache_page(60 * 60) # 60mins
+QUEUE_KEY = 'nrw13'
+
+@cache_page(60 * 60) # 60mins
 def api_result_nrw13(request):
+
+	queue = cache.get(QUEUE_KEY)
 	data = {}
 
 	psr_query = PollingStationResult.objects.select_related().filter(election__short_name='nrw13').all()

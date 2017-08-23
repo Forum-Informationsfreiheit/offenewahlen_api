@@ -81,7 +81,7 @@ def api_base_party(request):
 
 def api_geom(request):
 
-	with open('../data/setup/municipalities_topojson_999_20170101.json') as data_file:
+	with open('data/setup/municipalities_topojson_999_20170101.json') as data_file:
 		data = data_file.read()
 	geom_data = json.loads(data)
 

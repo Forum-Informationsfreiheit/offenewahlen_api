@@ -85,10 +85,10 @@ pip install -U -r requirements.txt
 
 **4. Datenbank initialisieren**
 
-Die App ist an sich jetzt schon funktionsfähig, es muss aber noch die Datenbank initalisiert werden. Dazu in den `src/`-Ordner gehen, welcher der Root-Folder der Django-App ist.
+Die App ist an sich jetzt schon funktionsfähig, es muss aber noch die Datenbank initalisiert werden.
 
 ```bash
-python manage.py migrate
+python src/manage.py migrate
 ```
 
 Nun sollten die Tabellen in der PostgreSQL-Datenbank angelegt sein. Mit [pgAdmin](https://www.pgadmin.org/), einem PostgreSQL-GUI, kannst du dies z. B. ansehen.
@@ -98,7 +98,7 @@ Nun sollten die Tabellen in der PostgreSQL-Datenbank angelegt sein. Mit [pgAdmin
 Wenn du `python manage.py` aufrufst, siehst du eine Liste an Befehlen, die die die Django-App zur Verfügung stellt. Um den Server lokal zu starten, benötigst du den Befehl `runserver`. Beachte: du musst immer im `src/` Ordner sein, um `manage.py` ausführen zu können.
 
 ```bash
-python manage.py runserver
+python src/manage.py runserver
 ```
 
 **6. Django-App im Browser anzeigen**
@@ -111,13 +111,22 @@ Wenn soweit alles gepasst hat, solltest du nun die App im Browser unter [http://
 
 XML-Testergebnisse von lokalem Pfad importieren
 ```bash
-python manage.py importxml --local_path ../data/test/example_1.xml
+python src/manage.py importxml --local_path data/test/example_1.xml
 ```
 
 ### Tests durchführen
 
 ```bash
-python manage.py test
+python src/manage.py test
+```
+
+### Datenbank migrieren
+
+Wenn Änderungen am Datenmodell, also an den Klassen in models.py, vorgenommen werden, müssen diese in die Datenbank migriert werden.
+```bash
+python src/manage.py makemigrations viz
+python src/manage.py makemigrations
+python src/manage.py migrate
 ```
 
 ### Unser Development-Workflow
@@ -184,8 +193,7 @@ Eine Person vom Team (vermutlich Stefan oder Christopher), werden dann den Pull 
 
 Die Sprachfiles erstellen.
 ```bash
-cd src/
-python manage.py compilemessages
+python src/manage.py compilemessages
 ```
 
 ## DOKUMENTATION

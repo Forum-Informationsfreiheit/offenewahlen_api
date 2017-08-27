@@ -131,18 +131,20 @@ python src/manage.py migrate
 
 ### Unser Development-Workflow
 
-Um beim Entwickeln der App mitzumachen, empfiehlt es sich zuerst mal den Stand zu den [Milestones](https://github.com/OKFNat/offenewahlen-nrw17/milestones?direction=asc&sort=due_date&state=open) und das [Board](https://github.com/OKFNat/offenewahlen-nrw17/milestones#boards?repos=96933110) mit den Issues anzusehen. Mit den Milestones koordinieren wir die großen Projekt-Abschnitte, welche sich aus vielen kleineren Issues zusammen setzen, und ist der beste Startpunkt zum Verstehen des Entwicklungs-Standes. Das Board ermöglicht einfaches verwalten der Issues und ist somit die zentrale Übersicht für die Tasks.
+Um beim Entwickeln der App mitzumachen, empfiehlt es sich zuerst mal den Stand bei den [Milestones](https://github.com/OKFNat/offenewahlen-nrw17/milestones?direction=asc&sort=due_date&state=open), [Projects](https://github.com/OKFNat/offenewahlen-nrw17/projects) und das [Board](https://github.com/OKFNat/offenewahlen-nrw17/milestones#boards?repos=96933110) mit den Issues anzusehen. Mit den Milestones koordinieren wir die großen Projekt-Phasen, und ist ein guter erster Startpunkt zum Verstehen des Entwicklungs-Standes. Mit den Projekten werden die Aufgabenbereiche unterteilt und das Board ermöglicht ein einfaches verwalten der Issues und ist somit die zentrale Übersicht für die Tasks.
 
-Die Entwicklung wird in drei Entwicklungs-Phasen unterteilt:
-1. **Alpha**: Die Kernfunktionen der einzelne Prozess-Schritte. Es soll ein Teil nach dem anderen Lauffähig werden, damit möglichst bald an allen drei Teilen parallel gearbeitet werden kann.
-2. **Beta**: Die Beta-Phase wird sowohl für den internen Test wie auch der Test-Wahl mit dem BMI verwendet, und muss somit alle am Wahltag benötigten Funktionen implementiert haben.
-3. **Final**: Die finale Version 1 der App, mit welcher am Wahltag online gegangen wird.
+Die Entwicklungs-Abfolge wird in folgende *Milestones* unterteilt:
+1. **[Alpha](https://github.com/OKFNat/offenewahlen-nrw17/milestone/5)**
+2. **[Interne Testwahl](https://github.com/OKFNat/offenewahlen-nrw17/milestone/22)**
+3. **[BMI Testwahl](https://github.com/OKFNat/offenewahlen-nrw17/milestone/25)**
+4. **[NRW17](https://github.com/OKFNat/offenewahlen-nrw17/milestone/24)**
+5. **[v2](https://github.com/OKFNat/offenewahlen-nrw17/milestone/26)**
 
-Unterteilt ist die Reihenfolge je Entwicklungs-Phase immer in:
-1. **Datenimport**: Zuerst müssen die notwendigen Daten in die Datenbank importiert werden.
-2. **Datenauslieferung**: Die Datenbank liefert die benötigten Daten an das Frontend aus.
-3. **Frontend**: Enthält die Visualisierungen und die Statistik-Seite und alles sonstige, was via Browser zugänglich ist.
-4. Deployment: Wenn die drei Datenverarbeitungs-Prozesse abgeschlossen ist, wird die App deployed und die nächste Entwicklungs-Phase kann beginnen.
+Die verschiedenen Tätigkeitsbereiche werden in folgende *Projects* unterteilt:
+1. **[Backend](https://github.com/OKFNat/offenewahlen-nrw17/projects/2)**
+2. **[Frontend](https://github.com/OKFNat/offenewahlen-nrw17/projects/1)**
+3. **[Projekt Koordination](https://github.com/OKFNat/offenewahlen-nrw17/projects/3)**
+4. **[Deployement](https://github.com/OKFNat/offenewahlen-nrw17/projects/4)**
 
 ### Selber coden
 
@@ -153,11 +155,11 @@ Eine Person vom Team (vermutlich Stefan oder Christopher), werden dann den Pull 
 
 **Ersten Schritte**
 
-1. Dieses Repository ansehen.
-2. [#NRW17 Visualisierung Wiki](https://github.com/OKFNat/offenewahlen-nrw17/wiki) durchgehen.
-3. [Milestones](https://github.com/OKFNat/offenewahlen-nrw17/milestones?direction=asc&sort=due_date&state=open) ansehen.
+1. Dieses Repository durchgehen.
+2. Doku in [#NRW17 Visualisierung Wiki](https://github.com/OKFNat/offenewahlen-nrw17/wiki) durchgehen.
+4. Aufgabenbereiche in [Projects](https://github.com/OKFNat/offenewahlen-nrw17/projects) ansehen.
+5. Task-Management via [Board](https://github.com/OKFNat/offenewahlen-nrw17/milestones#boards?repos=96933110) ansehen.
 4. Task-Management via [Board](https://github.com/OKFNat/offenewahlen-nrw17/milestones#boards?repos=96933110) ansehen.
-
 
 **Ressourcen zum Lernen**
 
@@ -222,12 +224,13 @@ Anbei eine paar Ideen, wie man sich bei dem Team einbringen kann:
 **Ersten Schritte**
 
 Es empfiehlt sich, zu Beginn die Dokumentation und unser Projekt-Management kurz anzusehen, um einen Überblick zum Projekt zu bekommen:
-* Dieses Repository durchgehen.
-* [#NRW17 Visualisierung Wiki](https://github.com/OKFNat/offenewahlen-nrw17/wiki) durchgehen.
-* [Milestones](https://github.com/OKFNat/offenewahlen-nrw17/milestones?direction=asc&sort=due_date&state=open) ansehen.
-* Task-Management via [Board](https://github.com/OKFNat/offenewahlen-nrw17/milestones#boards?repos=96933110) ansehen.
-* [Offene Wahlen Österreich Wiki](https://github.com/OKFNat/offenewahlen-at/wiki) durchgehen.
-* [offenewahlen.at](https://offenewahlen.at) durchgehen.
+1. Dieses Repository durchgehen.
+2. Doku in [#NRW17 Visualisierung Wiki](https://github.com/OKFNat/offenewahlen-nrw17/wiki) durchgehen.
+3. Entwicklungs-Stand in [Milestones](https://github.com/OKFNat/offenewahlen-nrw17/milestones?direction=asc&sort=due_date&state=open) ansehen.
+4. Aufgabenbereiche in [Projects](https://github.com/OKFNat/offenewahlen-nrw17/projects) ansehen.
+5. Task-Management via [Board](https://github.com/OKFNat/offenewahlen-nrw17/milestones#boards?repos=96933110) ansehen.
+6. [Offene Wahlen Österreich Wiki](https://github.com/OKFNat/offenewahlen-at/wiki) durchgehen.
+7. [offenewahlen.at](https://offenewahlen.at) besuchen und Newsletter abonnieren.
 
 Wenn du Fragen hast, kannst du dich jederzeit via Email (info@offenewahlen.at) oder unter [Kontakt](http://offenewahlen.at/kontakt) melden.
 

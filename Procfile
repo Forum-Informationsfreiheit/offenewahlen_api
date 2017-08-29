@@ -1,4 +1,4 @@
-web: gunicorn --pythonpath src offenewahlen_nrw17.wsgi --timeout 60 --log-file -
+web: gunicorn --pythonpath src offenewahlen_nrw17.wsgi --log-file -
 reset: sh reset_db.sh
 migrate: sh migrate_db.sh
 drop: sh drop_db.sh

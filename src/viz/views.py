@@ -56,7 +56,7 @@ def api_result_nrw13(request):
 
 		lr_query = psr.listresult_set.all()
 		for lr in lr_query:
-			data[code][lr.election_list.short_name] = lr.votes
+			data[code][str(lr.election_list.short_name)] = lr.votes
 
 	return JsonResponse(data, safe=False)
 

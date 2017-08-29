@@ -38,13 +38,15 @@ def api_result_nrw13(request):
 
 	data = {}
 	elec_short = 'nrw13'
-	psr_query = PollingStationResult.objects.filter(election__short_name=elec_short).all()
+	#psr_query = PollingStationResult.objects.filter(election__short_name=elec_short).select_related('polling_station', 'polling_station__municipality')
+	psr_query = PollingStationResult.objects.filter(election__short_name=elec_short).select_related('polling_station') 
+	#lr_query = ListResult.objects.select_related('election_list', 'polling_station_result', 'polling_station_result__polling_station', 'polling_station_result__polling_station__municipality').filter(polling_station_result__election__short_name=elec_short)
 
 	for psr in psr_query: 
 		code = str(psr.polling_station.municipality.code)
 		data[code] = {}
 		data[code]['gemeinde_name'] = psr.polling_station.municipality.name
-		data[code]['gemeinde_kennzahl'] = psr.polling_station.municipality.kennzahl
+		data[code]['gemeinde_kennzahl'] = str(psr.polling_station.municipality.kennzahl)
 		data[code]['gemeinde_code'] = code
 		data[code]['eligible_voters'] = psr.eligible_voters
 		data[code]['votes'] = psr.votes
@@ -52,7 +54,7 @@ def api_result_nrw13(request):
 		data[code]['invalid'] = psr.invalid
 		data[code]['ts'] = psr.ts_result
 
-		lr_query = ListResult.objects.filter(polling_station_result = psr).all()
+		lr_query = psr.listresult_set.all()
 		for lr in lr_query:
 			data[code][lr.election_list.short_name] = lr.votes
 

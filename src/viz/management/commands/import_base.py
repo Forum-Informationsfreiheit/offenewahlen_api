@@ -101,7 +101,7 @@ class Command(BaseCommand):
 
 		for key, value in reds.items():
 			red = RegionalElectoralDistrict.objects.update_or_create(
-				short_code=key,
+				short_code=str(key),
 				name = value
 			)
 			if red[1] == True:
@@ -151,7 +151,7 @@ class Command(BaseCommand):
 
 		num_entries_created = 0
 		num_entries_updated = 0
-		num_parties_notfound = 0
+		num_lists_notfound = 0
 
 		for key, ele_list in lists.items():
 			for lst in ele_list:
@@ -166,7 +166,7 @@ class Command(BaseCommand):
 				except Exception as e:
 					if config['log_detail'] == 'middle' or config['log_detail'] == 'high':
 						print('Warning: Party not found.')
-					num_parties_notfound += 1
+					num_lists_notfound += 1
 					l = List.objects.update_or_create(
 						short_name = lst['short_name'],
 						short_name_text = lst['short_name_text'],
@@ -182,7 +182,7 @@ class Command(BaseCommand):
 						print('List entry "'+lst['short_name']+'" updated.')
 					num_entries_updated += 1
 
-		print('List table imported: '+ 'new entries: '+str(num_entries_created)+', updated entries: '+str(num_entries_updated)+', parties not found: '+str(num_parties_notfound))
+		print('List table imported: '+ 'new entries: '+str(num_entries_created)+', updated entries: '+str(num_entries_updated)+', lists not found: '+str(num_lists_notfound))
 
 
 	def import_states_districts(self, states_districts, config):
@@ -212,7 +212,7 @@ class Command(BaseCommand):
 
 			for key, value in s_val['districts'].items():
 				d = District.objects.update_or_create(
-					short_code=key,
+					short_code=str(key),
 					name = value,
 					state=s[0]
 				)
@@ -253,8 +253,8 @@ class Command(BaseCommand):
 					print('Warning: district not found.')
 
 			m = Municipality.objects.update_or_create(
-				code = mun['municipality_code'],
-				kennzahl = mun['municipality_kennzahl'],
+				code = str(mun['municipality_code']),
+				kennzahl = str(mun['municipality_kennzahl']),
 				name = mun['name'],
 				regional_electoral_district = red,
 				district = d

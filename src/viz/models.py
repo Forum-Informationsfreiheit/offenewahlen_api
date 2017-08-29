@@ -1,12 +1,6 @@
 from django.db import models
 
-class ElectionManager(models.Manager):
-	def get_by_natural_key(self, full_name):
-	    return self.get(full_name=full_name)
-
 class Election(models.Model):
-	objects = ElectionManager()
-
 	short_name = models.CharField(primary_key=True, max_length=50)
 	short_name_text = models.CharField(max_length=50, null=True)
 	full_name = models.CharField(max_length=200)
@@ -26,18 +20,15 @@ class Election(models.Model):
 		verbose_name = 'election'
 		verbose_name_plural = 'elections'
 		indexes = [
-			models.Index(fields=['full_name', 'short_name']),
+			models.Index(fields=['full_name', 'short_name', 'short_name_text']),
 		]
-
-	def natural_key(self):
-		return (self.full_name)
 
 class RegionalElectoralDistrict(models.Model):
 	short_code = models.CharField(primary_key=True, max_length=2)
 	name = models.CharField(max_length=100, default=None)
 	
 	def __str__(self):
-		return "%s" % (self.name)
+		return "%s" % (self.short_code)
 
 	class Meta:
 		ordering = ['short_code']
@@ -85,20 +76,19 @@ class List(models.Model):
 			models.Index(fields=['short_name', 'full_name', 'short_name_text']),
 		]
 
-
 class State(models.Model):
 	short_code = models.CharField(primary_key=True, max_length=1)
 	name = models.CharField(max_length=100, unique=True)
 
 	def __str__(self):
-		return "%s" % (self.name)
+		return "%s" % (self.short_code)
 
 	class Meta:
 		ordering = ['short_code']
 		verbose_name = 'state'
 		verbose_name_plural = 'states'
 		indexes = [
-			models.Index(fields=['name']),
+			models.Index(fields=['name', 'short_code']),
 		]
 
 class District(models.Model):
@@ -107,77 +97,52 @@ class District(models.Model):
 	state = models.ForeignKey(State, on_delete=models.PROTECT, default=None)
 
 	def __str__(self):
-		return "%s" % (str(self.name))
+		return "%s" % (self.short_code)
 
 	class Meta:
 		ordering = ['short_code']
 		verbose_name = 'district'
 		verbose_name_plural = 'districts'
 		indexes = [
-			models.Index(fields=['name']),
+			models.Index(fields=['name', 'short_code']),
 		]
 
-class MunicipalityManager(models.Manager):
-	def get_by_natural_key(self, code):
-	    return self.get(code=code)
-
 class Municipality(models.Model):
-	objects = MunicipalityManager()
-
 	code = models.CharField(primary_key=True, max_length=5)
 	name = models.CharField(max_length=200)
 	kennzahl = models.CharField(max_length=5, default=None)
 	regional_electoral_district = models.ForeignKey(RegionalElectoralDistrict, on_delete=models.PROTECT, default=None)
 	district = models.ForeignKey(District, on_delete=models.PROTECT, default=None)
 
-
 	def __str__(self):
-		return "%s" % (self.code, self.name)
+		return "%s" % (self.code)
 
 	class Meta:
 		ordering = ['code']
 		verbose_name = 'municipality'
 		verbose_name_plural = 'municipalities'
 		indexes = [
-			models.Index(fields=['name', 'code']),
+			models.Index(fields=['name', 'code', 'kennzahl']),
 		]
 
-	def natural_key(self):
-		return (self.code)
-
-class PollingStationManager(models.Manager):
-	def get_by_natural_key(self, name):
-	    return self.get(name=name)
-
 class PollingStation(models.Model):
-	objects = PollingStationManager()
-
 	id = models.AutoField(primary_key=True)
 	name = models.CharField(max_length=200, null=True, default=None)
 	type = models.CharField(max_length=30) # municipal, absentee ballot, 
 	municipality = models.ForeignKey(Municipality, on_delete=models.PROTECT, default=None)
 
 	def __str__(self):
-		return "%s" % (self.name)
+		return "%s" % (self.id)
 
 	class Meta:
-		order_with_respect_to = 'municipality'
+		ordering = ['id']
 		verbose_name = 'polling station'
 		verbose_name_plural = 'polling stations'
 		indexes = [
 			models.Index(fields=['name']),
 		]
 
-	def natural_key(self):
-		return (self.name)
-
-class PollingStationResultManager(models.Manager):
-	def get_by_natural_key(self, polling_station, election):
-	    return self.get(polling_station=polling_station, election=election)
-
 class PollingStationResult(models.Model):
-	objects = PollingStationResultManager()
-
 	id = models.AutoField(primary_key=True)
 	polling_station = models.ForeignKey(PollingStation, on_delete=models.PROTECT, default=None)
 	election = models.ForeignKey(Election, on_delete=models.PROTECT, default=None)
@@ -189,16 +154,13 @@ class PollingStationResult(models.Model):
 	is_final = models.BooleanField(default=False) # is it final approved result for the municipality?
 
 	def __str__(self):
-		return "%s" % (self.ts_result)
+		return "%s" % (self.id)
 
 	class Meta:
-		ordering = ['ts_result']
+		ordering = ['id']
 		get_latest_by = 'ts_result'
 		verbose_name = 'polling station result'
 		verbose_name_plural = 'polling station results'
-
-	def natural_key(self):
-		return (self.polling_station, self.election)
 
 class ListResult(models.Model):
 	id = models.AutoField(primary_key=True)
@@ -207,12 +169,12 @@ class ListResult(models.Model):
 	votes = models.IntegerField(null=True, default=-1)
 
 	def __str__(self):
-		return "%s %s %s" % (self.votes, self.polling_station_result, self.party)
+		return "%s" % (self.id)
 
 	class Meta:
 		ordering = ['id']
-		verbose_name = 'party result'
-		verbose_name_plural = 'party results'
+		verbose_name = 'list result'
+		verbose_name_plural = 'list results'
 
 class RawData(models.Model):
 	id = models.AutoField(primary_key=True)
@@ -226,10 +188,10 @@ class RawData(models.Model):
 	election = models.ForeignKey(Election, on_delete=models.PROTECT, default=None)
 
 	def __str__(self):
-		return "%s" % (self.ts_import)
+		return "%s" % (self.id)
 
 	class Meta:
-		ordering = ['ts_import']
+		ordering = ['id']
 		get_latest_by = 'ts_file'
 		verbose_name = 'raw data'
 		verbose_name_plural = 'raw data'

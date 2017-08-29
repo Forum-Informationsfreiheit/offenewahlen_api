@@ -16,6 +16,7 @@ urlpatterns = [
 	url(r'^api/base/election/$', views.api_base_election, name='api_basedata_election'),
 	url(r'^api/base/municipality/$', views.api_base_municipality, name='api_base_municipality'),
 	url(r'^api/base/pollingstation/$', views.api_base_pollingstation, name='api_base_pollingstation'),
+	url(r'^api/base/list/$', views.api_base_list, name='api_basedata_list'),
 	url(r'^api/base/party/$', views.api_base_party, name='api_basedata_party'),
 	url(r'^api/base/list/$', views.api_base_list, name='api_basedata_list'),
 	url(r'^api/base/state/$', views.api_base_state, name='api_base_state'),

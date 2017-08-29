@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.utils import timezone
-from viz.models import PollingStationResult, RawData, PartyResult, PollingStation, RawData, Election, Party
+from viz.models import PollingStationResult, RawData, ListResult, PollingStation, RawData, Election, Party, List
 import json
 import xml.etree.ElementTree as ET
 import pprint
@@ -48,7 +48,9 @@ class Command(BaseCommand):
 			'election_short': options['election'],
 			'election_object': Election.objects.get(short_name=options['election']),
 			'file_location': None,
-			'ts_import': timezone.now()
+			'ts_import': timezone.now(),
+			'description': 'none',
+			'log_detail': 'middle'
 		}
 
 		config['file_location'] = self.get_file_location(config)
@@ -71,7 +73,7 @@ class Command(BaseCommand):
 		data = self.standardize_raw_data(raw_data, config)		
 
 		# map keys of input data to database
-		data, config['party_objects'] = self.map_keys(data, options)
+		data, config['list_objects'] = self.map_keys(data, options)
 			
 		# write election results to database
 		self.import_results(data, config)
@@ -90,7 +92,6 @@ class Command(BaseCommand):
 			file_location = options['file_location']
 
 		return file_location
-
 
 	def get_file_type(self, options):
 		"""
@@ -116,9 +117,12 @@ class Command(BaseCommand):
 			content = data,
 			header = header,
 			dataformat = config['file_type'],
+			description = config['description'],
 			election = config['election_object']
 		)
 		raw.save()
+
+		print('Rawdata imported.')
 
 	def get_local_data(self, local_path):
 		"""
@@ -163,14 +167,14 @@ class Command(BaseCommand):
 				data.append(tmp)
 		
 		elif config['file_type'] == 'txt':
-			print('Not yet implemented')
+			print('Warning: Not yet implemented')
 		
 		elif config['file_type'] == 'json':
 			input_data = json.loads(raw_data)
 
 			for key, value in input_data.items():
 				tmp = value
-				tmp['municipality_kennzahl'] = key
+				tmp['municipality_code'] = key
 				data.append(tmp)
 
 		return data
@@ -180,6 +184,8 @@ class Command(BaseCommand):
 		Maps keys of input data to database.
 		"""
 
+		not_list = ['id', 'municipality_code', 'municipality_kennzahl', 'invalid', 'valid', 'votes', 'timestamp', 'eligible_voters']
+
 		if 'mapping_file' in options.keys():
 			with open(options['mapping_file']) as data_file:
 				mapping = json.loads(data_file.read())
@@ -187,89 +193,105 @@ class Command(BaseCommand):
 			new_data = []
 			for mun in data:
 				tmp = {}
-				
 				for key in mun.keys():
 					tmp[mapping[key]] = mun[key]
 				new_data.append(tmp)
 
 			# get party objects
-			party_ids = {}
+			list_ids = {}
 			for key, value in mapping.items():
-				party_exists = Party.objects.filter(short_name=value).exists()
-				if  party_exists == True:
-					party_ids[value] = Party.objects.get(short_name=value)
-				else:
-					print('Error: Party "{}" does not exist.'.format(value))
+				if value not in not_list:
+					try:
+						list_ids[value] = List.objects.get(short_name=value)
+					except:
+						print('Error: List "{}" does not exist.'.format(value))
 
-		return new_data, party_ids
+		return new_data, list_ids
 
 	def import_results(self, data, config):
 		"""
 		Imports results to database.
 		"""
 
+		not_found = []
 		timestamp_now = timezone.now()
+		psr_num_entries_updated = 0
+		psr_num_entries_created = 0
+		lr_num_entries_updated = 0
+		lr_num_entries_created = 0
 
 		for mun in data:
+			mun_code = mun['municipality_code']
 
 			# check which election
 			if config['election_short'] == 'nrw13':
-				time_data = datetime.datetime.strptime('2013-09-29', '%Y-%m-%d')
+				ts = datetime.datetime.strptime('2013-09-29', '%Y-%m-%d')
 				eligible_voters = None
 				config['is_final_master'] = True
 
 			elif config['election_short'] == 'nrw17':
-				time_data = datetime.datetime.strptime(mun['timestamp'], '%Y-%m-%d %H:%M:%SZ')
+				ts = datetime.datetime.strptime(mun['timestamp'], '%Y-%m-%d %H:%M:%SZ')
 				eligible_voters = mun['eligible_voters']
 				config['is_final_master'] = False
 			
-			time_data = timezone.make_aware(time_data, timezone.get_current_timezone())
+			ts = timezone.make_aware(ts, timezone.get_current_timezone())
 
 			# get polling station
-			municipality_kennzahl_exists = PollingStation.objects.filter(municipality__kennzahl=mun['municipality_kennzahl']).exists()
-			if municipality_kennzahl_exists == True:
-				polling_station = PollingStation.objects.get(municipality__kennzahl=mun['municipality_kennzahl'])
-			else:
-				print('Warning: Polling Station {} does not exist!'.format(mun['municipality_kennzahl']))
-				polling_station = None
+			if len(mun_code) == 6:
+				mun_code = mun_code[1:6]
+			not_country = not mun_code[:1] == '0'
+			not_state = not mun_code[1:5] == '0000'
+			not_red = mun_code[1:2].isdigit()
+			not_district = not mun_code[3:5] == '00'
+			not_absentee_ballot = not mun_code[3:5] == '99'
 
-			# check if realtime data or final result
-			if config['is_final_master'] == True:
-				if polling_station == None:
-					result_exists == True
-				else:
-					result_exists = PollingStationResult.objects.filter(polling_station=polling_station, election=config['election_object']).exists()
-			else:
-				result_exists = PollingStationResult.objects.filter(ts_result=time_data).exists()
-
-			# import results
-			if result_exists == False:
-				if polling_station != None:
-					new_psr = PollingStationResult(
-						polling_station = polling_station,
+			if not_country and not_state and not_red and not_district and not_absentee_ballot:
+				try:
+					ps = PollingStation.objects.get(municipality__code=mun['municipality_code'])
+					psr = PollingStationResult.objects.update_or_create(
+						polling_station = ps,
 						election = config['election_object'],
 						eligible_voters = eligible_voters,
 						votes = mun['votes'],
 						valid = mun['valid'],
 						invalid = mun['invalid'],
-						ts_result = time_data,
+						ts_result = ts,
 						is_final = config['is_final_master']
 					)
-					new_psr.save()
+					if psr[1] == True:
+						if config['log_detail'] == 'high':
+							print('New pollingstationresult entry "'+psr[0]+'" created.')
+						psr_num_entries_created += 1
+					else:
+						if config['log_detail'] == 'high':
+							print('Pollingstationresult entry "'+psr[0]+'" updated.')
+						psr_num_entries_updated += 1
 
-					for key, value in config['party_objects'].items():
+					for key, value in config['list_objects'].items():
 						if mun[key] == 'None':
 							votes = None
 						else:
 							votes = mun[key]
-						new_pr = PartyResult(
-							polling_station_result = new_psr,
-							party = value,
+						
+						lr = ListResult.objects.update_or_create(
+							polling_station_result = psr[0],
+							election_list = value,
 							votes = votes
-							)
-						new_pr.save()
-					new_psr.save()
-			#else:
-			#	print('Warning: Result already exists.')
+						)
+						if lr[1] == True:
+							if config['log_detail'] == 'high':
+								print('New listresult entry "'+lr[0]+'" created.')
+							lr_num_entries_created += 1
+						else:
+							if config['log_detail'] == 'high':
+								print('listresult entry "'+lr[0]+'" updated.')
+							lr_num_entries_updated += 1
 
+				except Exception as e:
+					if config['log_detail'] == 'middle' and config['log_detail'] == 'high':
+						print('Warning: pollingstation {} not found.'.format(mun['municipality_code']))
+					not_found.append(mun['municipality_code'])
 
+		print('Pollingstationresult table imported: '+ 'new entries: '+str(psr_num_entries_created)+', updated entries: '+str(psr_num_entries_updated))
+		print('Listresult table imported: '+ 'new entries: '+str(lr_num_entries_created)+', updated entries: '+str(lr_num_entries_updated))
+		print('Following municipalities where not found:',not_found)	

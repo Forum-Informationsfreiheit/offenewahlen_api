@@ -1,130 +1,146 @@
-[
-	{
+{
+	"kpoe": {
 		"full_name": "Kommunistische Partei Österreichs",
 		"short_name": "kpoe",
+		"short_name_text": "KPÖ",
 		"family": "Europäische Linke (Q202649)",
 		"wikidata_id": "Q161118",
 		"website": "http://kpoe.at/",
 		"description": ""
 	},
-	{
+	"spoe": {
 		"full_name": "Sozialdemokratische Partei Österreichs",
 		"short_name": "spoe",
+		"short_name_text": "SPÖ",
 		"family": "Sozialdemokratische Partei Europas (Q220945)",
 		"wikidata_id": "Q179111",
 		"website": "https://spoe.at/",
 		"description": ""
 	},
-	{
+	"team stronach": {
 		"full_name": "Team Stronach",
 		"short_name": "team stronach",
+		"short_name_text": "Team Stronach",
 		"family": "",
 		"wikidata_id": "Q103748",
 		"website": "http://www.teamstronach.at/",
 		"description": ""
 	},
-	{
+	"oevp": {
 		"full_name": "Österreichische Volkspartei",
 		"short_name": "oevp",
+		"short_name_text": "ÖVP",
 		"family": "Europäische Volkspartei (Q208242)",
 		"wikidata_id": "Q186867",
 		"website": "https://www.oevp.at/",
 		"description": ""
 	},
-	{
+	"fpoe": {
 		"full_name": "Freiheitliche Partei Österreichs",
 		"short_name": "fpoe",
+		"short_name_text": "FPÖ",
 		"family": "Bewegung für ein Europa der Nationen und der Freiheit (Q18907386)",
 		"wikidata_id": "Q131692",
 		"website": "https://www.fpoe.at/",
 		"description": ""
 	},
-	{
+	"gruene": {
 		"full_name": "Die Grünen – Die grüne Alternative",
 		"short_name": "gruene",
+		"short_name_text": "Die Grünen",
 		"family": "Europäische Grüne Partei (Q950179)",
 		"wikidata_id": "Q193178",
 		"website": "https://www.gruene.at/",
 		"description": ""
 	},
-	{
+	"euaus": {
 		"full_name": "EU-Austrittspartei für Österreich",
 		"short_name": "euaus",
+		"short_name_text": "EUAUS",
 		"family": "",
 		"wikidata_id": "Q33697797",
 		"website": "http://www.euaustrittspartei.at/",
 		"description": ""
 	},
-	{
+	"cpoe": {
 		"full_name": "Christliche Partei Österreichs",
 		"short_name": "cpoe",
+		"short_name_text": "CPÖ",
 		"family": "",
 		"wikidata_id": "Q578350",
 		"website": "http://www.christlicheparteioesterreichs.at/",
 		"description": ""
 	},
-	{
+	"pirat": {
 		"full_name": "Piratenpartei Österreichs",
 		"short_name": "pirat",
+		"short_name_text": "Piraten",
 		"family": "Pirate Parties International (Q170)",
 		"wikidata_id": "Q695270",
 		"website": "https://www.piratenpartei.at/",
 		"description": ""
 	},
-	{
+	"der wandel": {
 		"full_name": "Der Wandel",
 		"short_name": "der wandel",
+		"short_name_text": "Der Wandel",
 		"family": "",
 		"wikidata_id": "Q15805222",
 		"website": "https://www.derwandel.at/",
 		"description": ""
 	},
-	{
+	"bzoe": {
 		"full_name": "Bündnis Zukunft Österreich",
 		"short_name": "bzoe",
+		"short_name_text": "BZÖ",
 		"family": "",
 		"wikidata_id": "Q653833",
 		"website": "http://www.bzoe.at/",
 		"description": ""
 	},
-	{
+	"neos": {
 		"full_name": "NEOS – Das Neue Österreich und Liberales Forum",
 		"short_name": "neos",
+		"short_name_text": "NEOS",
 		"family": "Allianz der Liberalen und Demokraten für Europa (Q25079)",
 		"wikidata_id": "Q13564543",
 		"website": "https://www.neos.eu",
 		"description": ""
 	},
-	{
+	"slp": {
 		"full_name": "Sozialistische Linkspartei",
 		"short_name": "slp",
+		"short_name_text": "SLP",
 		"family": "",
 		"wikidata_id": "Q700400",
 		"website": "https://www.slp.at/",
 		"description": ""
 	},
-	{
+	"nbz": {
 		"full_name": "NBZ - Neue Bewegung für die Zukunft",
-		"short_name": "Die Partei NBZ",
+		"short_name": "nbz",
+		"short_name_text": "NBZ",
 		"family": "",
 		"wikidata_id": "Q1979462",
 		"website": "http://nbz-partei.at/",
 		"description": ""
 	},
-	{
+	"pilz": {
 		"full_name": "Liste Peter Pilz",
 		"short_name": "pilz",
+		"short_name_text": "Pilz",
 		"family": "",
 		"wikidata_id": "Q34198369",
 		"website": "https://listepilz.at/",
 		"description": ""
 	},
-	{
+	"odp": {
 		"full_name": "Obdachlose in der Politik, Österreichs christlich-liberale Satire-Volkspartei",
 		"short_name": "odp",
+		"short_name_text": "ODP",
 		"family": "",
 		"wikidata_id": "",
 		"website": "https://jachwe.wordpress.com/",
 		"description": ""
 	}
-]
+}

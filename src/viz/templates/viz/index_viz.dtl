@@ -9,6 +9,7 @@
 {% endblock %}
 
 {% block header %}
+<h1 class="text-center">#NRW17 Ergebnis</h1>
 {% endblock %}
 
 {% block content %}

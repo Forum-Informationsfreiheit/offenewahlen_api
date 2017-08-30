@@ -1,0 +1,136 @@
+{% extends "viz/base.dtl" %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block title %}{% trans 'Website Title' %}{% endblock %}
+
+{% block head %}
+<script src="https://d3js.org/d3.v4.min.js"></script>
+{% endblock %}
+
+{% block header %}
+<h1 class="text-center">#NRW17 Ergebnis</h1>
+{% endblock %}
+
+{% block content %}
+<div id="chart">
+</div>
+
+<script>
+var aut = d3.formatLocale({"decimal":",", "thousands":".","grouping":[3],"currency":["€", ""]});
+var margin = { top: 20, right: 20, bottom: 30, left: 20 };
+var width = parseInt(d3.select("#chart").style("width"), 10) - margin.left - margin.right;
+var height = window.innerHeight - margin.top - margin.bottom - 20;
+var t = 1000;  //dauer für animationen
+
+var noparty = ["GKZ", "Name", "Wahlberechtigte", "abgegeben", "gueltig", "ungueltig"];  //alle nicht-partei-felder
+var meta = {"spoe": {"kurz": "SPÖ", "color": "#C83D44"}, "oevp": {"kurz": "ÖVP", "color": "#191919"}, "fpoe": {"kurz": "FPÖ", "color": "#2657A8"}, "gruene": {"kurz": "GRÜNE", "color": "#89A04F"}, "neos": {"kurz": "NEOS", "color": "#F52887"}, "kpoe": {"kurz": "KPÖ", "color": "#9F000F"}, "cpoe": {"kurz": "CPÖ", "color": "#E2E062"}, "pilz": {"kurz": "PILZ", "color": "#72BB72"}, "schnell": {"kurz": "SCHNELL", "color": "#5589A5"}, "gilt": {"kurz": "GILT", "color": "#E9AB17"}, "Sonstige 2013": {"kurz": "Sonstige 2013", "color": "#b0b0b0"}};  //parteikürzel und farben
+
+var daten = [];
+var xscale = d3.scaleBand().rangeRound([margin.left, width - margin.right]).paddingInner(0.1).paddingOuter(0);
+var yscale = d3.scaleLinear().rangeRound([height - margin.top, margin.bottom]);
+
+var svg = d3.select("#chart")
+	.append("svg")
+	.attr("width", width + margin.left + margin.right)
+	.attr("height", height + margin.top + margin.bottom)
+	.attr("id", "svg")
+	.append("g")
+	.attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
+
+window.onresize = resize;  //responsive
+
+var q = d3.queue();
+q.defer(d3.csv, "{% static 'fiktiv.csv' %}");
+
+q.awaitAll(function(error) {
+    if (!error) {
+		var data = arguments[1][0];
+		for (var x in data[0]) { //nur gesamtergebnis, abhängig vom datensatz
+			if (noparty.indexOf(x) == -1) daten.push({"partei": x, "abs": +data[0][x], "value": +data[0][x] / +data[0].gueltig});
+		}
+
+		daten.sort(function(a, b) { return d3.descending(a.value, b.value); });  //größte partei zuerst
+		xscale.domain(daten.map(function(d) { return d.partei; }));
+		yscale.domain([0, daten[0].value + 0.05]);  //maximalwert ist das höchste ergebnis + 5 prozentpunkte - alternativ zb 100%
+		draw();
+	}
+});
+
+function draw() {
+	svg.selectAll(".bars")  //balken
+		.data(daten)
+		.enter()
+		.append("rect")
+		.attr("x", function(d) { return xscale(d.partei); })
+		.attr("y", yscale(0))
+		.attr("width", xscale.bandwidth())
+		.attr("height", 0)
+		.attr("class", "bars")
+		.style("fill", function(d) { return meta[d.partei].color; })
+		.transition()
+		.delay(t / 2)
+		.duration(t)
+		.attr("y", function(d) { return yscale(d.value); })
+		.attr("height", function(d) { return yscale(0) - yscale(d.value); })
+	
+	svg.selectAll(".labels")  //parteinamen
+		.data(xscale.domain())
+		.enter()
+		.append("text")
+		.attr("x", function(d) { return xscale(d) + xscale.bandwidth() / 2; })
+		.attr("y", yscale(0))
+		.attr("dy", "1.2em")
+		.attr("class", "labels")
+		.text(function(d) { return meta[d].kurz; });
+
+	svg.selectAll(".values")  //werte
+		.data(daten)
+		.enter()
+		.append("text")
+		.attr("x", function(d) { return xscale(d.partei) + xscale.bandwidth() / 2; })
+		.attr("y", function(d) { return yscale(d.value); })
+		.attr("dy", "-0.2em")
+		.attr("class", "values")
+		.style("visibility", "hidden")
+		.text(function(d) { return aut.format(",.1%")(d.value); })
+		.transition()
+		.delay(t * 1.5)
+		.style("visibility", "visible");
+}
+
+
+function resize() {
+	width = parseInt(d3.select("#chart").style("width"), 10) - margin.left - margin.right;
+	height = window.innerHeight - margin.top - margin.bottom - 20;
+
+	xscale.rangeRound([margin.left, width - margin.right]).paddingInner(0.1).paddingOuter(0);
+	yscale.rangeRound([height - margin.top, margin.bottom]);
+
+	d3.select("#svg")
+		.attr("width", width + margin.left + margin.right)
+		.attr("height", height + margin.top + margin.bottom)
+		.select("g")
+		.attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
+		
+	svg.selectAll(".bars")
+		.attr("x", function(d) { return xscale(d.partei); })
+		.attr("y", function(d) { return yscale(d.value); })
+		.attr("width", xscale.bandwidth())
+		.attr("height", function(d) { return yscale(0) - yscale(d.value); });
+		
+	svg.selectAll(".labels")
+		.attr("x", function(d) { return xscale(d) + xscale.bandwidth() / 2; })
+		.attr("y", yscale(0));
+		
+	svg.selectAll(".values")
+		.attr("x", function(d) { return xscale(d.partei) + xscale.bandwidth() / 2; })
+		.attr("y", function(d) { return yscale(d.value); });
+}
+</script>
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+

@@ -1,0 +1,27 @@
+{% extends "viz/base.dtl" %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block title %}{% trans 'Website Title' %}{% endblock %}
+
+{% block head %}
+<script src="https://d3js.org/d3.v4.min.js"></script>
+{% endblock %}
+
+{% block header %}
+<h1 class="text-center">Visualisierungen</h1>
+{% endblock %}
+
+{% block content %}
+<ul>
+	<li><code>results-bar/</code>: <a href="results-bar/" title="Visualisierung Ergebnis Balken">link</a></li>
+	<li><code>results-map/</code>: <a href="results-map/" title="Visualisierung Ergebnis Karte">link</a></li>
+	<li><code>results-mapnrw13/</code>: <a href="viz/results-mapnrw13/" title="Visualisierung Ergebnis Karte NRW13">link</a></li>
+	<li><code>results-mapcanvas/</code>: <a href="results-mapcanvas/" title="Visualisierung Ergebnis Karte Canvas">link</a></li>
+	<li><code>results-timeseries/</code>: <a href="results-timeseries/" title="Visualisierung Ergebnis Zeitreihe">link</a></li>
+</ul>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+

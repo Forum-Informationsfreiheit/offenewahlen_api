@@ -1,14 +1,18 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.template import loader
+from django.conf import settings
 from django.core import serializers
-from viz.models import PollingStationResult, ListResult, PollingStation, Election, Municipality, RegionalElectoralDistrict, District, State, Party, RawData, List
-from django.http import JsonResponse
 from django.core.cache import cache
+from django.http import HttpResponse
+from django.http import JsonResponse
+from django.shortcuts import render
+from django.template import loader
 from django.template.context_processors import csrf
 from django.views.decorators.cache import cache_page
+from viz.models import PollingStationResult, ListResult, PollingStation, Election, Municipality, RegionalElectoralDistrict, District, State, Party, RawData, List
+from wsgiref.util import FileWrapper
 import json
 import csv
+import os
+import mimetypes
 
 def export_csv(filename, data):
 	counter = 1
@@ -25,6 +29,35 @@ def index(request):
 
 def viz(request):
 	return render(request, 'viz/index_viz.dtl')
+
+def viz_overview(request):
+	return render(request, 'viz/index_viz_overview.dtl')
+
+def viz_results_map(request):
+	return render(request, 'viz/index_viz_result_map.dtl')
+
+def viz_results_mapnrw13(request):
+	return render(request, 'viz/index_viz_result_mapnrw13.dtl')
+
+def viz_results_mapcanvas(request):
+	return render(request, 'viz/index_viz_result_mapcanvas.dtl')
+
+def viz_results_bar(request):
+	return render(request, 'viz/index_viz_result_bar.dtl')
+
+def viz_results_timeseries(request):
+	return render(request, 'viz/index_viz_result_timeseries.dtl')
+
+def serve_nrw13_csv(request):
+	
+	# Create the HttpResponse object with the appropriate CSV header.
+	filename = 'data/export/nrw13.csv'
+	wrapper = FileWrapper(open(filename))
+	response = HttpResponse(wrapper, content_type = 'text/csv')
+	response['Content-Length'] = os.path.getsize(filename)    
+	response['Content-Disposition'] = 'attachment; filename="nrw13.csv"'
+
+	return response
 
 def waiting(request):
 	return render(request, 'viz/index_waiting.dtl')

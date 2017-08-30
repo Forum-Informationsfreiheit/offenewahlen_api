@@ -1,0 +1,107 @@
+{% extends "viz/base.dtl" %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block title %}{% trans 'Website Title' %}{% endblock %}
+
+{% block head %}
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://d3js.org/topojson.v1.min.js"></script>
+{% endblock %}
+
+{% block header %}
+<h1 class="text-center">#NRW17 Ergebnis Karte (Canvas)</h1>
+{% endblock %}
+
+{% block content %}
+<div id="chart">
+</div>
+<script>
+var margin = { top: 20, right: 20, bottom: 30, left: 20 };
+var width = parseInt(d3.select("#chart").style("width"), 10) - margin.left - margin.right;
+var height = window.innerHeight - margin.top - margin.bottom - 20;
+
+var raw, map, b, box;
+var projection = d3.geoMercator();
+projection.scale(1).translate([0, 0]);  //anfangswerte für die projektion
+
+var canvas = d3.select("#chart")
+	.append("canvas")
+	.attr("width", width + margin.left + margin.right)
+	.attr("height",height + margin.top + margin.bottom)
+	.attr("id","canvas");
+	
+var ctx = canvas.node().getContext("2d");
+
+var gpath = d3.geoPath().projection(projection).context(ctx);
+
+var rsz;
+window.onresize = function()
+	{
+	clearTimeout(rsz);
+	rsz = setTimeout(resize, 500);
+	};
+
+var q = d3.queue();
+q.defer(d3.json, '{% static "aut_2017.json" %}');
+
+q.awaitAll(function(error)
+	{
+    if (!error) 
+		{
+		raw = arguments[1][0];
+		map = topojson.feature(arguments[1][0], arguments[1][0].objects.gemeinden);
+		box = d3.geoBounds(map);  //dimensionen berechnen
+		b = gpath.bounds(map);
+		var s = .95 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height);  //karte auf 95% skalieren
+		projection.scale(s).center([(box[0][0] + box[1][0])/2, (box[0][1] + box[1][1])/2]).translate([width / 2, height / 2]);  //skalieren und positionieren
+		
+		draw();
+		}
+	});
+
+
+function draw()
+{
+map.features.forEach(function(d, i)
+	{
+	if (i % 2 == 0) ctx.fillStyle = "#9ecae1"; else ctx.fillStyle = "#ffffff";
+	ctx.strokeStyle = "#969696";
+	ctx.beginPath();
+	gpath(d);
+	ctx.fill();
+	ctx.stroke();
+	ctx.closePath();
+	});
+}
+
+
+function resize()
+{
+ctx.clearRect(0, 0, width + margin.left + margin.right, height + margin.top + margin.bottom);
+width = parseInt(d3.select("#chart").style("width"), 10) - margin.left - margin.right;
+height = window.innerHeight - margin.top - margin.bottom - 20;
+var s = .95 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height);
+projection.scale(s).center([(box[0][0] + box[1][0])/2, (box[0][1] + box[1][1])/2]).translate([width / 2, height / 2]);
+
+d3.select("#canvas")
+	.attr("width", width + margin.left + margin.right)
+	.attr("height",height + margin.top + margin.bottom);
+
+map.features.forEach(function(d, i)
+	{
+	if (i % 2 == 0) ctx.fillStyle = "#9ecae1"; else ctx.fillStyle = "#ffffff";
+	ctx.strokeStyle = "#969696";
+	ctx.beginPath();
+	gpath(d);
+	ctx.fill();
+	ctx.stroke();
+	ctx.closePath();
+	});
+}
+</script>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+

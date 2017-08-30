@@ -9,10 +9,26 @@
 {% endblock %}
 
 {% block header %}
-<h1 class="text-center">#NRW17 Ergebnis</h1>
+<h1 class="text-center">#NRW17 Visualisierung</h1>
 {% endblock %}
 
 {% block content %}
+<ul>
+	<li><code>viz/</code>
+		<ul>
+			<li><code>results-bar/</code>: <a href="viz/results-bar/" title="Visualisierung Ergebnis Balken">link</a></li>
+			<li><code>results-map/</code>: <a href="viz/results-map/" title="Visualisierung Ergebnis Karte">link</a></li>
+			<li><code>results-mapnrw13/</code>: <a href="viz/results-mapnrw13/" title="Visualisierung Ergebnis Karte NRW13">link</a></li>
+			<li><code>results-mapcanvas/</code>: <a href="viz/results-mapcanvas/" title="Visualisierung Ergebnis Karte Canvas">link</a></li>
+			<li><code>results-timeseries/</code>: <a href="viz/results-timeseries/" title="Visualisierung Ergebnis Zeitreihe">link</a></li>
+		</ul>
+	</li>
+	<li><code>data/</code>
+		<ul>
+			<li><code>nrw13.csv</code>: <a href="data/nrw13.csv" title="NRW13 CSV">link</a></li>
+		</ul>
+	</li>
+</ul>
 {% endblock %}
 
 {% block footer %}

@@ -107,28 +107,6 @@ Wenn soweit alles gepasst hat, solltest du nun die App im Browser unter [http://
 
 ## DEVELOPMENT
 
-### Daten importieren
-
-XML-Testergebnisse von lokalem Pfad importieren
-```bash
-python src/manage.py importxml --local_path data/test/example_1.xml
-```
-
-### Tests durchführen
-
-```bash
-python src/manage.py test
-```
-
-### Datenbank migrieren
-
-Wenn Änderungen am Datenmodell, also an den Klassen in models.py, vorgenommen werden, müssen diese in die Datenbank migriert werden.
-```bash
-python src/manage.py makemigrations viz
-python src/manage.py makemigrations
-python src/manage.py migrate
-```
-
 ### Unser Development-Workflow
 
 Um beim Entwickeln der App mitzumachen, empfiehlt es sich zuerst mal den Stand bei den [Milestones](https://github.com/OKFNat/offenewahlen-nrw17/milestones?direction=asc&sort=due_date&state=open), [Projects](https://github.com/OKFNat/offenewahlen-nrw17/projects) und das [Board](https://github.com/OKFNat/offenewahlen-nrw17/milestones#boards?repos=96933110) mit den Issues anzusehen. Mit den Milestones koordinieren wir die großen Projekt-Phasen, und ist ein guter erster Startpunkt zum Verstehen des Entwicklungs-Standes. Mit den Projekten werden die Aufgabenbereiche unterteilt und das Board ermöglicht ein einfaches verwalten der Issues und ist somit die zentrale Übersicht für die Tasks.
@@ -191,6 +169,30 @@ Eine Person vom Team (vermutlich Stefan oder Christopher), werden dann den Pull 
   * `test/`: alle Daten, die für die Tests notwendig sind.
 * `venv/`: ist der Ordner für das Virtual Environment. Wird zu Beginn erstellt, siehe [Install](#install).
 
+### Befehle
+
+**Datenbank migrieren**
+
+Wenn Änderungen am Datenmodell, also an den Klassen in models.py, vorgenommen werden, müssen diese in die Datenbank migriert werden.
+```bash
+python src/manage.py makemigrations viz
+python src/manage.py makemigrations
+python src/manage.py migrate
+```
+
+**Daten importieren**
+
+XML-Testergebnisse von lokalem Pfad importieren
+```bash
+python src/manage.py importxml --local_path data/test/example_1.xml
+```
+
+**Tests durchführen**
+
+```bash
+python src/manage.py test
+```
+
 ### Mehrsprachigkeit
 
 Die Sprachfiles erstellen.
@@ -208,18 +210,21 @@ Dies ist ein Open Source Projekt, daher lebt das Projekt von vielen helfenden H�
 
 Wenn du das Projekt gerne ehrenamtlich unterstützen möchtest, melde dich einfach [direkt bei uns](http://offenewahlen.at/kontakt). Jeder noch so kleiner Beitrag ist wichtig und hilfreich. 
 
+Aktuell sind wir vor allem **auf der Suche nach einer Person, die uns bei Kommunikation/PR unterstützt**. 
+
 Anbei eine paar Ideen, wie man sich bei dem Team einbringen kann:
-- **Fehler melden**: Wenn du einen Fehler gefunden hast, erstelle bitte ein [Issue](https://github.com/OKFNat/offenewahlen-nrw17/issues/new) dazu. Immer am besten mit Screenshot und möglichst exakter Fehlerbeschreibung.
-- **Fehler beheben**: Sieh dir die [Issues](https://github.com/OKFNat/offenewahlen-nrw17/issues) an und schließe eines. Nähere Infos unter **[Development](#development)**.
-- **Web-Design / Grafik**: mach bei der Daten-Visualisierung am Frontend mit. Auch GrafikerInnen für Logos etc. sind gesucht.
-- **Web-Entwicklung, UX/UI**: alles was mit klassicher Website-Entwicklung zu tun hat - vor allem Frontend UX/UI. Von HTML5 über CSS3 bis hin zu JavaScript (jQuery, Bootstrap, D3).
-- **Django EntwicklerIn**: die App ist mit dem Web-Framework Django umgesetzt. Daher ist hier Know-How sehr gesucht.
-- **Wahlen**: Fachwissen rund um Wahlen ist natürlich essentiell. Wenn dich Wahlen interessieren, gibt es eine Vielzahl von Möglichkeiten dich einzubringen und zu lernen. Egal ob bei der Visualisierung, bei der Kommunikation oder der Dokumentation.
-- **Übersetzen**: die App ist mehrsprachig. Aktuell ist geplant, in die österr. Minderheitensprachen zu übersetzen, aber es sind keine Grenzen gesetzt.
-- **Dokumentation**: Die Dokumentation zur App wird für verschiedene User-Gruppen passend aufbereitet bzw. kann sie auch in Englisch übersetzt werden.
-- **[Newsletter](http://offenewahlen.at/newsletter)**: abonniere den Newsletter und bleib am Laufenden.
-- **Funding**: Wir suchen passende Funding-Möglichkeiten, um das Projekt kontinuierlich weiter wachsen zu lassen und zu verbessern. Wenn du eine Idee hast, wie man zu Förderungen kommt oder mit uns gemeinsam einreichen möchtest, meld dich bitte.
-- **[Spenden](http://offenewahlen.at/spenden)**: Du kannst uns auch finanziell unterstützen, indem du eine kleine Spende da lässt. Das Geld wird Projekt-bezogen verwendet und dient zum Verbessern der verschiedenen Aktivitäten von Offene Wahlen Österreich - von der #NRW17-App über den Datenstandard bis hin zum Abhalten von Coding-Workshops.
+* **Kommunikation:** hilf mit beim Bloggen, bei Social Media oder beim erarbeiten einer Kampagne.
+* **Fehler melden**: Wenn du einen Fehler gefunden hast, erstelle bitte ein [Issue](https://github.com/OKFNat/offenewahlen-nrw17/issues/new) dazu. Immer am besten mit Screenshot und möglichst exakter Fehlerbeschreibung.
+* **Fehler beheben**: Sieh dir die [Issues](https://github.com/OKFNat/offenewahlen-nrw17/issues) an und schließe eines. Nähere Infos unter **[Development](#development)**.
+* **Web-Design / Grafik**: mach bei der Daten-Visualisierung am Frontend mit. Auch GrafikerInnen für Logos etc. sind gesucht.
+* **Web-Entwicklung, UX/UI**: alles was mit klassicher Website-Entwicklung zu tun hat - vor allem Frontend UX/UI. Von HTML5 über CSS3 bis hin zu JavaScript (jQuery, Bootstrap, D3).
+* **Django EntwicklerIn**: die App ist mit dem Web-Framework Django umgesetzt. Daher ist hier Know-How sehr gesucht.
+* **Wahl-Know-How**: Fachwissen rund um Wahlen ist natürlich essentiell. Wenn dich Wahlen interessieren, gibt es eine Vielzahl von Möglichkeiten dich einzubringen und zu lernen. Egal ob bei der Visualisierung, bei der Kommunikation oder der Dokumentation.
+* **Übersetzen**: die App ist mehrsprachig. Aktuell ist geplant, in die österr. Minderheitensprachen zu übersetzen, aber es sind keine Grenzen gesetzt.
+* **Dokumentation**: Die Dokumentation zur App wird für verschiedene User-Gruppen passend aufbereitet bzw. kann sie auch in Englisch übersetzt werden.
+* **[Newsletter](http://offenewahlen.at/newsletter)**: abonniere den Newsletter und bleib am Laufenden.
+* **Funding**: Wir suchen passende Funding-Möglichkeiten, um das Projekt kontinuierlich weiter wachsen zu lassen und zu verbessern. Wenn du eine Idee hast, wie man zu Förderungen kommt oder mit uns gemeinsam einreichen möchtest, meld dich bitte.
+* **[Spenden](http://offenewahlen.at/spenden)**: Du kannst uns auch finanziell unterstützen, indem du eine kleine Spende da lässt. Das Geld wird Projekt-bezogen verwendet und dient zum Verbessern der verschiedenen Aktivitäten von Offene Wahlen Österreich - von der #NRW17-App über den Datenstandard bis hin zum Abhalten von Coding-Workshops.
 
 **Ersten Schritte**
 

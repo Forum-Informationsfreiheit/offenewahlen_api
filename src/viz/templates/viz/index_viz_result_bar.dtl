@@ -13,7 +13,9 @@
 {% endblock %}
 
 {% block content %}
-<div id="chart">
+<div class="container">
+	<div id="chart">
+	</div>
 </div>
 
 <script>

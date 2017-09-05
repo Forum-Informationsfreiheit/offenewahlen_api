@@ -13,8 +13,11 @@
 {% endblock %}
 
 {% block content %}
-<div id="chart">
+<div class="container">
+	<div id="chart">
+	</div>
 </div>
+
 <script>
 var aut = d3.formatLocale({"decimal":",", "thousands":".","grouping":[3],"currency":["€", ""]});
 var margin = { top: 20, right: 20, bottom: 30, left: 20 };

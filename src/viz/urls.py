@@ -1,7 +1,8 @@
 from django.conf.urls import url
-from . import views
+from . import views, views_api
 
 app_name = 'viz'
+
 urlpatterns = [
 	url(r'^$', views.viz, name='viz'),
 	url(r'^viz/$', views.viz_overview, name='viz_overview'),
@@ -15,6 +16,7 @@ urlpatterns = [
 	url(r'^test/', views.test, name='test'),
 	url(r'^data/nrw13.csv$', views.serve_nrw13_csv, name='serve_nrw13_csv'),
 	url(r'^api/$', views.api, name='api'),
+	url(r'^api/election', views_api.ElectionInterface.as_view(), name='api_election'),
 	url(r'^api/result/$', views.api_result, name='api_result'),
 	url(r'^api/result/nrw13/$', views.api_result_nrw13, name='api_result_nrw13'),
 	url(r'^api/result/nrw17/$', views.api_result_nrw17, name='api_result_nrw17'),

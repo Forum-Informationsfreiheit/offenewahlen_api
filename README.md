@@ -41,6 +41,7 @@ Um die App lokal auf deinem Rechner laufen zu lassen, benötigst du:
 * pip ([hier](https://pip.pypa.io/en/stable/), falls nötig)
 * virtualenv ([hier](https://virtualenv.pypa.io/en/stable/) oder [hier](http://docs.python-guide.org/en/latest/dev/virtualenvs/))
 * PostgreSQL ([hier](https://www.postgresql.org/))
+* libmemcached-dev (Debian/Ubuntu, Fedora: libmemcached-devel)
 
 **2. GitHub Repository runterladen**
 

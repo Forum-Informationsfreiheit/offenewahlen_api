@@ -1,7 +1,14 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
+
+from rest_framework.routers import DefaultRouter
+
 from . import views, views_api
 
 app_name = 'viz'
+
+router = DefaultRouter()
+router.register(r'election', views_api.ElectionInterface,
+	base_name='election')
 
 urlpatterns = [
 	url(r'^$', views.viz, name='viz'),
@@ -15,8 +22,6 @@ urlpatterns = [
 	url(r'^waiting/', views.waiting, name='waiting'),
 	url(r'^test/', views.test, name='test'),
 	url(r'^data/nrw13.csv$', views.serve_nrw13_csv, name='serve_nrw13_csv'),
-	url(r'^api/$', views.api, name='api'),
-	url(r'^api/election', views_api.ElectionInterface.as_view(), name='api_election'),
 	url(r'^api/result/$', views.api_result, name='api_result'),
 	url(r'^api/result/nrw13/$', views.api_result_nrw13, name='api_result_nrw13'),
 	url(r'^api/result/nrw17/$', views.api_result_nrw17, name='api_result_nrw17'),
@@ -32,4 +37,5 @@ urlpatterns = [
 	url(r'^api/base/regionalelectoraldistrict/$', views.api_base_red, name='api_base_red'),
 	url(r'^api/raw/$', views.api_rawdata, name='api_rawdata'),
 	url(r'^api/geom/$', views.api_geom, name='api_geom'),
+	url(r'^api/', include(router.urls)),
 ]

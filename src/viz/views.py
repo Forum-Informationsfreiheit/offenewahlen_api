@@ -68,10 +68,6 @@ def computing(request):
 def test(request):
 	return render(request, 'viz/index_test.dtl')
 
-def api(request):
-
-	return render(request, 'viz/index_api.dtl')
-
 @cache_page(60 * 60) # 60mins
 def api_result(request):
 

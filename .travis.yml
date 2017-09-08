@@ -1,0 +1,16 @@
+language: python
+
+python:
+  - 3.6
+
+services: postgresql
+
+install:
+  - pip install -r requirements.txt
+
+before_script:
+  - psql -c "CREATE DATABASE travisdb;" -U postgres
+  - python src/manage.py migrate --noinput
+
+script:
+  - python src/manage.py test

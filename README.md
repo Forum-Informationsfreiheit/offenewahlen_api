@@ -10,7 +10,7 @@ Die Visualisierung wird am 15. Oktober kurz nach 17:00 Uhr unter **[nrw17.offene
 *#NRW17 Visualisierung* ist ein Teil von dem Projekt [Offene Wahlen Österreich](https://offenwahlen.at), koordiniert vom Verein [Open Knowledge Österreich](https://okfn.at).
 
 
-Wir möchten uns herzlich beim Bundesministerium für Inneres für den unkomplizierten Zugang zu den Ergebnissen am Wahltag bedanken! 
+Wir möchten uns herzlich beim Bundesministerium für Inneres für den unkomplizierten Zugang zu den Ergebnissen am Wahltag bedanken!
 
 **Technisches**
 
@@ -263,4 +263,9 @@ Von uns genutzte Software ist alles Open Source.
 
 
 Alle Materialien wie Texte, Bilder und Folien die im Rahmen dieses Projektes erstellt werden, stehen unter [Creative Commons CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), soweit nicht explizit anders erwähnt.
+
+
+## CI
+
+[![Build Status](https://travis-ci.org/OKFNat/offenewahlen-nrw17.svg?branch=master)](https://travis-ci.org/OKFNat/offenewahlen-nrw17)
 

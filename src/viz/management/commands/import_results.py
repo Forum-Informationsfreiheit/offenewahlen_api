@@ -1,6 +1,7 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.utils import timezone
-from viz.models import PollingStationResult, RawData, ListResult, PollingStation, RawData, Election, Party, List
+from viz.models import PollingStationResult, RawData, ListResult, \
+	PollingStation, RawData, Election, Party, List
 import json
 import xml.etree.ElementTree as ET
 import pprint
@@ -105,11 +106,10 @@ class Command(BaseCommand):
 
 		return file_type
 
-	def write_raw_data_to_database(self, data, header,config, ts_file=None):
+	def write_raw_data_to_database(self, data, header, config, ts_file=None):
 		"""
 		Write raw data into table.
 		"""
-		
 		raw = RawData(
 			ts_import = config['ts_import'],
 			ts_file = ts_file,

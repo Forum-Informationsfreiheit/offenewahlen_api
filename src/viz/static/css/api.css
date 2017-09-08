@@ -1,0 +1,17 @@
+.api-logo {
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	top: 50%;
+	right: -30px;
+	transform: translateY(-50%);
+}
+
+.navbar-inverse .navbar-brand {
+	color: white;
+	position: relative;
+}
+
+.navbar {
+	border-top-color: #ef3138;
+}

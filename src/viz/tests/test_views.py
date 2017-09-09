@@ -1,5 +1,4 @@
-from unittest import TestCase
-from django.test import Client
+from django.test import Client, TestCase
 from django.conf import settings
 
 

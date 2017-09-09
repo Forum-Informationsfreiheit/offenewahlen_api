@@ -196,7 +196,18 @@ python src/manage.py test
 
 ### Mehrsprachigkeit
 
-Die Sprachfiles erstellen.
+Neue Übersetzung anfangen mit (Mit fr als Beispiel):
+
+```bash
+python src/manage.py makemessages --locale fr --extension dtl,py,html
+```
+
+Alle vorhandenen Übersetzungen in den po-Dateien sammeln:
+```bash
+python src/manage.py makemessages --extension dtl,py
+```
+
+Die Sprachfiles erstellen (zu *.mo kompilieren).
 ```bash
 python src/manage.py compilemessages
 ```

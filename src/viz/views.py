@@ -222,5 +222,3 @@ def api_rawdata(request):
 	rd_data = [entry for entry in result]
 
 	return JsonResponse(rd_data, safe=False)
-
-

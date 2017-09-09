@@ -4,8 +4,6 @@ from rest_framework.routers import DefaultRouter
 
 from . import views, views_api
 
-app_name = 'viz'
-
 router = DefaultRouter()
 router.register(r'election', views_api.ElectionInterface,
 	base_name='election')

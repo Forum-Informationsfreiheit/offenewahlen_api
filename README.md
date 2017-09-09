@@ -199,7 +199,7 @@ python src/manage.py test
 Neue Übersetzung anfangen mit (Mit fr als Beispiel):
 
 ```bash
-python src/manage.py makemessages --locale fr --extension dtl,py
+python src/manage.py makemessages --locale fr --extension dtl,py,html
 ```
 
 Alle vorhandenen Übersetzungen in den po-Dateien sammeln:

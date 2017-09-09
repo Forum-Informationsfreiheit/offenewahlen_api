@@ -41,7 +41,7 @@ class Command(BaseCommand):
 		self.import_reds(reds, config)
 
 		# import parties
-		parties = self.open_jsonfile(self.open_file(setup_path + 'parties.json')
+		parties = self.open_jsonfile(setup_path + 'parties.json')
 		self.import_parties(parties, config)
 		
 		# import lists

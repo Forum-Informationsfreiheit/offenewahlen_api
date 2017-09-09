@@ -16,18 +16,19 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #: src/offenewahlen_nrw17/settings.py:171
 msgid "German"
-msgstr "German"
+msgstr ""
 
 #: src/offenewahlen_nrw17/settings.py:172
 msgid "English"
-msgstr "English"
+msgstr ""
 
 #: src/offenewahlen_nrw17/settings.py:173
 msgid "Hungarian"
-msgstr "Hungarian"
+msgstr ""
 
 #: src/offenewahlen_nrw17/settings.py:174
 msgid "Croatian"
@@ -56,48 +57,47 @@ msgstr ""
 #: src/viz/templates/viz/index_viz_result_timeseries.dtl:5
 #: src/viz/templates/viz/index_waiting.dtl:5
 msgid "Website Title"
-msgstr "#NRW17 Visualization | Offene Wahlen Österreich"
+msgstr ""
 
 #: src/viz/templates/viz/index_computing.dtl:10
 #: src/viz/templates/viz/index_waiting.dtl:10
 msgid "and"
-msgstr "and"
+msgstr ""
 
 #: src/viz/templates/viz/index_computing.dtl:10
 #: src/viz/templates/viz/index_waiting.dtl:10
 msgid "at"
-msgstr "at"
+msgstr ""
 
 #: src/viz/templates/viz/index_computing.dtl:11
 #: src/viz/templates/viz/index_waiting.dtl:11
 msgid "Waiting Title"
-msgstr "#NRW17 Visualization"
+msgstr ""
 
 #: src/viz/templates/viz/index_computing.dtl:12
 #: src/viz/templates/viz/index_waiting.dtl:12
 msgid "Waiting Subtitle"
-msgstr "15th of October 2017 - 17:00 o'clock"
+msgstr ""
 
 #: src/viz/templates/viz/index_computing.dtl:17
 #: src/viz/templates/viz/index_waiting.dtl:54
 msgid "Newsletter Headline"
-msgstr "Subscribe for the Newsletter"
+msgstr ""
 
 #: src/viz/templates/viz/index_computing.dtl:19
 #: src/viz/templates/viz/index_waiting.dtl:56
 msgid "Newsletter Detail"
 msgstr ""
-"Get updates about Events and Project-Activities from Offene Wahlen Österreich"
 
 #: src/viz/templates/viz/index_computing.dtl:26
 #: src/viz/templates/viz/index_waiting.dtl:63
 msgid "Newsletter Email"
-msgstr "Email-Address"
+msgstr ""
 
 #: src/viz/templates/viz/index_computing.dtl:31
 #: src/viz/templates/viz/index_waiting.dtl:68
 msgid "Newsletter Subscribe Button"
-msgstr "Subscribe"
+msgstr ""
 
 #: src/viz/templates/viz/index_waiting.dtl:20
 msgid "Days"

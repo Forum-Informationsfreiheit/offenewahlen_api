@@ -79,17 +79,6 @@
 {% endblock %}
 
 {% block footer %}
-
-<div class="language text-center col-xs-12 col-sm-offset-4 col-sm-4">
-	<a href="/en" title="{% trans 'English' %}">en</a> | <a href="/de" title="{% trans 'German' %}">de</a> | <a href="/hu" title="{% trans 'Hungarian' %}">hu</a>
-</div>
-
-<!--
-<select class="form-control language">
-	<option>DE</option>
-	<option>EN</option>
-	<option>HU</option>
-</select>
--->
+	{% include 'viz/includes/language_chooser.dtl' %}
 {% endblock %}
 

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from viz.models import Election
+from viz import models
 
 
 class WikidataHyperlinkedIdentityField(serializers.HyperlinkedIdentityField):
@@ -20,5 +20,59 @@ class ElectionSerializer(serializers.ModelSerializer):
 	wikidata_url = WikidataHyperlinkedIdentityField('wikidata_id')
 
 	class Meta:
-		model = Election
-		fields = ('short_name','wikidata_id', 'wikidata_url')
+		model = models.Election
+		fields = ('short_name', 'wikidata_id', 'wikidata_url')
+
+
+class StateSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = models.State
+		fields = ('name',)
+
+
+class DistrictSerializer(serializers.ModelSerializer):
+	state = StateSerializer()
+
+	class Meta:
+		model = models.District
+		fields = ('short_code', 'name', 'state')
+
+
+class MunicipalitySerializer(serializers.ModelSerializer):
+	district = DistrictSerializer()
+
+	class Meta:
+		model = models.Municipality
+		fields = ('name', 'code', 'kennzahl',
+			'regional_electoral_district', 'district')
+
+
+class PartySerializer(serializers.ModelSerializer):
+	wikidata_url = WikidataHyperlinkedIdentityField('wikidata_id')
+
+	class Meta:
+		model = models.Party
+		fields = ('short_name', 'short_name_text', 'full_name',
+			'family', 'wikidata_id', 'wikidata_url', 'website')
+
+
+class PollingStationSerializer(serializers.ModelSerializer):
+	municipality = MunicipalitySerializer()
+
+	class Meta:
+		model = models.PollingStation
+		fields = ('name', 'type', 'municipality')
+
+
+class ListSerializer(serializers.ModelSerializer):
+	party = PartySerializer()
+
+	class Meta:
+		model = models.List
+		fields = ('short_name', 'short_name_text', 'full_name', 'party')
+
+
+class RegionalElectoralDistrictSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = models.RegionalElectoralDistrict
+		fields = ('short_code', 'name')

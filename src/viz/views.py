@@ -68,15 +68,6 @@ def computing(request):
 def test(request):
 	return render(request, 'viz/index_test.dtl')
 
-def api(request):
-
-	return render(request, 'viz/index_api.dtl')
-
-@cache_page(60 * 60) # 60mins
-def api_result(request):
-
-	return render(request, 'viz/index_viz.dtl')
-
 @cache_page(60 * 60) # 60mins
 def api_result_nrw13(request):
 
@@ -133,86 +124,6 @@ def api_result_nrw17(request):
 
 	return JsonResponse(data, safe=False)
 
-def api_base_election(request):
-	result = Election.objects.values()
-	data = {}
-	for elec in result:
-		data[elec['short_name']] = {}
-		for key, value in elec.items():
-			data[elec['short_name']][key] = value
-
-	return JsonResponse(data, safe=False)
-
-def api_base_list(request):
-	result = List.objects.values()
-	data = {}
-	for lst in result:
-		data[lst['short_name']] = {}
-		for key, value in lst.items():
-			data[lst['short_name']][key] = value
-
-	return JsonResponse(data, safe=False)
-
-def api_base_municipality(request):
-	result = Municipality.objects.values()
-	data = {}
-	for mun in result:
-		data[mun['code']] = {}
-		for key, value in mun.items():
-			data[mun['code']][key] = value
-
-	return JsonResponse(data, safe=False)
-
-def api_base_pollingstation(request):
-	result = PollingStation.objects.values()
-	data = {}
-	#for ps in result:
-	#	data[ps['municipality']['code']] = {}
-	#	for key, value in ps.items():
-	#		data[ps['municipality']['code']][key] = value
-	data = [entry for entry in result]
-	return JsonResponse(data, safe=False)
-
-def api_base_red(request):
-	result = RegionalElectoralDistrict.objects.values()
-	data = {}
-	for red in result:
-		data[red['short_code']] = {}
-		for key, value in red.items():
-			data[red['short_code']][key] = value
-
-	return JsonResponse(data, safe=False)
-
-def api_base_district(request):
-	result = District.objects.values()
-	data = {}
-	for district in result:
-		data[district['short_code']] = {}
-		for key, value in district.items():
-			data[district['short_code']][key] = value
-
-	return JsonResponse(data, safe=False)
-
-def api_base_state(request):
-	result = State.objects.values()
-	data = {}
-	for state in result:
-		data[state['short_code']] = {}
-		for key, value in state.items():
-			data[state['short_code']][key] = value
-
-	return JsonResponse(data, safe=False)
-
-def api_base_party(request):
-	result = Party.objects.values()
-	data = {}
-	for party in result:
-		data[party['short_name']] = {}
-		for key, value in party.items():
-			data[party['short_name']][key] = value
-
-	return JsonResponse(data, safe=False)
-
 def api_geom(request):
 
 	with open('data/setup/municipalities_topojson_999_20170101.json') as data_file:
@@ -220,11 +131,3 @@ def api_geom(request):
 	geom_data = json.loads(data)
 
 	return JsonResponse(geom_data, safe=False)
-
-def api_rawdata(request):
-	result = RawData.objects.values()
-	rd_data = [entry for entry in result]
-
-	return JsonResponse(rd_data, safe=False)
-
-

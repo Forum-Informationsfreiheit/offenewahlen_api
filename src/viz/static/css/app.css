@@ -834,10 +834,18 @@ object {
   width: 100%;
 }
 
-.footer .language a {
-  font-size: 14.6px;
+.footer .language {
+  font-size: 16px;
   color: #888;
-  margin-bottom: 30px;
+}
+
+.footer .language a {
+  padding-bottom: 30px;
+  color: #888;
+}
+
+.footer .language a.current-locale {
+  color: #ef3138;
 }
 
 /**
@@ -1000,7 +1008,6 @@ line, path
 
 #chart
 {
-  width: 95vw;
   margin: 0 auto 0 auto;
 }
 

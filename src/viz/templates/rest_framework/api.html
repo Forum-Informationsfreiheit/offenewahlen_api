@@ -1,0 +1,13 @@
+{% extends "rest_framework/base.html" %}
+
+{% load i18n %}
+{% load static %}
+
+{% block branding %}
+	<link rel="stylesheet" href="{% static 'css/api.css' %}?v=1"/>
+
+	<a class="navbar-brand" href="">
+		{% trans 'Offene Wahlen' %}
+		<img class="api-logo" src="{% static 'img/ballot-box.svg' %}"/>
+	</a>
+{% endblock %}

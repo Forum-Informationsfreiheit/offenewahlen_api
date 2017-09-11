@@ -8,7 +8,24 @@ class Command(BaseCommand):
 
 	help = 'Import basic data into database'
 
+	def add_arguments(self, parser):
+		"""
+		Add extra arguments to command.
+		"""
+		parser.add_argument(
+			'path',
+			nargs='?',
+			help='Specify a different location from where to take the setup data'
+		)
+
 	def handle(self, *args, **options):
+		"""
+		Main entry point of the command.
+		"""
+		setup_path = 'data/setup/'
+
+		if options['path']:
+			setup_path = options['path']
 
 		config = {
 			'party_location': 'austria',
@@ -16,28 +33,29 @@ class Command(BaseCommand):
 		}
 
 		# import elections
-		elections = json.loads(self.open_file('data/setup/elections.json'))
+		elections = self.open_jsonfile(setup_path + 'elections.json')
 		self.import_elections(elections, config)
 
 		# import regional electoral districts
-		reds = json.loads(self.open_file('data/setup/regional-electoral-districts_20170101.json'))
+		reds = self.open_jsonfile(setup_path + 'regional-electoral-districts_20170101.json')
 		self.import_reds(reds, config)
 
 		# import parties
-		parties = json.loads(self.open_file('data/setup/parties.json'))
+		parties = self.open_jsonfile(setup_path + 'parties.json')
 		self.import_parties(parties, config)
 		
 		# import lists
-		lists = json.loads(self.open_file('data/setup/lists.json'))
+		lists = self.open_jsonfile(setup_path + 'lists.json')
 		self.import_lists(lists, config)
 
 		# import states and districts
-		states_districts = json.loads(self.open_file('data/setup/states-to-districts_20170101.json'))
+		states_districts = self.open_jsonfile(setup_path + 'states-to-districts_20170101.json')
 		self.import_states_districts(states_districts, config)
 
 		# import municipalities
-		municipalities = json.loads(self.open_file('data/setup/municipalities_20170101_2.json'))
-		muns2reds = json.loads(self.open_file('data/setup/municipality2red_20170101.json'))
+		municipalities = self.open_jsonfile(setup_path + 'municipalities_20170101_2.json')
+		muns2reds = self.open_jsonfile(setup_path + 'municipality2red_20170101.json')
+
 		self.import_municipalities(municipalities, muns2reds, config)
 
 	def open_file(self, filename,):
@@ -46,7 +64,7 @@ class Command(BaseCommand):
 		"""
 
 		try:
-			with open(filename) as data_file:
+			with open(filename, encoding='utf-8') as data_file:
 				return data_file.read()
 		except IOError:
 			print('Error: can\'t find file or read data')
@@ -54,7 +72,7 @@ class Command(BaseCommand):
 	def open_jsonfile(self, filename):
 
 		try:
-			data = json.loads(self.open_file(filename))
+			data = json.loads(open(filename, encoding='utf-8-sig').read())
 			return data
 		except JSONDecodeError:
 			print('Error: File is not valid JSON.')
@@ -284,4 +302,3 @@ class Command(BaseCommand):
 
 		print('Municipality table imported: '+ 'new entries: '+str(m_num_entries_created)+', updated entries: '+str(m_num_entries_updated))
 		print('Pollingstation table imported: '+ 'new entries: '+str(ps_num_entries_created)+', updated entries: '+str(ps_num_entries_updated))
-

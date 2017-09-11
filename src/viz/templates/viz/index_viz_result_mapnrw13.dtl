@@ -14,8 +14,11 @@
 {% endblock %}
 
 {% block content %}
-<div id="chart">
+<div class="container">
+	<div id="chart">
+	</div>
 </div>
+
 <script>
 var margin = { top: 20, right: 20, bottom: 30, left: 20 };
 var width = parseInt(d3.select("#chart").style("width"), 10) - margin.left - margin.right;

@@ -10,7 +10,7 @@ Die Visualisierung wird am 15. Oktober kurz nach 17:00 Uhr unter **[nrw17.offene
 *#NRW17 Visualisierung* ist ein Teil von dem Projekt [Offene Wahlen Österreich](https://offenwahlen.at), koordiniert vom Verein [Open Knowledge Österreich](https://okfn.at).
 
 
-Wir möchten uns herzlich beim Bundesministerium für Inneres für den unkomplizierten Zugang zu den Ergebnissen am Wahltag bedanken! 
+Wir möchten uns herzlich beim Bundesministerium für Inneres für den unkomplizierten Zugang zu den Ergebnissen am Wahltag bedanken!
 
 **Technisches**
 
@@ -41,6 +41,7 @@ Um die App lokal auf deinem Rechner laufen zu lassen, benötigst du:
 * pip ([hier](https://pip.pypa.io/en/stable/), falls nötig)
 * virtualenv ([hier](https://virtualenv.pypa.io/en/stable/) oder [hier](http://docs.python-guide.org/en/latest/dev/virtualenvs/))
 * PostgreSQL ([hier](https://www.postgresql.org/))
+* libmemcached-dev (Debian/Ubuntu, Fedora: libmemcached-devel)
 
 **2. GitHub Repository runterladen**
 
@@ -195,7 +196,18 @@ python src/manage.py test
 
 ### Mehrsprachigkeit
 
-Die Sprachfiles erstellen.
+Neue Übersetzung anfangen mit (Mit fr als Beispiel):
+
+```bash
+python src/manage.py makemessages --locale fr --extension dtl,py,html
+```
+
+Alle vorhandenen Übersetzungen in den po-Dateien sammeln:
+```bash
+python src/manage.py makemessages --extension dtl,py
+```
+
+Die Sprachfiles erstellen (zu *.mo kompilieren).
 ```bash
 python src/manage.py compilemessages
 ```
@@ -224,7 +236,7 @@ Anbei eine paar Ideen, wie man sich bei dem Team einbringen kann:
 * **Dokumentation**: Die Dokumentation zur App wird für verschiedene User-Gruppen passend aufbereitet bzw. kann sie auch in Englisch übersetzt werden.
 * **[Newsletter](http://offenewahlen.at/newsletter)**: abonniere den Newsletter und bleib am Laufenden.
 * **Funding**: Wir suchen passende Funding-Möglichkeiten, um das Projekt kontinuierlich weiter wachsen zu lassen und zu verbessern. Wenn du eine Idee hast, wie man zu Förderungen kommt oder mit uns gemeinsam einreichen möchtest, meld dich bitte.
-* **[Spenden](http://offenewahlen.at/spenden)**: Du kannst uns auch finanziell unterstützen, indem du eine kleine Spende da lässt. Das Geld wird Projekt-bezogen verwendet und dient zum Verbessern der verschiedenen Aktivitäten von Offene Wahlen Österreich - von der #NRW17-App über den Datenstandard bis hin zum Abhalten von Coding-Workshops.
+* **[Spenden](https://offenewahlen.at/spenden)**: Du kannst uns auch finanziell unterstützen, indem du eine kleine Spende da lässt. Das Geld wird Projekt-bezogen verwendet und dient zum Verbessern der verschiedenen Aktivitäten von Offene Wahlen Österreich - von der #NRW17-Visualisierung über den Datenstandard bis hin zum Abhalten von Coding-Workshops.
 
 **Ersten Schritte**
 
@@ -262,4 +274,9 @@ Von uns genutzte Software ist alles Open Source.
 
 
 Alle Materialien wie Texte, Bilder und Folien die im Rahmen dieses Projektes erstellt werden, stehen unter [Creative Commons CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), soweit nicht explizit anders erwähnt.
+
+
+## CI
+
+[![Build Status](https://travis-ci.org/OKFNat/offenewahlen-nrw17.svg?branch=master)](https://travis-ci.org/OKFNat/offenewahlen-nrw17)
 

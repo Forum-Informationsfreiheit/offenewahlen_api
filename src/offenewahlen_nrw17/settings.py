@@ -115,6 +115,18 @@ DATABASES = {}
 DATABASES['default'] = db_from_env
 DATABASES['default'].update(db_from_env)
 
+if 'TRAVIS' in os.environ:
+	DATABASES = {
+		'default': {
+			'ENGINE': 'django.db.backends.postgresql',
+			'NAME': 'travisdb',
+			'USER': 'postgres',
+			'PASSWORD': '',
+			'HOST': 'localhost',
+			'PORT': '',
+	}
+}
+
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
@@ -142,6 +154,11 @@ LANGUAGE_CODE = 'de'
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale/'),
 )
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 100
+}
 
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGES = (

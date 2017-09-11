@@ -64,6 +64,17 @@ class PollingStationSerializer(serializers.ModelSerializer):
 		fields = ('name', 'type', 'municipality')
 
 
+class PollingStationResultSerializer(serializers.ModelSerializer):
+	polling_station = PollingStationSerializer()
+	election = ElectionSerializer()
+
+	class Meta:
+		model = models.PollingStationResult
+		fields = ('election', 'polling_station', 'election', 
+			'eligible_voters', 'votes', 'valid', 'invalid', 
+			'ts_result', 'is_final')
+
+
 class ListSerializer(serializers.ModelSerializer):
 	party = PartySerializer()
 

@@ -10,6 +10,10 @@ class ElectionInterface(viewsets.ReadOnlyModelViewSet):
 	queryset = models.Election.objects.all()
 	serializer_class = serializers.ElectionSerializer
 
+class PollingStationResultInterface(viewsets.ReadOnlyModelViewSet):
+	queryset = models.PollingStationResult.objects.all()
+	serializer_class = serializers.PollingStationResultSerializer
+
 
 class DistrictInterface(viewsets.ReadOnlyModelViewSet):
 	queryset = models.District.objects.all()

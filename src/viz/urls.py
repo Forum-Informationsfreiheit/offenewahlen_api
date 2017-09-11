@@ -11,6 +11,7 @@ router.register(r'municipality', views_api.MunicipalityInterface)
 router.register(r'party', views_api.PartyInterface)
 router.register(r'polling_station', views_api.PollingStationInterface)
 router.register(r'list', views_api.ListInterface)
+router.register(r'state', views_api.StateInterface)
 router.register(r'regional_electoral_district',
 	views_api.RegionalElectoralDistrictInterface)
 

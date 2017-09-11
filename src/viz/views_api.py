@@ -15,6 +15,10 @@ class DistrictInterface(viewsets.ReadOnlyModelViewSet):
 	queryset = models.District.objects.all()
 	serializer_class = serializers.DistrictSerializer
 
+class StateInterface(viewsets.ReadOnlyModelViewSet):
+	queryset = models.State.objects.all()
+	serializer_class = serializers.StateSerializer
+
 
 class MunicipalityInterface(viewsets.ReadOnlyModelViewSet):
 	queryset = models.Municipality.objects.all()

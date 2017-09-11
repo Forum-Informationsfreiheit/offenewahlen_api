@@ -21,13 +21,15 @@ class ElectionSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = models.Election
-		fields = ('short_name', 'wikidata_id', 'wikidata_url')
+		fields = ('short_name', 'short_name_text', 'full_name', 
+			'election_type', 'wikidata_id', 'wikidata_url', 
+			'administrative_level', 'election_day', 'state')
 
 
 class StateSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = models.State
-		fields = ('name',)
+		fields = ('name','short_code')
 
 
 class DistrictSerializer(serializers.ModelSerializer):

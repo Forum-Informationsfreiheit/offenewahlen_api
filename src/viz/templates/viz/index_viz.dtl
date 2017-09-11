@@ -23,30 +23,7 @@
 			<li><code>results-timeseries/</code>: <a href="viz/results-timeseries/" title="Visualisierung Ergebnis Zeitreihe">link</a></li>
 		</ul>
 	</li>
-	<li><code>api/</code>
-		<ul>
-			<li><code>result/</code>
-				<ul>
-					<li><code>nrw13/</code>: <a href="api/result/nrw13/" title="API NRW13">link</a></li>
-					<li><code>nrw17/</code>: <a href="api/result/nrw17/" title="API NRW17">link</a></li>
-				</ul>
-			</li>
-			<li><code>base/</code>
-				<ul>
-					<li><code>election/</code>: <a href="api/base/election/" title="API Election">link</a></li>
-					<li><code>pollingstation/</code>: <a href="api/base/pollingstation/" title="API PollingStation">link</a></li>
-					<li><code>municipality/</code>: <a href="api/base/municipality/" title="API Municipality">link</a></li>
-					<li><code>list/</code>: <a href="api/base/list/" title="API List">link</a></li>
-					<li><code>party/</code>: <a href="api/base/party/" title="API Party">link</a></li>
-					<li><code>district/</code>: <a href="api/base/district/" title="API District">link</a></li>
-					<li><code>state/</code>: <a href="api/base/state/" title="API State">link</a></li>
-					<li><code>regionalelectoraldistrict/</code>: <a href="api/base/regionalelectoraldistrict/" title="API RegionalElectoralDistrict">link</a></li>
-				</ul>
-			</li>
-			<li><code>geom/</code>: <a href="api/geom/" title="API Geometry">link</a></li>
-			<li><code>raw/</code>: <a href="api/raw/" title="API Raw Data">link</a></li>
-		</ul>
-	</li>
+	<li><code>api/</code>: <a href="api/" title="API">link</li>
 	<li><code>data/</code>
 		<ul>
 			<li><code>nrw13.csv</code>: <a href="data/nrw13.csv" title="NRW13 CSV">link</a></li>

@@ -9,7 +9,7 @@ class Election(models.Model):
 	wikidata_id = models.CharField(max_length=20, null=True, unique=True)
 	administrative_level = models.CharField(max_length=100) # municipality, district, state, nation
 	election_day = models.DateTimeField('timestamp of election day') # yyyy-mm-dd
-	state = models.CharField(max_length=200, null=False, default='init')
+	status = models.CharField(max_length=200, null=False, default='init')
 
 	def __str__(self):
 		return "%s" % (self.short_name)

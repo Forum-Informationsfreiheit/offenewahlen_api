@@ -22,7 +22,7 @@ class Command(BaseCommand):
 		"""
 		Main entry point of the command.
 		"""
-		setup_path = 'data/setup/'
+		setup_path = 'data/base/'
 
 		if options['path']:
 			setup_path = options['path']

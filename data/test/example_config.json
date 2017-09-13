@@ -1,0 +1,35 @@
+{
+	"election_short": "nrw17",
+	"status": "official_result",
+	"description": "",
+	"file_location": "local",
+	"file_type": "json",
+	"data_format": "bmi",
+	"eligible_voters": "true",
+	"spatial_id": "municipality_kennzahl",
+	"mappings": {
+		"gemeindekennzahl": "municipality_kennzahl",
+		"spatial_id": "municipality_code",
+		"invalid": "invalid",
+		"valid": "valid",
+		"votes": "votes",
+		"timestamp": "timestamp",
+		"eligible_voters": "eligible_voters",
+		"kpoe": "kpoe_nrw17",
+		"spoe": "spoe_nrw17",
+		"oevp": "oevp_nrw17",
+		"fpoe": "fpoe_nrw17",
+		"gruene": "gruene_nrw17",
+		"neos": "neos_nrw17"
+	},
+	"no_list": [
+		"id", 
+		"municipality_code", 
+		"municipality_kennzahl", 
+		"invalid", 
+		"valid", 
+		"votes", 
+		"timestamp", 
+		"eligible_voters"
+	]
+}

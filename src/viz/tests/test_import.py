@@ -35,13 +35,36 @@ class ImportTest(TestCase):
 			election_day = election_time
 		)
 
-	def test_xml_import_raw_data(self):
+	def test_import_json_result_data_with_mapping(self):
+		"""
+		Tests an json import of results.
+		"""
+		test_path = os.path.dirname(os.path.realpath(__file__))
+		local_data_file = test_path + '/data/example_01.json'
+		mapping_file = test_path + '/data/example_mapping.json'
+
+		call_command('import_results', local_data_file, location='local',
+			file_type='json', mapping_file=mapping_file)
+		number_of_results = RawData.objects.count()
+		self.assertEqual(number_of_results, 1)
+
+		call_command('import_results', local_data_file, location='local',
+			file_type='json', mapping_file=mapping_file)
+		number_of_results = RawData.objects.count()
+		self.assertEqual(number_of_results, 2)
+
+	def test_import_base_data(self):
+
+		number_of_results = RawData.objects.count()
+		self.assertEqual()
+
+	def test_import_xml_result_data_with_mapping(self):
 		"""
 		Tests an xml import.
 		"""
 		test_path = os.path.dirname(os.path.realpath(__file__))
-		local_data_file = test_path + '/data/test_data.xml'
-		mapping_file = test_path + '/data/nrw_2017_mapping.json'
+		local_data_file = test_path + '/data/example_01.xml'
+		mapping_file = test_path + '/data/example_mapping.json'
 
 		call_command('import_results', local_data_file, location='local',
 			file_type='xml', mapping_file=mapping_file)

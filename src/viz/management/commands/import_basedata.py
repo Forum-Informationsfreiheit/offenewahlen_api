@@ -88,7 +88,7 @@ class Command(BaseCommand):
 		num_entries_updated = 0
 
 		for key, value in elections.items():
-			ts = datetime.datetime.strptime(value['election_day'], "%Y-%m-%d")
+			ts = datetime.datetime.strptime(value['election_day'], '%Y-%m-%d')
 			ts = timezone.make_aware(ts, timezone.get_current_timezone())
 
 			e = Election.objects.update_or_create(
@@ -99,7 +99,7 @@ class Command(BaseCommand):
 				wikidata_id = value['wikidata_id'],
 				administrative_level = value['administrative_level'],
 				election_day = ts,
-				status = config['status']
+				status = value['status']
 			)
 			if e[1] == True:
 				if config['log_detail'] == 'high':

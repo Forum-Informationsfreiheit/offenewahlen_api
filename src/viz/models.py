@@ -196,18 +196,3 @@ class RawData(models.Model):
 		verbose_name = 'raw data'
 		verbose_name_plural = 'raw data'
 
-# class Candidate(models.Model):
-# 	id = models.AutoField()
-# 	first_name = models.CharField(max_length=100)
-# 	last_name = models.CharField(max_length=100)
-#	description = models.CharField(max_length=1000)
-# 	wikidata_id = models.CharField(max_length=20)
-# 	party = models.ForeignKey(Party, on_delete=models.CASCADE)
-#	list = models.CharField(max_length=20)
-#
-#	@property
-#    def full_name(self):
-#        "Returns the candidate's full name."
-#        return '%s %s' % (self.first_name, self.last_name)
-
-

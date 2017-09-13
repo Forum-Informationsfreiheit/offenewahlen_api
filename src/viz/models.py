@@ -151,7 +151,6 @@ class PollingStationResult(models.Model):
 	valid = models.IntegerField(default=-1)
 	invalid = models.IntegerField(default=-1)
 	ts_result = models.DateTimeField('timestamp of bmi result')
-	status = models.CharField(max_length=50, default=None) # is it final approved result for the municipality?
 
 	def __str__(self):
 		return "%s" % (self.id)

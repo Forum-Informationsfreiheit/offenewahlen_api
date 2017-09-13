@@ -218,8 +218,7 @@ class Command(BaseCommand):
 						votes = mun['votes'],
 						valid = mun['valid'],
 						invalid = mun['invalid'],
-						ts_result = ts,
-						status = config['status']
+						ts_result = ts
 					)
 					if psr[1] == True:
 						if config['log_detail'] == 'high':

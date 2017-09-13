@@ -98,7 +98,8 @@ class Command(BaseCommand):
 				election_type = value['election_type'],
 				wikidata_id = value['wikidata_id'],
 				administrative_level = value['administrative_level'],
-				election_day = ts
+				election_day = ts,
+				status = config['status']
 			)
 			if e[1] == True:
 				if config['log_detail'] == 'high':

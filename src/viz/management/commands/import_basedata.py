@@ -3,6 +3,7 @@ from django.utils import timezone
 from viz.models import PollingStation, Election, Party, RegionalElectoralDistrict, State, District, Municipality, List
 import json
 import datetime
+import os
 
 class Command(BaseCommand):
 
@@ -22,10 +23,11 @@ class Command(BaseCommand):
 		"""
 		Main entry point of the command.
 		"""
-		setup_path = 'data/base/'
 
 		if options['path']:
 			setup_path = options['path']
+		else:
+			setup_path = os.path.dirname(os.path.realpath(__name__)) + '/data/base/'
 
 		config = {
 			'party_location': 'austria',
@@ -74,7 +76,7 @@ class Command(BaseCommand):
 		try:
 			data = json.loads(open(filename, encoding='utf-8-sig').read())
 			return data
-		except JSONDecodeError:
+		except ValueError:
 			print('Error: File is not valid JSON.')
 
 	def import_elections(self, elections, config):

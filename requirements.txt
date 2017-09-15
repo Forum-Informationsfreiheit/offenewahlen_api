@@ -1,8 +1,12 @@
 certifi==2017.4.17
 chardet==3.0.4
+coverage==4.4.1
 dj-database-url==0.4.2
 Django==1.11.3
+django-cors-headers==2.1.0
 django-pylibmc==0.6.1
+django-rest==0.0.1
+django-rest-framework==0.1.0
 django-static-precompiler==1.6
 djangorestframework==3.6.4
 flake8==3.3.0

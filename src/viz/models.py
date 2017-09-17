@@ -9,7 +9,7 @@ class Election(models.Model):
 	wikidata_id = models.CharField(max_length=20, null=True, unique=True)
 	administrative_level = models.CharField(max_length=100) # municipality, district, state, nation
 	election_day = models.DateTimeField('timestamp of election day') # yyyy-mm-dd
-	state = models.CharField(max_length=200, null=False, default='init')
+	status = models.CharField(max_length=200, null=False, default='init')
 
 	def __str__(self):
 		return "%s" % (self.short_name)
@@ -151,7 +151,6 @@ class PollingStationResult(models.Model):
 	valid = models.IntegerField(default=-1)
 	invalid = models.IntegerField(default=-1)
 	ts_result = models.DateTimeField('timestamp of bmi result')
-	is_final = models.BooleanField(default=False) # is it final approved result for the municipality?
 
 	def __str__(self):
 		return "%s" % (self.id)
@@ -195,19 +194,4 @@ class RawData(models.Model):
 		get_latest_by = 'ts_file'
 		verbose_name = 'raw data'
 		verbose_name_plural = 'raw data'
-
-# class Candidate(models.Model):
-# 	id = models.AutoField()
-# 	first_name = models.CharField(max_length=100)
-# 	last_name = models.CharField(max_length=100)
-#	description = models.CharField(max_length=1000)
-# 	wikidata_id = models.CharField(max_length=20)
-# 	party = models.ForeignKey(Party, on_delete=models.CASCADE)
-#	list = models.CharField(max_length=20)
-#
-#	@property
-#    def full_name(self):
-#        "Returns the candidate's full name."
-#        return '%s %s' % (self.first_name, self.last_name)
-
 

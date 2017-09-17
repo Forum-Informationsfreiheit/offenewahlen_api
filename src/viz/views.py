@@ -71,7 +71,7 @@ def test(request):
 @cache_page(60 * 60) # 60mins
 def api_geom(request):
 
-	with open('data/setup/municipalities_topojson_999_20170101.json') as data_file:
+	with open('data/base/municipalities_topojson_999_20170101.json') as data_file:
 		data = data_file.read()
 	geom_data = json.loads(data)
 

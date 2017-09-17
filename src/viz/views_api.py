@@ -1,7 +1,6 @@
 from rest_framework import generics, viewsets
 from rest_framework.views import APIView
 from rest_framework.response import Response
-
 from viz import models
 from viz import serializers
 
@@ -9,6 +8,7 @@ from viz import serializers
 class ElectionInterface(viewsets.ReadOnlyModelViewSet):
 	queryset = models.Election.objects.all()
 	serializer_class = serializers.ElectionSerializer
+
 
 class PollingStationResultInterface(viewsets.ReadOnlyModelViewSet):
 	queryset = models.PollingStationResult.objects.all()
@@ -18,6 +18,11 @@ class PollingStationResultInterface(viewsets.ReadOnlyModelViewSet):
 class DistrictInterface(viewsets.ReadOnlyModelViewSet):
 	queryset = models.District.objects.all()
 	serializer_class = serializers.DistrictSerializer
+
+
+class StateInterface(viewsets.ReadOnlyModelViewSet):
+	queryset = models.State.objects.all()
+	serializer_class = serializers.StateSerializer
 
 
 class MunicipalityInterface(viewsets.ReadOnlyModelViewSet):

@@ -69,61 +69,6 @@ def test(request):
 	return render(request, 'viz/index_test.dtl')
 
 @cache_page(60 * 60) # 60mins
-def api_result_nrw13(request):
-
-	data = {}
-	elec_short = 'nrw13'
-	#psr_query = PollingStationResult.objects.filter(election__short_name=elec_short).select_related('polling_station', 'polling_station__municipality')
-	psr_query = PollingStationResult.objects.filter(election__short_name=elec_short).select_related('polling_station') 
-	#lr_query = ListResult.objects.select_related('election_list', 'polling_station_result', 'polling_station_result__polling_station', 'polling_station_result__polling_station__municipality').filter(polling_station_result__election__short_name=elec_short)
-
-	for psr in psr_query: 
-		code = str(psr.polling_station.municipality.code)
-		data[code] = {}
-		data[code]['gemeinde_name'] = psr.polling_station.municipality.name
-		data[code]['gemeinde_kennzahl'] = str(psr.polling_station.municipality.kennzahl)
-		data[code]['gemeinde_code'] = code
-		data[code]['eligible_voters'] = psr.eligible_voters
-		data[code]['votes'] = psr.votes
-		data[code]['valid'] = psr.valid
-		data[code]['invalid'] = psr.invalid
-		data[code]['ts'] = psr.ts_result
-
-		lr_query = psr.listresult_set.all()
-		for lr in lr_query:
-			data[code][str(lr.election_list.short_name)] = lr.votes
-
-	#export_csv('data/export/nrw13.csv', data)
-	
-	return JsonResponse(data, safe=False)
-
-@cache_page(60 * 60) # 60mins
-def api_result_nrw17(request):
-	
-	data = {}
-	elec_short = 'nrw17'
-	#psr_query = PollingStationResult.objects.filter(election__short_name=elec_short).select_related('polling_station', 'polling_station__municipality')
-	psr_query = PollingStationResult.objects.filter(election__short_name=elec_short).select_related('polling_station') 
-	#lr_query = ListResult.objects.select_related('election_list', 'polling_station_result', 'polling_station_result__polling_station', 'polling_station_result__polling_station__municipality').filter(polling_station_result__election__short_name=elec_short)
-
-	for psr in psr_query: 
-		code = str(psr.polling_station.municipality.code)
-		data[code] = {}
-		data[code]['gemeinde_name'] = psr.polling_station.municipality.name
-		data[code]['gemeinde_kennzahl'] = str(psr.polling_station.municipality.kennzahl)
-		data[code]['gemeinde_code'] = code
-		data[code]['eligible_voters'] = psr.eligible_voters
-		data[code]['votes'] = psr.votes
-		data[code]['valid'] = psr.valid
-		data[code]['invalid'] = psr.invalid
-		data[code]['ts'] = psr.ts_result
-
-		lr_query = psr.listresult_set.all()
-		for lr in lr_query:
-			data[code][lr.election_list.short_name] = lr.votes
-
-	return JsonResponse(data, safe=False)
-
 def api_geom(request):
 
 	with open('data/setup/municipalities_topojson_999_20170101.json') as data_file:

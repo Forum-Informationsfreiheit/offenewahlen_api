@@ -23,6 +23,7 @@ class Election(models.Model):
 			models.Index(fields=['full_name', 'short_name', 'short_name_text']),
 		]
 
+
 class RegionalElectoralDistrict(models.Model):
 	short_code = models.CharField(primary_key=True, max_length=2)
 	name = models.CharField(max_length=100, default=None)
@@ -59,6 +60,7 @@ class Party(models.Model):
 			models.Index(fields=['full_name', 'short_name', 'short_name_text']),
 		]
 
+
 class List(models.Model):
 	short_name = models.CharField(primary_key=True, max_length=50)
 	short_name_text = models.CharField(max_length=50, default=None)
@@ -76,6 +78,7 @@ class List(models.Model):
 			models.Index(fields=['short_name', 'full_name', 'short_name_text']),
 		]
 
+
 class State(models.Model):
 	short_code = models.CharField(primary_key=True, max_length=1)
 	name = models.CharField(max_length=100, unique=True)
@@ -90,6 +93,7 @@ class State(models.Model):
 		indexes = [
 			models.Index(fields=['name', 'short_code']),
 		]
+
 
 class District(models.Model):
 	short_code = models.CharField(primary_key=True, max_length=3)
@@ -125,6 +129,7 @@ class Municipality(models.Model):
 			models.Index(fields=['name', 'code', 'kennzahl']),
 		]
 
+
 class PollingStation(models.Model):
 	id = models.AutoField(primary_key=True)
 	name = models.CharField(max_length=200, null=True, default=None)
@@ -141,6 +146,7 @@ class PollingStation(models.Model):
 		indexes = [
 			models.Index(fields=['name']),
 		]
+
 
 class PollingStationResult(models.Model):
 	id = models.AutoField(primary_key=True)
@@ -161,6 +167,7 @@ class PollingStationResult(models.Model):
 		verbose_name = 'polling station result'
 		verbose_name_plural = 'polling station results'
 
+
 class ListResult(models.Model):
 	id = models.AutoField(primary_key=True)
 	polling_station_result = models.ForeignKey(PollingStationResult, on_delete=models.PROTECT)
@@ -174,6 +181,7 @@ class ListResult(models.Model):
 		ordering = ['id']
 		verbose_name = 'list result'
 		verbose_name_plural = 'list results'
+
 
 class RawData(models.Model):
 	id = models.AutoField(primary_key=True)
@@ -194,4 +202,46 @@ class RawData(models.Model):
 		get_latest_by = 'ts_file'
 		verbose_name = 'raw data'
 		verbose_name_plural = 'raw data'
+
+class CheckResultFileImport(models.Model):
+	"""
+	docstring for ResultCheck
+	"""
+	id = models.AutoField(primary_key=True)
+	hash_not_present = models.BooleanField()
+	all_checks_true = models.BooleanField()
+
+	def __str__(self):
+		return "%s" % (self.id)
+
+	class Meta:
+		ordering = ['id']
+		verbose_name = 'basedata check'
+		verbose_name_plural = 'basedata checks'
+
+
+class CheckResultPollingStationImport(models.Model):
+	"""
+	docstring for ResultCheck
+	"""
+
+	id = models.AutoField(primary_key=True)
+	import_file = models.ForeignKey(CheckResultFileImport, on_delete=models.PROTECT, default=None)
+	polling_station = models.ForeignKey(PollingStation, on_delete=models.PROTECT, default=None)
+	valid_is_sumparties = models.BooleanField()
+	valid_plus_invalid_equal_votes = models.BooleanField()
+	eligiblevoters_greaterequalthan_votes = models.BooleanField()
+	allproperties_available = models.BooleanField()
+	not_more_properties_than_necessary = models.BooleanField()
+	timestamp_ascending = models.BooleanField()
+	timestamp_between_start_and_now = models.BooleanField()
+	all_checks_true = models.BooleanField()
+
+	def __str__(self):
+		return "%s" % (self.id)
+
+	class Meta:
+		ordering = ['id']
+		verbose_name = 'result check'
+		verbose_name_plural = 'result checks'
 

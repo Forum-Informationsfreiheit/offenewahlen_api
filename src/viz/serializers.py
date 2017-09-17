@@ -83,6 +83,12 @@ class ListSerializer(serializers.ModelSerializer):
 		fields = ('short_name', 'short_name_text', 'full_name', 'party')
 
 
+#class GeomSerializer(serializers.ModelSerializer):
+
+	#class Meta:
+		#content = JSONRenderer().render(serializer.data)
+		#fields = ('short_name', 'short_name_text', 'full_name', 'party')
+
 class RegionalElectoralDistrictSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = models.RegionalElectoralDistrict

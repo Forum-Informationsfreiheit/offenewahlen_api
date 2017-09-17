@@ -203,7 +203,6 @@ class RawData(models.Model):
 		verbose_name = 'raw data'
 		verbose_name_plural = 'raw data'
 
-
 class CheckResultFileImport(models.Model):
 	"""
 	docstring for ResultCheck
@@ -246,17 +245,3 @@ class CheckResultPollingStationImport(models.Model):
 		verbose_name = 'result check'
 		verbose_name_plural = 'result checks'
 
-
-# class CheckBasedataImport(models.Model):
-# 	"""
-# 	docstring for ResultCheck
-# 	"""
-# 	id = models.AutoField(primary_key=True)
-
-# 	def __str__(self):
-# 		return "%s" % (self.id)
-
-# 	class Meta:
-# 		ordering = ['id']
-# 		verbose_name = 'basedata check'
-# 		verbose_name_plural = 'basedata checks'

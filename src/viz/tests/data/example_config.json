@@ -1,6 +1,7 @@
 {
 	"election_short": "nrw17",
-	"election_day": "2017-10-15",
+	"election_day": "2017-09-13",
+	"all_pollingstations_closed": "2017-09-13 17:00:00Z",
 	"status": "official_result",
 	"description": "",
 	"file_location": "local",

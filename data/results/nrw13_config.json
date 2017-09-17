@@ -8,6 +8,7 @@
 	"data_format": "ow-at",
 	"status": "official_result",
 	"eligible_voters": false,
+	"spatial_id": "municipality_kennzahl",
 	"mappings": {
 		"municipality_kennzahl": "municipality_kennzahl",
 		"municipality_code": "municipality_code",

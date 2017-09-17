@@ -251,8 +251,8 @@ class Command(BaseCommand):
 
 				except Exception as e:
 					if config['log_detail'] == 'middle' and config['log_detail'] == 'high':
-						print('Warning: PollingStation {} not found.'.format(mun['municipality_code']))
-					ps_not_found.append(mun['municipality_code'])
+						print('Warning: PollingStation {} not found.'.format(mun[config['spatial_id']]))
+					ps_not_found.append(mun[config['spatial_id']])
 			else:
 				print('Municipality ' + mun_code + ' not stored in database, cause no municipality.')
 

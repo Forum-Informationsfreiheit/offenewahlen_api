@@ -21,13 +21,37 @@ class ElectionSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = models.Election
-		fields = ('short_name', 'wikidata_id', 'wikidata_url')
+		fields = ('short_name', 'short_name_text', 'full_name', 'election_type', 
+			'administrative_level', 'election_day', 'wikidata_id', 'wikidata_url')
+
+
+class RegionalElectoralDistrictSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = models.RegionalElectoralDistrict
+		fields = ('short_code', 'name')
+
+
+class PartySerializer(serializers.ModelSerializer):
+	wikidata_url = WikidataHyperlinkedIdentityField('wikidata_id')
+
+	class Meta:
+		model = models.Party
+		fields = ('short_name', 'short_name_text', 'full_name',
+			'family', 'wikidata_id', 'wikidata_url', 'website')
+
+
+class ListSerializer(serializers.ModelSerializer):
+	party = PartySerializer()
+
+	class Meta:
+		model = models.List
+		fields = ('short_name', 'short_name_text', 'full_name', 'party')
 
 
 class StateSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = models.State
-		fields = ('name',)
+		fields = ('short_name', 'name')
 
 
 class DistrictSerializer(serializers.ModelSerializer):
@@ -47,15 +71,6 @@ class MunicipalitySerializer(serializers.ModelSerializer):
 			'regional_electoral_district', 'district')
 
 
-class PartySerializer(serializers.ModelSerializer):
-	wikidata_url = WikidataHyperlinkedIdentityField('wikidata_id')
-
-	class Meta:
-		model = models.Party
-		fields = ('short_name', 'short_name_text', 'full_name',
-			'family', 'wikidata_id', 'wikidata_url', 'website')
-
-
 class PollingStationSerializer(serializers.ModelSerializer):
 	municipality = MunicipalitySerializer()
 
@@ -72,15 +87,7 @@ class PollingStationResultSerializer(serializers.ModelSerializer):
 		model = models.PollingStationResult
 		fields = ('election', 'polling_station', 'election', 
 			'eligible_voters', 'votes', 'valid', 'invalid', 
-			'ts_result', 'is_final')
-
-
-class ListSerializer(serializers.ModelSerializer):
-	party = PartySerializer()
-
-	class Meta:
-		model = models.List
-		fields = ('short_name', 'short_name_text', 'full_name', 'party')
+			'ts_result')
 
 
 #class GeomSerializer(serializers.ModelSerializer):
@@ -89,7 +96,3 @@ class ListSerializer(serializers.ModelSerializer):
 		#content = JSONRenderer().render(serializer.data)
 		#fields = ('short_name', 'short_name_text', 'full_name', 'party')
 
-class RegionalElectoralDistrictSerializer(serializers.ModelSerializer):
-	class Meta:
-		model = models.RegionalElectoralDistrict
-		fields = ('short_code', 'name')

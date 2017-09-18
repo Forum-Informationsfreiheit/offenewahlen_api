@@ -14,7 +14,7 @@
 
 {% block content %}
 <ul>
-	<li><code>viz/</code>
+	<li><code>viz/</code>: <a href="viz/" title="Visualisierung">link</a>
 		<ul>
 			<li><code>results-bar/</code>: <a href="viz/results-bar/" title="Visualisierung Ergebnis Balken">link</a></li>
 			<li><code>results-map/</code>: <a href="viz/results-map/" title="Visualisierung Ergebnis Karte">link</a></li>

@@ -1,0 +1,58 @@
+[
+    {
+        "gemeindekennzahl": "10101",
+        "eligible_voters": "3467",
+        "votes": "3579",
+        "valid": "3531",
+        "invalid": "48",
+        "spoe": "758",
+        "fpoe": "688",
+        "oevp": "1439",
+        "kpoe": "13",
+        "gruene": "384",
+        "neos": "249",
+        "timestamp": "2017-10-15 15:23:38Z"
+    },
+    {
+        "gemeindekennzahl": "10201",
+        "eligible_voters": "1091",
+        "votes": "790",
+        "valid": "781",
+        "invalid": "9",
+        "spoe": "110",
+        "fpoe": "226",
+        "oevp": "321",
+        "kpoe": "17",
+        "gruene": "82",
+        "neos": "24",
+        "timestamp": "2017-10-15 15:45:32Z"
+    },
+    {
+        "gemeindekennzahl": "20506",
+        "eligible_voters": "921",
+        "votes": "883",
+        "valid": "580",
+        "invalid": "303",
+        "spoe": "121",
+        "fpoe": "66",
+        "oevp": "95",
+        "kpoe": "42",
+        "gruene": "244",
+        "neos": "12",
+        "timestamp": "2017-10-15 16:12:11Z"
+    },
+    {
+        "gemeindekennzahl": "31546",
+        "eligible_voters": "223",
+        "votes": "179",
+        "valid": "177",
+        "invalid": "2",
+        "spoe": "45",
+        "fpoe": "37",
+        "oevp": "78",
+        "kpoe": "1",
+        "gruene": "12",
+        "neos": "4",
+        "timestamp": "2017-10-15 17:03:44Z"
+    }
+]

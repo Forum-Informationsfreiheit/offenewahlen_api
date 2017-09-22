@@ -3,6 +3,7 @@ from django.utils import timezone
 from viz.models import PollingStation, Election, Party, RegionalElectoralDistrict, State, District, Municipality, List
 import json
 import datetime
+import os
 
 class Command(BaseCommand):
 
@@ -22,10 +23,11 @@ class Command(BaseCommand):
 		"""
 		Main entry point of the command.
 		"""
-		setup_path = 'data/setup/'
 
 		if options['path']:
 			setup_path = options['path']
+		else:
+			setup_path = os.path.dirname(os.path.realpath(__name__)) + '/data/base/'
 
 		config = {
 			'party_location': 'austria',
@@ -74,7 +76,7 @@ class Command(BaseCommand):
 		try:
 			data = json.loads(open(filename, encoding='utf-8-sig').read())
 			return data
-		except JSONDecodeError:
+		except ValueError:
 			print('Error: File is not valid JSON.')
 
 	def import_elections(self, elections, config):
@@ -86,7 +88,7 @@ class Command(BaseCommand):
 		num_entries_updated = 0
 
 		for key, value in elections.items():
-			ts = datetime.datetime.strptime(value['election_day'], "%Y-%m-%d")
+			ts = datetime.datetime.strptime(value['election_day'], '%Y-%m-%d')
 			ts = timezone.make_aware(ts, timezone.get_current_timezone())
 
 			e = Election.objects.update_or_create(
@@ -96,7 +98,8 @@ class Command(BaseCommand):
 				election_type = value['election_type'],
 				wikidata_id = value['wikidata_id'],
 				administrative_level = value['administrative_level'],
-				election_day = ts
+				election_day = ts,
+				status = value['status']
 			)
 			if e[1] == True:
 				if config['log_detail'] == 'high':

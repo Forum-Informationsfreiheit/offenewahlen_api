@@ -6,7 +6,8 @@
 		"election_type": "Nationalratswahl",
 		"election_day": "2013-09-29",
 		"administrative_level": "national",
-		"wikidata_id": "Q1386143"
+		"wikidata_id": "Q1386143",
+		"status": "oficial_result"
 	},
 	"nrw17": {
 		"full_name": "Nationalratswahl in Österreich 2017",
@@ -15,6 +16,7 @@
 		"election_type": "Nationalratswahl",
 		"election_day": "2017-10-15",
 		"administrative_level": "national",
-		"wikidata_id": "Q19311231"
+		"wikidata_id": "Q19311231",
+		"status": "in_future"
 	}
 }

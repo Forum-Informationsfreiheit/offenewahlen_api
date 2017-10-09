@@ -17,6 +17,7 @@ router.register(r'regional_electoral_district',
 
 urlpatterns = [
 	url(r'^$', views.viz, name='viz'),
+	url(r'^loaderio-eac9628bcae9be5601e1f3c62594d162.txt$', views.load_test, name='load_test'),
 	url(r'^viz/$', views.viz_overview, name='viz_overview'),
 	url(r'^viz/results-bar/$', views.viz_results_bar, name='viz_results_bar'),
 	url(r'^viz/results-map/$', views.viz_results_map, name='viz_results_map'),

@@ -1,18 +1,16 @@
+import json
+import csv
+import os
 from django.conf import settings
 from django.core import serializers
 from django.core.cache import cache
-from django.http import HttpResponse
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse, FileResponse
 from django.shortcuts import render
 from django.template import loader
 from django.template.context_processors import csrf
 from django.views.decorators.cache import cache_page
 from viz.models import PollingStationResult, ListResult, PollingStation, Election, Municipality, RegionalElectoralDistrict, District, State, Party, RawData, List
 from wsgiref.util import FileWrapper
-import json
-import csv
-import os
-import mimetypes
 
 def export_csv(filename, data):
 	counter = 1
@@ -23,6 +21,16 @@ def export_csv(filename, data):
 		for key, value in data.items():
 			csvwriter.writerow([str(counter),str(value['gemeinde_name']),str(value['gemeinde_kennzahl']),str(value['gemeinde_code']),str(value['eligible_voters']),str(value['votes']),str(value['valid']),str(value['invalid']),str(value['ts']),str(value['spoe_nrw13']),str(value['oevp_nrw13']),str(value['fpoe_nrw13']),str(value['gruene_nrw13']),str(value['bzoe_nrw13']),str(value['neos_nrw13']),str(value['stronach_nrw13']),str(value['wandel_nrw13']),str(value['pirat_nrw13']),str(value['kpoe_nrw13']),str(value['slp_nrw13']),str(value['euaus_nrw13']),str(value['cpoe_nrw13'])])
 			counter +=1
+
+def load_test(request):
+	# Create the HttpResponse object with the appropriate CSV header.
+	filename = 'data/deployment/loaderio-eac9628bcae9be5601e1f3c62594d162.txt'
+	wrapper = FileWrapper(open(filename))
+	response = HttpResponse(wrapper, content_type = 'text/txt')
+	response['Content-Length'] = os.path.getsize(filename)
+	response['Content-Disposition'] = 'attachment; filename="loaderio-eac9628bcae9be5601e1f3c62594d162.txt"'
+
+	return response
 
 def index(request):
 	return render(request, 'viz/index_viz.dtl')
@@ -49,12 +57,12 @@ def viz_results_timeseries(request):
 	return render(request, 'viz/index_viz_result_timeseries.dtl')
 
 def serve_nrw13_csv(request):
-	
+
 	# Create the HttpResponse object with the appropriate CSV header.
 	filename = 'data/export/nrw13.csv'
 	wrapper = FileWrapper(open(filename))
 	response = HttpResponse(wrapper, content_type = 'text/csv')
-	response['Content-Length'] = os.path.getsize(filename)    
+	response['Content-Length'] = os.path.getsize(filename)
 	response['Content-Disposition'] = 'attachment; filename="nrw13.csv"'
 
 	return response

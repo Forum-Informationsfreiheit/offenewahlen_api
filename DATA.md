@@ -4,22 +4,25 @@ Dokumentation der Datenmodelle, von Rohdaten über Datenbank bis hin zum Client.
 
 ## Identifiers
 
-**Gemeindekennzahl**
+### Gemeindekennzahl
 
-Die Gemeindekennzahl ist 5-stellig.
-* 1. Stelle
-  * 0 => Österreich
-  * Bundesland in alphabetischer Reihenfolge und entspricht der [ISO 3166-2:AT](https://de.wikipedia.org/wiki/ISO_3166-2:AT).
-* 2-3. Stelle
-  * 00 => Bundesland. GKZ endet dann mit 00
-  * zwei Zahlen, von 01 aufsteigend => Bezirk. GKZ endet dann mit 00.
-  * Ziffer 2 ein Buchstabe => Regional-Wahlkreis. GKZ endet dann mit 000.
-* 4-5. Stelle 
-  * laufend von 01 startend sind die Gemeinden
-  * 99 => Wahlkarte. Davor Zeichen für Bezirk oder Wahlkreis.
+Die Gemeindekennzahl ist 5-stellig und eine offiziell verwendete Zahl mit der Gemeinden beschrieben werden.
+
+1te Stelle
+* = 0: Eintrag ist Gesamtergebnis für Österreich. GKZ ist 00000.
+* 1-9: Eintrag ist ein Bundesland in alphabetischer Reihenfolge (entspricht der [ISO 3166-2:AT](https://de.wikipedia.org/wiki/ISO_3166-2:AT)).
+
+2-3te Stelle
+* = 00: Eintrag ist ein Bundesland. GKZ endet dann mit 00 auf Stelle 4-5.
+* zwei Zahlen, von 01 aufsteigend: Eintrag ist eine Gemeinde oder ein Bezirk.
+* Ziffer 2 ein Buchstabe: Eintrag ist ein Regional-Wahlkreis.
+
+4-5te Stelle 
+* zwei Zahlen, von 01 aufsteigend: Eintrag ist eine Gemeinde.
+* 99: Eintrag ist eine Wahlkarte. Die Stellen 2-3 stehen dann für Bezirk oder Wahlkreis.
 
 Beispiel:
-3 25 21 = Rappottenstein
+32521 = Rappottenstein
 * 3 Niederösterreich
 * 25 Bezirk Zwettl
 * 21 Gemeinde Rappottenstein
@@ -31,19 +34,32 @@ Weitere Beispiele:
 * Regionalwahlkreis: `1a1000` für Burgenland Nord
 * Wahlkarte: `1a299` für Burgenland Süd
 
-**Kürzel Wahl**
 
-Wird von uns selber definiert. Grundlage sind etablierte Kürzel, z. B. "nrw" für Nationalratswahl gefolgt von Jahresziffer => "nrw17".
+### Kürzel Wahl
 
+Ein Kürzel, dass von uns selber zur Identifizierung der Wahl dient.
+
+Aktuell verwendet:
 * `nrw13`: Nationalratswahl 2013
 * `nrw17`: Nationalratswahl 2017
 
-**Kürzel Partei**
+### Kürzel Partei
 
-Von uns selber definiert. Grundlage sind etablierte Kürzel. Kürzel sind in der `parties.json` zu finden.
+Ein Kürzel, dass von uns selber zur Identifizierung einer Partei dient. Grundlage sind etablierte Kürzel. 
 
+Beispiele
+* `oevp`: Österreichische Volkspartei
+* `spoe`: Sozialdemokratische Partei Österreichs
 
-## Ergebnisdaten vom BMI
+### Kürzel Wahlwerbende Liste
+
+Ein Kürzel, dass von uns selber zur Identifizierung einer wahlwerbenden Liste dient. Grundlage sind etablierte Kürzel von Parteien, welche dann mit dem Kürzel der jeweiligen Wahl erweitert werden. 
+
+Beispiele
+* `oevp_nrw13`: Liste der Österreichischen Volkspartei bei der Nationalratswahl 2013
+* `spoe_nrw17`: Liste der Sozialdemokratischen Partei Österreichs bei der Nationalratswahl 2017
+
+## Wahlergebnisse vom Innenministerium
 
 Zur Nationalratswahl 2017 bietet das BMI ausgewählten NutzerInnen die Ergebnisse in Echtzeit an. Es wird zum ersten Mal die Daten neben dem alt-ehrwürdigen TXT-Format auch als CSV und JSON Datei via https geben.
 
@@ -68,15 +84,16 @@ Die Basis-Daten dienen zum Setup der App und als Datengrundlage, um die Ergebnis
 
 ### Gemeinden (2017-01-01)
 
-Liste mit Gemeinden. `data/setup/municipalities_20170101.json`
+Liste mit Gemeinden. `data/base/municipalities_20170101.json`
 
-Enthält alle Gemeinden Österreichs am Stichtag 1. 1. 2017. Ist die Grundlage für die Wahl-Stationen. An sich komplett, Fehler oder Verbesserungen aber bitte melden, siehe [mitmachen](README.md#mitmachen).
+Enthält alle Gemeinden Österreichs am Stichtag 1. 1. 2017. Dies ist die Grundlage für die Wahl-Stationen. 
+
+Die Daten sind an sich komplett, falls Sie Fehler oder Verbesserungen finden aber bitte melden, siehe [mitmachen](README.md#mitmachen).
 
 Versionen:
 * raw: CSV file `municipalities_20170101_1.csv`
-* v1: angereichert mit Daten aus `municipalities_20170101_1.csv`
-
-Liste mit allen Gemeinden Österreichs am Stichtag 1. Januar 2017. Diese Datei wird zum Setup von #NRW17 verwendet.
+* v1: `municipalities_20170101_1.json`
+* v2: `municipalities_20170101_2.json`
 
 Attribute:
 * district: Bezirks-Name
@@ -88,7 +105,7 @@ Attribute:
 
 ### Parteien
 
-Liste der Parteien. `data/setup/parties.json`
+Liste der Parteien. `data/base/parties.json`
 
 Enthält alle Parteien die für die Visualisierung notwendig sind. Wird kontinuierlich erweitert, [mitmachen](README.md#mitmachen) erwünscht.
 
@@ -101,13 +118,12 @@ Attribute:
 * family: Zugehörigkeit zur Partei-Familie (EU)
 * wikidata_id: ID des zugehörigen Wikidata Items
 * website: url zur offiziellen Website
-* description: kurze Beschreibung der Partei
 
 ### Wahlwerbende Listen
 
-Liste der wahlwerbenden Listen. `data/setup/lists.json`
+Liste der wahlwerbenden Listen. `data/base/lists.json`
 
-Enthält alle Parteien die für die Visualisierung notwendig sind. Wird kontinuierlich erweitert, [mitmachen](README.md#mitmachen) erwünscht.
+Enthält alle Listen die für die Visualisierung notwendig sind. Wird kontinuierlich erweitert, [mitmachen](README.md#mitmachen) erwünscht.
 
 Key: Kürzel der Wahl (short_name)
 
@@ -120,7 +136,7 @@ Attribute:
 
 ### Wahlen
 
-Liste mit Wahlen. `data/setup/elections.json`
+Liste mit Wahlen. `data/base/elections.json`
 
 Enthält alle Wahlen die für die Visualisierung notwendig sind. Wird kontinuierlich erweitert, [mitmachen](README.md#mitmachen) erwünscht.
 
@@ -134,12 +150,13 @@ Attribute:
 * election_day: Wahltag, als `yyyy-mm-dd`
 * administrative_level: federal, state, district oder municipal
 * wikidata_id: Wikidate ID des dazugehörigen Items
+* status: Status der Wahl
 
 ### Mapping: Bundesland 2 Bezirk (2017-01-01)
 
-Mapping von Bezirken zu jedem Bundesland. `data/setup/states-to-districts_20170101.json`
+Mapping von Bezirken zu jedem Bundesland. `data/base/states-to-districts_20170101.json`
 
-Enthält zu allen Bundesländern sämtliche enthaltene Bezirke am Stichtag 1. 1. 2017. An sich komplett, Fehler oder Verbesserungen aber bitte melden, siehe [mitmachen](README.md#mitmachen).
+Enthält zu allen Bundesländern sämtliche darin enthaltene Bezirke am Stichtag 1. 1. 2017. An sich komplett, Fehler oder Verbesserungen aber bitte melden, siehe [mitmachen](README.md#mitmachen).
 
 Attribute:
 * NAME_DISTRICT: Bezirksname
@@ -164,7 +181,7 @@ Datenmodell:
 
 ### Mapping: Gemeinde 2 Regionalwahlkreis  (2017-01-01)
 
-Mapping von Gemeinden zu den Regionalwahlkreisen. `data/setup/municipality2red_20170101.json`
+Mapping von Gemeinden zu den Regionalwahlkreisen. `data/base/municipality2red_20170101.json`
 
 Mapping aller Regionalwahlkreise mit den darin enthaltenen Gemeinden am Stichtag 1. 1. 2017. An sich komplett, Fehler oder Verbesserungen aber bitte melden, siehe [mitmachen](README.md#mitmachen).
 
@@ -180,27 +197,40 @@ Datenmodell:
 }
 ```
 
+### Geometrien (1. 1. 2017)
+
+TopoJSON-Datei zu Österreich am Stichtag 1. Januar 2017.
+
+`data/setup/municipalities_topojson_999_20170101.json`: 
+
 ## postgreSQL
 
 In die PostgreSQL-Datenbank werden Tabellen zu jeder Klasse aus `src/viz/models.py` angelegt. Am besten direkt in der Datei nachlesen, welche Daten gespeichert werden.
 
 Tables:
 * Election: Wahlen
-* List: wahlwerbenden Listen
 * RegionalElectoralDistrict: Regionalwahlkreise
 * Party: Parteien
-* PollingStation: Wahl-Station. Zumeist auf Gemeindeebene
-* PollingStationResult: Ergebnisse auf Gemeindeebene (ohne Partei-Ergebnisse)
-* PartyResult: Partei-Ergebnisse zu jeder Wahl-Station.
-* RawData: Rohdaten
-* District: Bezirke
+* List: Wahlwerbenden Listen
 * State: Bundesländer
+* District: Bezirke
+* Municipality: Gemeinden
+* PollingStation: Wahl-Station. Zumeist die Gemeinde.
+* PollingStationResult: Ergebnisse auf Gemeindeebene (ohne Partei-Ergebnisse).
+* ListResult: Ergebnisse der Listen zur jeweiligen Wahl-Station.
+* RawData: Rohdaten
 
-## Test-Daten
+![Database model](https://raw.githubusercontent.com/OKFNat/offenewahlen-nrw17/master/docs/database-model.png)
 
-### NRW2013 Ergebnisse
+[PNG](https://raw.githubusercontent.com/OKFNat/offenewahlen-nrw17/master/docs/database-model.png)
 
-Ergebnisse der Nationalratswahl 2013 aufbereitet für die Gemeinden ( Stichtag 1. 1. 2017). `data/test/nrw_2013_1.json`
+## Wahlen
+
+### NRW2013
+
+#### Ergebnisse
+
+Ergebnisse der Nationalratswahl 2013 aufbereitet für die Gemeinden (Stichtag 1. 1. 2017). `data/results/nrw_2013_1_results.json`
 
 * raw: Rohdaten von Flooh Perlot
 * v1: 
@@ -209,25 +239,26 @@ Ergebnisse der Nationalratswahl 2013 aufbereitet für die Gemeinden ( Stichtag 1
   * Bei der Gemeindekennzahl das "G" entfernt
 
 Attribute:
-* MUNICIPALITY_CODE: Gemeindecode
-* SHORT_PARTY_NAME: Kürzel der Partei
+* MUNICIPALITY_CODE: Gemeindecode oder Gemeindekennzahl
+* VOTE_TYPE: Kürzel der Partei oder Typ der aggregierten Stimmen auf Wahl-Stations-Ebene.
 * VOTES: Zahl der Stimmen
+
 
 Datenmodell:
 ```json
 {
   "MUNICIPALITY_CODE": {
-    "SHORT_PARTY_NAME": "VOTES",
-    "SHORT_PARTY_NAME": "VOTES",
+    "VOTE_TYPE": "VOTES",
+    "VOTE_TYPE": "VOTES",
     .
   },
   .
 }
 ```
 
-### NRW2013 Mapping
+#### Mapping
 
-Mapping der Keys aus `data/test/nrw_2013_1.json` auf den internen Standard.
+Mapping der Keys aus `data/results/nrw13_config.json` auf den internen Standard.
 
 `data/test/nrw_2013_mapping.json`
 
@@ -242,56 +273,22 @@ Standard-Werte:
 * id: interne ID
 * LIST_SHORT_NAME+ELECTION_SHORT_NAME: für die Listen
 
-### Simuliertes Ergebnis-XML
+## Test-Daten
 
-Da das BMI vermutlich die Ergebnisse zum ersten Mal in einem neuen XML-Dateiformat ausliefert und wir noch nicht wissen wie diese aussieht, haben wir vorab selber eine Test-Datei erstellt um so die Funktionen implementieren und testen zu können. Um die sich ständig ändernden Ergebnis-Dateien an einem Wahlabend zu simulieren, wurden drei Versionen erstellt.
+### JSON BMI
 
-* `data/test/example_1.xml`
-* `data/test/example_2.xml`
-* `data/test/example_2.xml`
+Das Innenministerium liefert die Ergebnisse zum ersten Mal in JSON-Dateiformat aus.
 
-Die XML-Dateien sind mit dem selben Filenamen auch online unter [http://stefankasberger.at/wp-content/uploads/nrw17/](http://stefankasberger.at/wp-content/uploads/nrw17/) zu finden.
+* `src/viz/tests/example_COUNTER.json`: Ergebnis-Datei
+* `src/viz/tests/example_config.json`: Config-Datei für die Ergebnis-Datei
+
+Die JSON-Dateien werden mit dem selben Dateinamen auch online unter [http://stefankasberger.at/wp-content/uploads/nrw17/](http://stefankasberger.at/wp-content/uploads/nrw17/) erreichbar gemacht.
 
 Folgende Ergebnisse sind darin enthalten:
 
-**example_1.xml**
+## API 
 
-1. 41747: Vöcklamarkt
-  * fehler: `eligible_voters` ist kleiner als `votes`
-2. 80204: Bezau
-  * fehler: summe der partei-stimmen ist nicht gleich `valid`
-3. 70367: Wattens
-  * alles korrekt
-  * `gruene` ist ausreisser
-  * `invalid` ist ausreisser
-4. 30917: Hirschbach
-  * alles korrekt
-  * `timestamp` nach 17h
-
-**example_2.xml**
-
-1. gleich
-2. Fehler korrigiert
-3. gleich
-4. gleich
-
-### BMI Ergebnis-TXT 
-
-* `data/test/example_1.txt`
-* `data/test/example_2.txt`
-* `data/test/example_3.txt`
-
-### BMI Ergebnis-JSON 
-
-## Frontend
-
-Die Django-App liefert die benötigten Daten über eine restfull-API aus. Näheres dazu findet man unter [nrw17.offenewahlen.at/api](https://nrw17.offenewahlen.at/api)
-
-### Geometrien (1. 1. 2017)
-
-TopoJSON-Datei zu Österreich am Stichtag 1. Januar 2017.
-
-`data/setup/municipalities_topojson_999_20170101.json`: 
+Die Django-App wird die benötigten Daten ab dem Wahltag über eine restful-API ausliefern.
 
 ## Datenquellen
 

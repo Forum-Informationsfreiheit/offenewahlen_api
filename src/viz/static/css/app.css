@@ -726,6 +726,329 @@ object {
 }
 
 /**
+ * .0 - Media Queries
+ */
+
+@media (min-width: 430px) {
+  .countdown {
+    margin-top: 60px;
+  }
+  .countdown .item {
+    height: 180px;
+  }
+  .countdown .timer-circle {
+    height: 180px;
+  }
+  .countdown .time {
+    font-size: 32px;
+  }
+  .countdown .label {
+    font-size: 19px;
+  }
+  .newsletter-form {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  h1 {
+    font-size: 44px;
+  }
+  .intro .ow-logo img {
+    height: 48px;
+  }
+  .arrows, .captions
+  {
+  display: block;
+  }
+  .countdown {
+    margin-top: 80px;
+  }
+  .countdown .item {
+    height: 250px;
+  }
+  .countdown .timer-circle {
+    height: 250px;
+  }
+  .countdown .time {
+    font-size: 32px;
+  }
+  .newsletter-form {
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .countdown {
+    margin-top: 100px;
+  }
+  .newsletter-form {
+    margin-top: 100px;
+    margin-bottom: 100px;
+  }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+
+}
+
+@media print {
+
+  /* Hide elements */
+
+  form,
+  button,
+  input,
+  select,
+  textarea {
+    display: none !important;
+  }
+
+  /* Font sizes */
+
+  body {
+    font-size: 12pt;
+  }
+
+  h1 {
+    font-size: 24pt;
+  }
+
+  h2 {
+    font-size: 22pt;
+  }
+
+  h3 {
+    font-size: 17pt;
+  }
+
+  h4 {
+    font-size: 12pt;
+  }
+
+  h5 {
+    font-size: 11pt;
+  }
+
+  h6 {
+    font-size: 12pt;
+  }
+
+
+  /* Colors */
+
+  body,
+  .site {
+    background: none !important; /* Brute force since user agents all print differently. */
+  }
+
+  body,
+  a,
+  .site-title a,
+  .twentyseventeen-front-page.has-header-image .site-title,
+  .twentyseventeen-front-page.has-header-video .site-title,
+  .twentyseventeen-front-page.has-header-image .site-title a,
+  .twentyseventeen-front-page.has-header-video .site-title a {
+    color: #222 !important; /* Make sure color schemes don't affect to print */
+  }
+
+  h2,
+  h5,
+  blockquote,
+  .site-description,
+  .twentyseventeen-front-page.has-header-image .site-description,
+  .twentyseventeen-front-page.has-header-video .site-description,
+  .entry-meta,
+  .entry-meta a {
+    color: #777 !important; /* Make sure color schemes don't affect to print */
+  }
+
+  .site-footer {
+    padding: 0;
+  }
+}
+
+/**
+ * .0 - Homepage
+ */
+
+/* General */
+
+svg {
+  overflow: hidden;
+}
+.chart {
+  margin: 0 auto 0 auto;
+}
+line,
+path {
+  shape-rendering: geometricPrecision;
+  stroke-width: 1px;
+  fill: none;
+}
+.labels,
+.values { /*, .tlabels, .titles*/
+  text-anchor: middle;
+}
+.xaxis path {
+  stroke: #333333;
+  stroke-width: 1px;
+  stroke-opacity: 0.3;
+}
+.yaxis path {
+  stroke: none;
+}
+.xaxis text {
+  text-anchor: end;
+}
+.grid {
+  stroke: #333333;
+  stroke-width: 1px;
+  stroke-opacity: 0.3;
+  stroke-dasharray: 2, 4;
+}
+.units {
+  stroke: #969696;
+  stroke-width: 1px;
+}
+
+/* Bar */
+
+
+/* Map */
+
+#map .filled {
+  fill: #9ecae1;
+}
+#map .filled:hover {
+  fill: #08306b;
+}
+#map .overlay {
+  stroke: #000000;
+  stroke-width: 3px;
+}
+
+/* Progress */
+
+#progress .axis,
+#progress .gridv,
+#progress .gridh,
+#progress .current {
+  stroke: #000000;
+  stroke-opacity: 0.2;
+}
+#progress .gridv,
+#progress .gridh {
+  stroke-dasharray: 1, 3;
+}
+#progress .captions,
+#progress .labelsh,
+#progress .labelsv,
+#progress .start {
+  stroke: none;
+  fill: #000000;
+  font-size: 12px;
+}
+
+#progress .captions {
+  text-anchor: middle;
+  font-size: 14px;
+  display: none;
+}
+
+#progress .labelsh,
+#progress .labelsv {
+  text-anchor: middle;
+}
+
+#progress .lines {
+  fill: none;
+  stroke-width: 3px;
+  stroke-dasharray: 4, 4;
+}
+
+#progress .endpoints,
+#progress .points {
+  fill: #ffffff;
+  stroke-width: 4px;
+}
+
+#progress .arrows {
+  display: none;
+}
+
+
+/* Spatial Density */
+
+#spadis .legend {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto 0 auto 0;
+  height: 200px;
+  right: 15px;
+  top: 25px;
+}
+#spadis .legtext {
+  stroke: none;
+  fill: #000000;
+  font-size: 12px;
+}
+
+#spadis .parties {
+  stroke: none;
+  fill: #000000;
+  cursor: default;
+}
+
+#spadis .result {
+  font-size: 12px;
+  /*stroke: #ffffff;*/
+  fill: #000000;
+  /*stroke-opacity: 0.6;*/
+  text-anchor: start;
+  cursor: default;
+  display: none;
+}
+
+/* Newsletter Formular */
+
+#newsletter {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+#newsletter .newsletter-detail {
+  font-size: 14.6px;
+  color: #888;
+}
+
+#newsletter #mc_embed_signup {
+  margin-top: 30px;
+  overflow: hidden;
+}
+
+#newsletter #mce-EMAIL,
+#newsletter #mc-embedded-subscribe {
+  border: 2px solid #777;
+  height: 100%;
+}
+
+#newsletter #mc-embedded-subscribe:hover {
+  background-color: #ccc;
+}
+
+#newsletter #mce-EMAIL {
+  color: #999;
+  width: 100%;
+}
+
+/**
  * .0 - Waiting Page
  */
 
@@ -846,225 +1169,4 @@ object {
 
 .footer .language a.current-locale {
   color: #ef3138;
-}
-
-/**
- * .0 - Media Queries
- */
-
-@media (min-width: 430px) {
-  .countdown {
-    margin-top: 60px;
-  }
-  .countdown .item {
-    height: 180px;
-  }
-  .countdown .timer-circle {
-    height: 180px;
-  }
-  .countdown .time {
-    font-size: 32px;
-  }
-  .countdown .label {
-    font-size: 19px;
-  }
-  .newsletter-form {
-    margin-top: 40px;
-    margin-bottom: 40px;
-  }
-}
-
-/* Small devices (tablets, 768px and up) */
-@media (min-width: 768px) {
-  h1 {
-    font-size: 44px;
-  }
-  .intro .ow-logo img {
-    height: 48px;
-  }
-  .countdown {
-    margin-top: 80px;
-  }
-  .countdown .item {
-    height: 250px;
-  }
-  .countdown .timer-circle {
-    height: 250px;
-  }
-  .countdown .time {
-    font-size: 32px;
-  }
-  .newsletter-form {
-    margin-top: 60px;
-    margin-bottom: 60px;
-  }
-}
-
-/* Medium devices (desktops, 992px and up) */
-@media (min-width: 992px) {
-  .countdown {
-    margin-top: 100px;
-  }
-  .newsletter-form {
-    margin-top: 100px;
-    margin-bottom: 100px;
-  }
-}
-
-/* Large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
-
-}
-
-@media print {
-
-  /* Hide elements */
-
-  form,
-  button,
-  input,
-  select,
-  textarea {
-    display: none !important;
-  }
-
-  /* Font sizes */
-
-  body {
-    font-size: 12pt;
-  }
-
-  h1 {
-    font-size: 24pt;
-  }
-
-  h2 {
-    font-size: 22pt;
-  }
-
-  h3 {
-    font-size: 17pt;
-  }
-
-  h4 {
-    font-size: 12pt;
-  }
-
-  h5 {
-    font-size: 11pt;
-  }
-
-  h6 {
-    font-size: 12pt;
-  }
-
-
-  /* Colors */
-
-  body,
-  .site {
-    background: none !important; /* Brute force since user agents all print differently. */
-  }
-
-  body,
-  a,
-  .site-title a,
-  .twentyseventeen-front-page.has-header-image .site-title,
-  .twentyseventeen-front-page.has-header-video .site-title,
-  .twentyseventeen-front-page.has-header-image .site-title a,
-  .twentyseventeen-front-page.has-header-video .site-title a {
-    color: #222 !important; /* Make sure color schemes don't affect to print */
-  }
-
-  h2,
-  h5,
-  blockquote,
-  .site-description,
-  .twentyseventeen-front-page.has-header-image .site-description,
-  .twentyseventeen-front-page.has-header-video .site-description,
-  .entry-meta,
-  .entry-meta a {
-    color: #777 !important; /* Make sure color schemes don't affect to print */
-  }
-
-  .site-footer {
-    padding: 0;
-  }
-}
-
-/* Flooh Perlot's Chart Styling */
-
-svg
-{
-  overflow: hidden;
-}
-
-line, path
-{
-  shape-rendering: geometricPrecision;
-  stroke-width: 1px;
-  fill: none;
-}
-
-#chart
-{
-  margin: 0 auto 0 auto;
-}
-
-.labels, .values /*, .tlabels, .titles*/
-{
-  text-anchor: middle;
-}
-
-.xaxis path
-{
-  stroke: #333333;
-  stroke-width: 1px;
-  stroke-opacity: 0.3;
-}
-
-.yaxis path
-{
-  stroke: none;
-}
-
-.xaxis text
-{
-  text-anchor: end;
-}
-
-.grid
-{
-  stroke: #333333;
-  stroke-width: 1px;
-  stroke-opacity: 0.3;
-  stroke-dasharray: 2, 4;
-}
-
-.units
-{
-  stroke: #969696;
-  stroke-width: 1px;
-}
-
-.filled
-{
-  fill: #9ecae1;
-}
-
-.filled:hover
-{
-  fill: #08306b;
-}
-
-.overlay
-{
-  stroke: #000000;
-  stroke-width: 3px;
-}
-
-.hl
-{
-  stroke: #000000;
-  stroke-width: 3px;
 }

@@ -66,6 +66,32 @@
 	</div>
 </div>
 
+<div id="newsletter">
+	<div class="newsletter-content">
+		<h2>Newsletter</h2>
+		<div class="row">
+			<div class="newsletter-detail">Abonniere den Offene Wahlen Österreich Newsletter.</div>
+		</div>
+	</div>
+	<div id="mc_embed_signup">
+		<form action="//okfn.us6.list-manage.com/subscribe/post?u=fad98e7fc5a76b79765f0c2b5&amp;id=6b3001676b" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate form-inline" target="_blank" novalidate="novalidate">
+
+			<div class="mc-field-group form-group">
+				<input value="Newsletter Email" name="EMAIL" class="form-control required email" id="mce-EMAIL" aria-required="true" type="email">
+			</div>
+
+			<!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+			<div style="position: absolute; left: -5000px;" aria-hidden="true"><input name="b_fad98e7fc5a76b79765f0c2b5_6b3001676b" tabindex="-1" value="" type="text"></div>
+			<button type="submit" class="button btn btn-default" value="Anmelden" name="subscribe" id="mc-embedded-subscribe">Abo</button>
+
+			<div id="mce-responses" class="clear">
+				<div class="response" id="mce-error-response" style="display:none"></div>
+				<div class="response" id="mce-success-response" style="display:none"></div>
+			</div>
+		</form>
+	</div>
+</div>
+
 <script>
 
 var aut = d3.formatLocale({"decimal":",", "thousands":".","grouping":[3],"currency":["€", ""]});
@@ -183,8 +209,6 @@ q.defer(d3.csv, "{% static 'fiktiv.csv' %}");
 
 q.awaitAll(function(error) {
   if (!error) {
-
-		console.log(arguments);
 
 		// bar
 

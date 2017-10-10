@@ -27,9 +27,6 @@ def export_csv(filename, data):
 def index(request):
 	return render(request, 'viz/index_viz.dtl')
 
-def viz(request):
-	return render(request, 'viz/index_viz.dtl')
-
 def viz_overview(request):
 	return render(request, 'viz/index_viz_overview.dtl')
 
@@ -49,12 +46,12 @@ def viz_results_timeseries(request):
 	return render(request, 'viz/index_viz_result_timeseries.dtl')
 
 def serve_nrw13_csv(request):
-	
+
 	# Create the HttpResponse object with the appropriate CSV header.
 	filename = 'data/export/nrw13.csv'
 	wrapper = FileWrapper(open(filename))
 	response = HttpResponse(wrapper, content_type = 'text/csv')
-	response['Content-Length'] = os.path.getsize(filename)    
+	response['Content-Length'] = os.path.getsize(filename)
 	response['Content-Disposition'] = 'attachment; filename="nrw13.csv"'
 
 	return response

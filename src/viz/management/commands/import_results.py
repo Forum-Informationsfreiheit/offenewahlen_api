@@ -1,7 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.utils import timezone
-from viz.models import PollingStationResult, RawData, ListResult, \
-	PollingStation, RawData, Election, Party, List
+from viz.models import PollingStation, RawData, Election, Party, List, Municipality, District, RegionalElectoralDistrict, State, ListREDResult, REDResult
 import json
 import xml.etree.ElementTree as ET
 import pprint
@@ -24,11 +23,11 @@ class Command(BaseCommand):
 		)
 
 	def handle(self, *args, **options):
-		
+
 		# open config file
 		with open(options['config_file']) as config_file:
 			config = json.loads(config_file.read())
-		
+
 		config['file_path'] = options['result_file']
 		config['election_queryset'] = Election.objects.get(short_name=config['election_short'])
 		config['ts_import'] = timezone.now()
@@ -45,14 +44,14 @@ class Command(BaseCommand):
 		self.write_raw_data_to_database(raw_data, header, config)
 
 		# convert different raw data types to uniform data standard
-		data = self.standardize_raw_data(raw_data, config)	
+		data = self.standardize_raw_data(raw_data, config)
 
 		# mapping of input data keys to database property names
 		data = self.map_keys(data, config)
-			
+
 		# get lists queryset
 		config['lists_queryset'] = self.get_lists_queryset(data, config)
-			
+
 		# write election results to database
 		self.import_results(data, config)
 
@@ -104,7 +103,7 @@ class Command(BaseCommand):
 		Converts the raw data from different inputs to same data format (list of dicts())
 
 		output:
-		- 
+		-
 		"""
 
 		data = []
@@ -118,10 +117,10 @@ class Command(BaseCommand):
 				for elem in mun:
 					tmp.update({elem.tag: elem.text})
 				data.append(tmp)
-		
+
 		elif config['file_type'] == 'txt':
 			print('Warning: Not yet implemented')
-		
+
 		elif config['file_type'] == 'json':
 			input_data = json.loads(raw_data)
 
@@ -139,7 +138,7 @@ class Command(BaseCommand):
 		"""
 		Maps keys of input data to database.
 		"""
-		
+
 		new_data = []
 
 		# map the keys
@@ -156,7 +155,7 @@ class Command(BaseCommand):
 		# get party querysets
 		mappings = config['mappings']
 		lists_queryset = {}
-		
+
 		for key, val in mappings.items():
 			if val not in config['no_list']:
 				try:
@@ -191,7 +190,7 @@ class Command(BaseCommand):
 			# Get eligible voters. Set to none if not in results
 			if config['eligible_voters']:
 				eligible_voters = mun['eligible_voters']
-			else: 
+			else:
 				eligible_voters = None
 
 			# check type of polling station: municipality, regional_electoral_district, state, district, country
@@ -234,7 +233,7 @@ class Command(BaseCommand):
 							votes = None
 						else:
 							votes = mun[key]
-						
+
 						lr = ListResult.objects.update_or_create(
 							polling_station_result = psr[0],
 							election_list = value,
@@ -262,4 +261,47 @@ class Command(BaseCommand):
 		config['lr-entries_updated'] = lr_num_entries_updated
 		print('PollingStationResult table imported: '+ 'new entries: '+str(psr_num_entries_created)+', updated entries: '+str(psr_num_entries_updated))
 		print('ListResult table imported: '+ 'new entries: '+str(lr_num_entries_created)+', updated entries: '+str(lr_num_entries_updated))
-		print('These polling stations where not found:', ps_not_found)	
+		print('These polling stations where not found:', ps_not_found)
+
+	# def compute_aggregates(self, config):
+	# 	"""
+	# 	Compute aggregates from results
+	# 	"""
+	#
+	# 	ele = config['election_queryset']
+	# 	# next: von ListResult auf PollingStationResult gehen und dann auch partei stimmen raus holen und aufsummieren
+	# 	data = PollingStationResult.objects.select_related('polling_station__municipality__district__state', 'polling_station__municipality__regional_electoral_district').all().filter(election=ele)
+	# 	municipalities = []
+	# 	for mun in data:
+	# 		tmp = {}
+	# 		tmp['votes'] = int(mun.votes)
+	# 		tmp['valid'] = int(mun.valid)
+	# 		tmp['invalid'] = int(mun.invalid)
+	# 		tmp['mun_code'] = str(mun.polling_station.municipality)
+	# 		tmp['dis_code'] = str(mun.polling_station.municipality.district)
+	# 		tmp['red_code'] = str(mun.polling_station.municipality.regional_electoral_district)
+	# 		tmp['state_code'] = str(mun.polling_station.municipality.district.state)
+	# 		municipalities.append(tmp)
+	# 	df = pd.DataFrame(municipalities)
+	# 	df['election'] = config['election_queryset']
+	# 	print(df)
+	# 	dis = df.groupby('dis_code').sum()
+	# 	red = df.groupby('red_code').sum()
+	# 	state = df.groupby('state_code').sum()
+	# 	#print(dis)
+	# 	#print(red)
+	# 	#print(state)
+	# 	red_entries = red.T.to_dict()
+	# 	dis_entries = dis.T.to_dict()
+	# 	state_entries = state.T.to_dict()
+	# 	#print(dis_entries)
+	# 	#print(red_entries)
+	# 	#print(state_entries)
+	#
+	# 	#DistrictResult.objects.bulk_create(dis_entries)
+	# 	#REDResult.objects.bulk_create(red_entries)
+	# 	#StateResult.objects.bulk_create(state_entries)
+	#
+	# 	#ListDistrictResult
+	# 	#ListREDResult
+	# 	#ListStateResult

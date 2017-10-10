@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.utils import timezone
-from viz.models import PollingStation, RawData, Election, Party, List, Municipality, District, RegionalElectoralDistrict, State, PollingStationResult
+from viz.models import PollingStation, RawData, Election, Party, List, Municipality, District, RegionalElectoralDistrict, State, PollingStationResult, ListResult
 import json
 import xml.etree.ElementTree as ET
 import pprint

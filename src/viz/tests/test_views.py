@@ -19,7 +19,7 @@ class ViewTest(TestCase):
 		Test the index view.
 		"""
 		response = self.client.get('/')
-		self.assertEqual(response.status_code, 302)
+		self.assertEqual(response.status_code, 200)
 
 	# def test_index_locales(self):
 	# 	"""

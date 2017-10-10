@@ -27,3 +27,4 @@ urlpatterns = [
 	# url(r'^data/nrw13.csv$', views.serve_nrw13_csv, name='serve_nrw13_csv'),
 	# url(r'^api/', include(router.urls)),
 	# url(r'^api/geom/$', views.api_geom, name='api_geom'),
+]

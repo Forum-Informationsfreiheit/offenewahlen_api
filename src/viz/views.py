@@ -35,9 +35,6 @@ def load_test(request):
 def index(request):
 	return render(request, 'viz/index_viz.dtl')
 
-def viz(request):
-	return render(request, 'viz/index_viz.dtl')
-
 def viz_overview(request):
 	return render(request, 'viz/index_viz_overview.dtl')
 

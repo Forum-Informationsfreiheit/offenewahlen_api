@@ -1,11 +1,11 @@
 {% extends "viz/base.dtl" %}
 {% load staticfiles %}
-{% load i18n %}
 
-{% block title %}{% trans 'Website Title' %}{% endblock %}
+{% block title %}#NRW17 Visualisierung{% endblock %}
 
 {% block head %}
 <script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://d3js.org/topojson.v1.min.js"></script>
 {% endblock %}
 
 {% block header %}
@@ -13,48 +13,1013 @@
 {% endblock %}
 
 {% block content %}
-<ul>
-	<li><code>viz/</code>
+
+<div id="bar">
+	<h2>Balken-Diagram</h2>
+	<div class="desc">
+		Beschreibungs-Text.
+	</div>
+
+	<div class="chart">
+	</div>
+</div>
+
+<div id="map">
+	<h2>Karte</h2>
+	<div class="desc">
+		Beschreibungs-Text.
+	</div>
+
+	<div class="chart">
+	</div>
+</div>
+
+<div id="spatdis">
+	<h2>Räumliche Unterschiede dünn, mittel und dicht besiedelte Gemeinden.</h2>
+	<div class="desc">Ein möglicher Unterschied zwischen Stadt und Land in Österreich lässt sich anhand des Urbanisierungsgrades überprüfen: Die Einteilung basiert auf den Kategorien der Europäischen Kommission, die zwei Faktoren berücksichtigt, Bevölkerungszahl pro km² und Bevölkerungszahl der Gemeinde insgesamt. Sie teilt das Gebiet in Rasterzellen, die jeweils einen km² groß sind, darauf bauen die Definitionen auf:
 		<ul>
-			<li><code>results-bar/</code>: <a href="viz/results-bar/" title="Visualisierung Ergebnis Balken">link</a></li>
-			<li><code>results-map/</code>: <a href="viz/results-map/" title="Visualisierung Ergebnis Karte">link</a></li>
-			<li><code>results-mapnrw13/</code>: <a href="viz/results-mapnrw13/" title="Visualisierung Ergebnis Karte NRW13">link</a></li>
-			<li><code>results-mapcanvas/</code>: <a href="viz/results-mapcanvas/" title="Visualisierung Ergebnis Karte Canvas">link</a></li>
-			<li><code>results-timeseries/</code>: <a href="viz/results-timeseries/" title="Visualisierung Ergebnis Zeitreihe">link</a></li>
+			<li>ländlich: weniger als 50 Prozent der Bevölkerung leben in einer Rasterzelle mit 300 EinwohnerInnen, Gesamtbevölkerung unter 5.000</li>
+			<li>mittel: mehr als 50 Prozent der Bevölkerung leben in einer Rasterzelle mit mehr als 300 EinwohnerInnen, aber weniger als 50 Prozent wohnen in einer urbanen Rasterzelle (siehe unten); Gesamtbevölkerung mindestens 5.000</li>
+			<li>städtisch: mehr als 50 Prozent der Bevölkerung leben in einem Raster mit mehr als 1.500 Menschen, Gesamtbevölkerung mindestens 50.000</li>
 		</ul>
-	</li>
-	<li><code>api/</code>
-		<ul>
-			<li><code>result/</code>
-				<ul>
-					<li><code>nrw13/</code>: <a href="api/result/nrw13/" title="API NRW13">link</a></li>
-					<li><code>nrw17/</code>: <a href="api/result/nrw17/" title="API NRW17">link</a></li>
-				</ul>
-			</li>
-			<li><code>base/</code>
-				<ul>
-					<li><code>election/</code>: <a href="api/base/election/" title="API Election">link</a></li>
-					<li><code>pollingstation/</code>: <a href="api/base/pollingstation/" title="API PollingStation">link</a></li>
-					<li><code>municipality/</code>: <a href="api/base/municipality/" title="API Municipality">link</a></li>
-					<li><code>list/</code>: <a href="api/base/list/" title="API List">link</a></li>
-					<li><code>party/</code>: <a href="api/base/party/" title="API Party">link</a></li>
-					<li><code>district/</code>: <a href="api/base/district/" title="API District">link</a></li>
-					<li><code>state/</code>: <a href="api/base/state/" title="API State">link</a></li>
-					<li><code>regionalelectoraldistrict/</code>: <a href="api/base/regionalelectoraldistrict/" title="API RegionalElectoralDistrict">link</a></li>
-				</ul>
-			</li>
-			<li><code>geom/</code>: <a href="api/geom/" title="API Geometry">link</a></li>
-			<li><code>raw/</code>: <a href="api/raw/" title="API Raw Data">link</a></li>
-		</ul>
-	</li>
-	<li><code>data/</code>
-		<ul>
-			<li><code>nrw13.csv</code>: <a href="data/nrw13.csv" title="NRW13 CSV">link</a></li>
-		</ul>
-	</li>
-</ul>
+		Gut 80 Prozent der österreichischen Gemeinden gelten in dieser Logik als "ländlich", es gibt insgesamt nur sechs städtische Regionen: Wien, Graz, Linz, Salzburg, Innsbruck und Klagenfurt.<br><br>
+		Die erste Grafik zeigt den Auszählungsgrad (=Summe der Wahlberechtigten in den bis jetzt ausgezählten Gemeinden) für jede der drei Kategorien sowie insgesamt, die <span style="color: #fee8c8; text-decoration: underline">Balken im Hintergrund</span> stehen für den Anteil der Kategorie an allen Wahlberechtigten (also z.B. der ländlichen Regionen an ganz Österreich).
+	</div>
+	<div id="azg">
+	</div>
+	<div class="desc">
+		Die zweite Grafik zeigt das Ergebnis der Parteien in ländlichen, mittleren und städtischen Gemeinden im Verhältnis zum Gesamtergebnis (jeweils ohne Wahlkarten).
+	</div>
+	<div class="chart">
+		<div class="legend">
+		</div>
+	</div>
+</div>
+
+<div id="progress">
+	<h2>Verlauf der Ergebnisse am Wahlabend.</h2>
+	<div class="desc">
+		Die Grafik zeigt den Verlauf des Gesamtergebnisses (nur Gemeinden, ohne Wahlkarten) am Wahlabend. Die X-Achse steht für den Auszählungsgrad."
+	</div>
+
+	<div class="chart">
+	</div>
+</div>
+
+<script>
+
+var aut = d3.formatLocale({"decimal":",", "thousands":".","grouping":[3],"currency":["€", ""]});
+var percent = d3.formatLocale({"decimal":",", "thousands":".","grouping":[3],"currency":["€", ""]});
+var margin = { top: 20, right: 20, bottom: 30, left: 20 };
+var width = parseInt(d3.select("#spatdis .chart").style("width"), 10) - margin.left - margin.right;
+var height = window.innerHeight - margin.top - margin.bottom - 40 - parseInt(d3.selectAll(".desc").style("height"), 10);
+
+var t = 1000;  //dauer für animationen
+var noparty = ["GKZ", "Name", "Wahlberechtigte", "abgegeben", "gueltig", "ungueltig"];  //alle nicht-partei-felder
+var meta = {"spoe": {"kurz": "SPÖ", "color": "#C83D44"}, "oevp": {"kurz": "ÖVP", "color": "#191919"}, "fpoe": {"kurz": "FPÖ", "color": "#2657A8"}, "gruene": {"kurz": "GRÜNE", "color": "#89A04F"}, "neos": {"kurz": "NEOS", "color": "#F52887"}, "kpoe": {"kurz": "KPÖ", "color": "#9F000F"}, "cpoe": {"kurz": "CPÖ", "color": "#E2E062"}, "pilz": {"kurz": "PILZ", "color": "#72BB72"}, "schnell": {"kurz": "SCHNELL", "color": "#5589A5"}, "gilt": {"kurz": "GILT", "color": "#E9AB17"}, "Sonstige 2013": {"kurz": "Sonstige 2013", "color": "#b0b0b0"}};  //parteikürzel und farben
+var daten = [];
+var xscale_bar = d3.scaleBand().rangeRound([margin.left, width - margin.right]).paddingInner(0.1).paddingOuter(0);
+var yscale_bar = d3.scaleLinear().rangeRound([height - margin.top, margin.bottom]);
+
+//TODO: Mindestmaße festlegen
+if (height < 400) height = 400;
+
+var parties = ["spoe", "oevp", "fpoe", "gruene", "neos", "frank", "kpoe"];  //sollte aus der db kommen
+var labels = {"spoe": "SPÖ", "oevp": "ÖVP", "fpoe": "FPÖ", "gruene": "GRÜNE", "neos": "NEOS", "frank": "FRANK", "kpoe": "KPÖ"};
+var color = {"oevp": "#191919", "spoe": "#ca5670", "fpoe": "#638ccc", "gruene": "#72a555", "kpoe": "#9F000F", "neos": "#F52887", "frank": "#E9AB17", "bzoe": "#F87431", "tie": "grey"};
+
+var urbanisierung, gemeinden;
+var wbr = {"total": 0, "land": 0, "mittel": 0, "stadt": 0}; //wahlberechtigte für den auszählungsgrad
+var current = {}; //auszählungsgrade
+var gueltig = {"total": 0, "land": 0, "mittel": 0, "stadt": 0}; //gültige stimmen für das ergebnis
+var results = [];
+
+var offset_x = 80;
+var offset_y = 75;
+var daten, verlauf;
+
+var raw, map, b, box;
+var projection = d3.geoMercator();
+var gpath = d3.geoPath().projection(projection);
+projection.scale(1).translate([0, 0]);  //anfangswerte für die projektion
+
+
+//TODO: bei der scale überlegen, ob 100% oder nicht
+//azg: offset rechts zwecks beschriftung?
+
+var scale_prog = {"y": d3.scaleLinear().domain([0, 0.5]).rangeRound([height - margin.top, margin.bottom]), "x": d3.scaleLinear().domain([0, 1]).range([margin.left, width - margin.right])};
+
+var scale_spatdis = {"result": d3.scaleLinear().domain([0, 1]).range([0, width - offset_x]), "y": d3.scaleBand().domain(parties).rangeRound([margin.top, height - margin.bottom]).paddingOuter(0).paddingInner(0.3), "classes": d3.scaleBand().domain(d3.range(3)).paddingOuter(0.2).paddingInner(0.1), "azg": d3.scaleLinear().range([0, width - offset_x - 15]), "azg_y": d3.scaleBand().rangeRound([0, 200]).paddingOuter(0).paddingInner(0.1)};
+scale_spatdis.classes.rangeRound([0, scale_spatdis.y.bandwidth()]);
+
+// init bar chart
+
+var svg_bar = d3.select("#bar .chart")
+	.append("svg")
+	.attr("width", width + margin.left + margin.right)
+	.attr("height", height + margin.top + margin.bottom)
+	.attr("id", "svg_bar")
+	.append("g")
+	.attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
+
+// init map
+var svg_map = d3.select("#map .chart")
+	.append("svg")
+	.attr("width", width + margin.left + margin.right)
+	.attr("height", height + margin.top + margin.bottom)
+	.attr("id", "svg_map")
+	.append("g")
+	.attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
+
+// init spatial distribution
+var svg_spatdis = d3.select("#spatdis .chart")
+	.append("svg")
+	.attr("width", width + margin.left + margin.right)
+	.attr("height", height + margin.top + margin.bottom)
+	.attr("id", "svg_spatdis")
+	.append("g")
+	.attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
+
+var legend_spatdis = d3.select("#spatdis .legend")
+	.append("svg")
+	.attr("width", scale_spatdis.classes.bandwidth() * 3 + 60)
+	.attr("height", scale_spatdis.y.bandwidth() + 15)
+	.attr("id", "svg_legend");
+
+var azg_spatdis = d3.select("#spatdis #azg")
+	.append("svg")
+	.attr("width", width + margin.left + margin.right)
+	.attr("height", 200 + margin.top + margin.bottom)  //variable höhe?
+	.attr("id", "svg_azg")
+	.append("g")
+	.attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
+
+// init progress
+var svg_prog = d3.select("#progress .chart")
+	.append("svg")
+	.attr("width", width + margin.left + margin.right)
+	.attr("height", height + margin.top + margin.bottom)
+	.attr("id", "svg_prog")
+	.append("g")
+	.attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
+var line = d3.line().x(function(d) {
+	return scale_prog.x(+d.azg);
+});
+
+var rsz;
+window.onresize = function() {
+	clearTimeout(rsz);
+	rsz = setTimeout(resize, 500);
+};
+//TODO: ein gemeinsames resize?
+// window.onresize = resize;
+
+var q = d3.queue();
+q.defer(d3.json, "{% static 'aut_2017.json' %}");
+q.defer(d3.tsv, "{% static 'daten_2013in2017.txt' %}");
+q.defer(d3.tsv, "{% static 'urbanisierung.txt' %}");
+q.defer(d3.tsv, "{% static 'daten.txt' %}");
+q.defer(d3.csv, "{% static 'fiktiv.csv' %}");
+
+q.awaitAll(function(error) {
+  if (!error) {
+
+		console.log(arguments);
+
+		// bar
+
+		var data = arguments[1][4];
+		for (var x in data[0]) { //nur gesamtergebnis, abhängig vom datensatz
+			if (noparty.indexOf(x) == -1) daten.push({
+				"partei": x, "abs": +data[0][x], "value": +data[0][x] / +data[0].gueltig
+			});
+		}
+
+		daten.sort(function(a, b) {
+			return d3.descending(a.value, b.value);
+		});  //größte partei zuerst
+		xscale_bar.domain(daten.map(function(d) {
+			return d.partei;
+		}));
+		yscale_bar.domain([0, daten[0].value + 0.05]);  //maximalwert ist das höchste ergebnis + 5 prozentpunkte - alternativ zb 100%
+		draw_bar();
+
+		// map
+		raw = arguments[1][0];
+		map = topojson.feature(arguments[1][0], arguments[1][0].objects.gemeinden);
+		box = d3.geoBounds(map);  //dimensionen berechnen
+		b = gpath.bounds(map);
+		var s = .95 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height);  //karte auf 95% skalieren
+		projection.scale(s).center([(box[0][0] + box[1][0])/2, (box[0][1] + box[1][1])/2]).translate([width / 2, height / 2]);  //skalieren und positionieren
+		draw_map();
+
+		// spatial density
+		gemeinden = arguments[1][1].filter(function(d) {
+			return (d.gkz.slice(-2) != "00" && d.gkz.slice(-2) != "99" && d.gkz.slice(0, 2) != "G9") || (d.gkz == "G90001");
+		});
+		urbanisierung = d3.nest().key(function(d) {
+			return "G" + d.gkz; }).object(arguments[1][2]);
+		gemeinden.forEach(function(d) {
+			d.urbanisierung = urbanisierung[d.gkz][0].urbanisierung;
+		});
+		wbr.total = +arguments[1][1].filter(function(d) {
+			return d.gkz == "G00000";
+		})[0].wahlberechtigte;
+		wbr.stadt = d3.sum(gemeinden.filter(function(d) {
+			return d.urbanisierung == "1"; }), function(d) {
+				return d.wahlberechtigte;
+			});
+		wbr.mittel = d3.sum(gemeinden.filter(function(d) {
+			return d.urbanisierung == "2"; }), function(d) {
+				return d.wahlberechtigte;
+			});
+		wbr.land = wbr.total - wbr.stadt - wbr.mittel;
+
+		//fiktive auszählungsgrade
+		current.stadt = Math.round(wbr.stadt * Math.random());
+		current.mittel = Math.round(wbr.mittel * Math.random());
+		current.land = Math.round(wbr.land * Math.random());
+		current.total = current.stadt + current.mittel + current.land;
+
+		scale_spatdis.azg.domain([0, wbr.total]);
+
+		gueltig.total = +arguments[1][1].filter(function(d) {
+			return d.gkz == "G00000";
+		})[0].gueltig;
+		gueltig.stadt = d3.sum(gemeinden.filter(function(d) {
+			return d.urbanisierung == "1";
+		}), function(d) {
+				return d.gueltig;
+			});
+		gueltig.mittel = d3.sum(gemeinden.filter(function(d) {
+			return d.urbanisierung == "2"; }), function(d) {
+				return d.gueltig;
+			});
+		gueltig.land = gueltig.total - gueltig.stadt - gueltig.mittel;
+
+		for (var i = 0, len = parties.length; i < len; i++) {
+			var p = parties[i];
+			var obj = {};
+			obj.p = p;
+			obj.total = d3.sum(gemeinden, function(d) {
+				return +d[p];
+			}) / gueltig.total;
+			obj.classes = [];
+			obj.classes.push(d3.sum(gemeinden.filter(function(d) {
+				return d.urbanisierung == "3"; }),
+				function(d) {
+					return d[p];
+				}) / gueltig.land);
+			obj.classes.push(d3.sum(gemeinden.filter(function(d) {
+				return d.urbanisierung == "2";
+			}), function(d) {
+					return d[p];
+				}) / gueltig.mittel);
+			obj.classes.push(d3.sum(gemeinden.filter(function(d) {
+				return d.urbanisierung == "1";
+			}), function(d) {
+					return d[p];
+				}) / gueltig.stadt);
+			results.push(obj);
+		}
+		draw_spatdis();
+
+		// progress
+		daten = arguments[1][3];
+		verlauf = daten.filter(function(d) {
+			return d.time != "ref";
+		});
+		draw_progress();
+	}
+});
+
+function draw_bar() {
+	svg_bar.selectAll(".bars")  //balken
+		.data(daten)
+		.enter()
+		.append("rect")
+		.attr("x", function(d) {
+			return xscale_bar(d.partei);
+		})
+		.attr("y", yscale_bar(0))
+		.attr("width", xscale_bar.bandwidth())
+		.attr("height", 0)
+		.attr("class", "bars")
+		.style("fill", function(d) {
+			return meta[d.partei].color;
+		})
+		.transition()
+		.delay(t / 2)
+		.duration(t)
+		.attr("y", function(d) {
+			return yscale_bar(d.value);
+		})
+		.attr("height", function(d) {
+			return yscale_bar(0) - yscale_bar(d.value);
+		})
+
+	svg_bar.selectAll(".labels")  //parteinamen
+		.data(xscale_bar.domain())
+		.enter()
+		.append("text")
+		.attr("x", function(d) {
+			return xscale_bar(d) + xscale_bar.bandwidth() / 2;
+		})
+		.attr("y", yscale_bar(0))
+		.attr("dy", "1.2em")
+		.attr("class", "labels")
+		.text(function(d) { return meta[d].kurz; });
+
+	svg_bar.selectAll(".values")  //werte
+		.data(daten)
+		.enter()
+		.append("text")
+		.attr("x", function(d) {
+			return xscale_bar(d.partei) + xscale_bar.bandwidth() / 2;
+		})
+		.attr("y", function(d) {
+			return yscale_bar(d.value);
+		})
+		.attr("dy", "-0.2em")
+		.attr("class", "values")
+		.style("visibility", "hidden")
+		.text(function(d) {
+			return aut.format(",.1%")(d.value);
+		})
+		.transition()
+		.delay(t * 1.5)
+		.style("visibility", "visible");
+}
+
+function draw_map() {
+	svg_map.selectAll(".units")
+		.data(map.features)
+		.enter()
+		.append("path")
+		.attr("d", gpath)
+		.attr("class", "units")
+		.classed("filled", function(d, i) {
+			return i % 2 == 0 ? true : false;
+		});
+
+	for (var i = 1; i < 10; i++) { //overlay der bundeslandgrenzen
+		svg_map.append("path")
+			.datum(topojson.merge(raw, raw.objects.gemeinden.geometries.filter(function(d) {
+				return ("" + d.properties.iso).slice(0, 1) == i;
+			})))  //gkz als string wär gut
+			.attr("d", gpath)
+			.attr("class", "overlay")
+			.attr("id", "path" + i);
+	}
+}
+
+function draw_spatdis() {
+	var azgs = ["total", "land", "mittel", "stadt"];
+	var classes = ["ländlich", "mittel", "städtisch"];
+
+	scale_spatdis.azg_y.domain(azgs);
+
+	azg_spatdis.selectAll(".bg_rect")
+		.data(azgs)
+		.enter()
+		.append("rect")
+		.attr("x", offset_x)
+		.attr("y", function(d) {
+			return scale_spatdis.azg_y(d);
+		})
+		.attr("width", function(d) {
+			return scale_spatdis.azg(wbr[d]);
+		})
+		.attr("height", scale_spatdis.azg_y.bandwidth())
+		.attr("class", "bg_rect")
+		.style("fill", "#ece7f2");
+
+	azg_spatdis.selectAll(".azg_rect")
+		.data(azgs)
+		.enter()
+		.append("rect")
+		.attr("x", offset_x)
+		.attr("y", function(d) {
+			return scale_spatdis.azg_y(d) + 10;
+		})
+		.attr("width", function(d) {
+			return scale_spatdis.azg(current[d]);
+		})
+		.attr("height", scale_spatdis.azg_y.bandwidth() - 20)
+		.attr("class", "azg_rect")
+		.style("fill", "#2b8cbe");
+
+	azg_spatdis.selectAll(".parties")
+		.data(azgs)
+		.enter()
+		.append("text")
+		.attr("x", 0)
+		.attr("y", function(d, i) {
+			return scale_spatdis.azg_y(d) + scale_spatdis.azg_y.bandwidth() / 2;
+		})
+		.attr("dy", "0.35em")
+		.text(function(d, i) {
+			return ["gesamt"].concat(classes)[i];
+		});
+
+	azg_spatdis.selectAll(".values")
+		.data(azgs)
+		.enter()
+		.append("text")
+		.attr("x", function(d) {
+			return scale_spatdis.azg(wbr[d]) + offset_x + 2;
+		})
+		.attr("y", function(d, i) {
+			return scale_spatdis.azg_y(d) + scale_spatdis.azg_y.bandwidth() / 2;
+		})
+		.attr("dy", "0.35em")
+		.attr("class", "values")
+		.text(function(d) {
+			return percent.format(",.0%")(current[d] / wbr[d]);
+		});
+
+	legend_spatdis.append("line")
+		.attr("x1", 60 + scale_spatdis.classes.bandwidth() * 1.5)
+		.attr("x2", 60 + scale_spatdis.classes.bandwidth() * 1.5)
+		.attr("y1", 15)
+		.attr("y2", scale_spatdis.y.bandwidth() + 15)
+		.style("stroke", color.spoe);
+
+	legend_spatdis.append("text")
+		.attr("x", 60 + scale_spatdis.classes.bandwidth() * 1.5)
+		.attr("y", 12)
+		.attr("class", "legtext")
+		.style("text-anchor", "middle")
+		.text("gesamt");
+
+	for (var i = 0; i < 3; i++) {
+		legend_spatdis.append("text")
+			.attr("x", 0)
+			.attr("y", scale_spatdis.classes(i) + scale_spatdis.classes.bandwidth() / 2 + 15)
+			.attr("dy", "0.35em")
+			.attr("class", "legtext")
+			.text(classes[i]);
+
+		legend_spatdis.append("rect")
+			.attr("x", 60)
+			.attr("y", scale_spatdis.classes(i) + 15)
+			.attr("width", scale_spatdis.classes.bandwidth() * 3)
+			.attr("height", scale_spatdis.classes.bandwidth())
+			.style("fill", color.spoe)
+			.style("fill-opacity", 0.3 + 0.3 * i);
+		}
+
+	var g_spatdis = svg_spatdis.selectAll(".gs")
+		.data(results)
+		.enter()
+		.append("g")
+		.attr("class", "gs")
+		.attr("transform", function(d) {
+			return "translate(0, " + scale_spatdis.y(d.p) + ")";
+		});
+
+	g_spatdis.append("text")
+		.attr("x", 0)
+		.attr("y", scale_spatdis.classes.bandwidth() * 2)
+		.attr("class", "parties")
+		.attr("dy", "0.3em")
+		.text(function(d) {
+			return labels[d.p];
+		});
+
+	//TODO
+	//Gesamt-Wert = nur Gemeinden, oder inkl. Wahlkarten? Am Wahltag egal?
+
+	g_spatdis.append("line")
+		.attr("x1", function(d) {
+			return offset_x + scale_spatdis.result(d.total);
+		})
+		.attr("x2", function(d) {
+			return offset_x + scale_spatdis.result(d.total);
+		})
+		.attr("y1", 0)
+		.attr("y2", scale_spatdis.y.bandwidth())
+		.attr("class", "grid")
+		.style("stroke", function(d) {
+			return color[d.p];
+		});
+
+	g_spatdis.selectAll(".bars")
+		.data(function(d) {
+			return d.classes;
+		})
+		.enter()
+		.append("rect")
+		.attr("x", offset_x)
+		.attr("y", function(d, i) {
+			return scale_spatdis.classes(i);
+		})
+		.attr("width", function(d) {
+			return scale_spatdis.result(d);
+		})
+		.attr("height", scale_spatdis.classes.bandwidth())
+		.attr("class", "bars")
+		.style("fill", function(d) {
+			var p = d3.select(this.parentNode).datum().p;
+			return color[p];
+		})
+		.style("fill-opacity", function(d, i) {
+			return 0.3 + 0.3 * i;
+		});
+
+	g_spatdis.selectAll(".result")
+		.data(function(d) {
+			return d.classes;
+		})
+		.enter()
+		.append("text")
+		.attr("x", function(d) {
+			return offset_x + scale_spatdis.result(d) + 4;
+		})
+		.attr("y", function(d, i) {
+			return scale_spatdis.classes(i) + scale_spatdis.classes.bandwidth() / 2;
+		})
+		.attr("dy", "0.35em")
+		.attr("class", "result")
+		.text(function(d) {
+			return percent.format(",.1%")(d);
+		});
+}
+
+function draw_progress() {
+	svg_prog.append("defs").append("marker")  //pfeil für notes
+		.attr("id", "arrow")
+		.attr("viewBox", "0 -5 10 10")
+		.attr("refX", 5)
+		.attr("refY", 0)
+		.attr("markerWidth", 6)
+		.attr("markerHeight", 25)
+		.attr("orient", "auto")
+		.append("path")
+		.attr("d", "M0,-5 L10,0 L0,5")
+		.attr("class","arrowHead");
+
+	svg_prog.append("text")
+		.attr("x", scale_prog.x(1) / 2)
+		.attr("y", scale_prog.y(0))
+		.attr("dy", "2.5em")
+		.attr("class", "captions")
+		.text("Auszählungsgrad");
+
+	svg_prog.append("text")
+		.attr("x", scale_prog.x(0))
+		.attr("y", scale_prog.y(0))
+		.attr("class", "start")
+		.attr("id", "left_up")
+		.attr("dy", "2.2em")
+		.style("text-anchor", "middle")
+		.text("Ergebnis");
+
+	svg_prog.append("text")
+		.attr("x", scale_prog.x(0))
+		.attr("y", scale_prog.y(0))
+		.attr("dy", "3.4em")
+		.attr("class", "start")
+		.attr("id", "left_down")
+		.style("text-anchor", "middle")
+		.text("2013");
+
+	svg_prog.append("text")
+		.attr("x", scale_prog.x(1))
+		.attr("y", scale_prog.y(0))
+		.attr("class", "start")
+		.attr("dy", "2.2em")
+		.attr("id", "right_up")
+		.style("text-anchor", "middle")
+		.text("Ergebnis");
+
+	svg_prog.append("text")
+		.attr("x", scale_prog.x(1))
+		.attr("y", scale_prog.y(0))
+		.attr("dy", "3.4em")
+		.attr("class", "start")
+		.attr("id", "right_down")
+		.style("text-anchor", "middle")
+		.text("2017");
+
+	var positioning = svg_prog.select(".captions").node().getBBox();
+	svg_prog.append("line")
+		.attr("x1", scale_prog.x(1) / 2 + positioning.width * 0.5 + 10)
+		.attr("x2", scale_prog.x(1) / 2 +  positioning.width * 2.5)
+		.attr("y1", positioning.y + positioning.height / 2)
+		.attr("y2", positioning.y + positioning.height / 2)
+		.attr("class", "arrows")
+		.attr("id", "arr_left")
+		.attr("marker-end", "url(#arrow)")
+		.style("stroke", "#000000");
+
+	svg_prog.append("line")
+		.attr("x1", scale_prog.x(1) / 2 - positioning.width * 0.5 - 10)
+		.attr("x2", scale_prog.x(1) / 2 - positioning.width * 2.5)
+		.attr("y1", positioning.y + positioning.height / 2)
+		.attr("y2", positioning.y + positioning.height / 2)
+		.attr("class", "arrows")
+		.attr("id", "arr_right")
+		.attr("marker-end", "url(#arrow)")
+		.style("stroke", "#000000");
+
+	svg_prog.append("line")
+		.attr("x1", scale_prog.x(0))
+		.attr("x2", scale_prog.x(1))
+		.attr("y1", scale_prog.y(0))
+		.attr("y2", scale_prog.y(0))
+		.attr("class", "axis")
+		.attr("id", "xaxis");
+
+	svg_prog.append("line")
+		.attr("x1", scale_prog.x(0))
+		.attr("x2", scale_prog.x(0))
+		.attr("y1", scale_prog.y(0))
+		.attr("y2", scale_prog.y(1))
+		.attr("class", "axis")
+		.attr("id", "yaxis");
+
+	svg_prog.selectAll(".gridv")
+		.data(d3.range(0.25, 1, 0.25))
+		.enter()
+		.append("line")
+		.attr("x1", function(d) { return scale_prog.x(d); })
+		.attr("x2", function(d) { return scale_prog.x(d); })
+		.attr("y1", scale_prog.y(0))
+		.attr("y2", scale_prog.y(1))
+		.attr("class", "gridv");
+
+	svg_prog.selectAll(".gridh")
+		.data(d3.range(0.15, 0.5, 0.15))
+		.enter()
+		.append("line")
+		.attr("x1", scale_prog.x(0))
+		.attr("x2", scale_prog.x(1))
+		.attr("y1", function(d) { return scale_prog.y(d); })
+		.attr("y2", function(d) { return scale_prog.y(d); })
+		.attr("class", "gridh");
+
+	svg_prog.selectAll(".labelsv")
+		.data(d3.range(0.25, 1, 0.25))
+		.enter()
+		.append("text")
+		.attr("x", function(d) { return scale_prog.x(d); })
+		.attr("y", scale_prog.y(0))
+		.attr("dy", "1em")
+		.attr("class", "labelsv")
+		.text(function(d) { return percent.format(",.0%")(d); });
+
+	svg_prog.selectAll(".labelsh")
+		.data(d3.range(0.15, 0.5, 0.15))
+		.enter()
+		.append("text")
+		.attr("x", scale_prog.x(0))
+		.attr("y", function(d) { return scale_prog.y(d); })
+		.attr("dx", "-1em")
+		.attr("dy", "0.3em")
+		.attr("class", "labelsh")
+		.text(function(d) { return percent.format(",.0%")(d); });
+
+	svg_prog.selectAll(".dots")
+		.data(parties)
+		.enter()
+		.append("circle")
+		.attr("cx", function(d) { return scale_prog.x(0); })
+		.attr("cy", function(d) { return scale_prog.y(+daten[0][d] / +daten[0].gueltig); })
+		.attr("r", 10)
+		.attr("class", "dots")
+		.style("fill", function(d) { return color[d]; });
+
+	svg_prog.append("line")
+		.attr("class", "current");
+
+	svg_prog.append("text")
+		.attr("y", scale_prog.y(0) - 2)
+		.attr("class", "currenttext");
+
+	for (var i = 0, len = parties.length; i < len; i++) {
+		line.y(function(d) {
+			return scale_prog.y(+d[parties[i]] / +d.gueltig);
+		});
+		svg_prog.append("path")
+			.datum(verlauf)
+			.attr("d", line)
+			.attr("class", "lines")
+			.attr("id", "line_" + parties[i])
+			.style("stroke", color[parties[i]]);
+
+		svg_prog.append("circle")
+			.attr("cx", function(d) { return scale_prog.x(verlauf[verlauf.length - 1].azg); })
+			.attr("cy", function(d) { return scale_prog.y(+verlauf[verlauf.length - 1][parties[i]] / +verlauf[verlauf.length - 1].gueltig); })
+			.attr("r", 10)
+			.attr("class", "endpoints")
+			.attr("id", "endpoint_" + parties[i])
+			.style("stroke", color[parties[i]])
+			.on("mouseover", function() {
+				svg_prog.select(".current")
+					.attr("x1", scale_prog.x(verlauf[verlauf.length - 1].azg))
+					.attr("x2", scale_prog.x(verlauf[verlauf.length - 1].azg))
+					.attr("y1", scale_prog.y(1))
+					.attr("y2", scale_prog.y(0))
+					.style("display", "block");
+
+				svg_prog.select(".currenttext")
+					.attr("x", scale_prog.x(verlauf[verlauf.length - 1].azg))
+					.attr("dx", "0.2em")
+					.style("display", "block")
+					.text(percent.format(",.0%")(verlauf[verlauf.length - 1].azg));
+				})
+			.on("mouseout", function() { svg.selectAll(".current, .currenttext").style("display", "none"); });
+
+		svg_prog.selectAll(".points_" + parties[i])
+			.data(verlauf.slice(1, verlauf.length - 1))
+			.enter()
+			.append("circle")
+			.attr("cx", function(d) { return scale_prog.x(d.azg); })
+			.attr("cy", function(d) { return scale_prog.y(+d[parties[i]] / +d.gueltig); })
+			.attr("r", 5)
+			.attr("class", "points_" + parties[i])
+			.style("fill", color[parties[i]])
+			.on("mouseover", function(d) {
+				svg_prog.select(".current")
+					.attr("x1", scale_prog.x(d.azg))
+					.attr("x2", scale_prog.x(d.azg))
+					.attr("y1", scale_prog.y(1))
+					.attr("y2", scale_prog.y(0))
+					.style("display", "block");
+				svg_prog.select(".currenttext")
+					.attr("x", scale_prog.x(d.azg))
+					.attr("dx", "0.2em")
+					.style("display", "block")
+					.text(percent.format(",.0%")(d.azg));
+			})
+			.on("mouseout", function() {
+				svg_prog.selectAll(".current, .currenttext").style("display", "none");
+			});
+	}
+}
+
+function resize_bar() {
+	width = parseInt(d3.select("#chart").style("width"), 10) - margin.left - margin.right;
+	height = window.innerHeight - margin.top - margin.bottom - 20;
+
+	xscale_bar.rangeRound([margin.left, width - margin.right]).paddingInner(0.1).paddingOuter(0);
+	yscale_bar.rangeRound([height - margin.top, margin.bottom]);
+
+	d3.select("#svg_bar")
+		.attr("width", width + margin.left + margin.right)
+		.attr("height", height + margin.top + margin.bottom)
+		.select("g")
+		.attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
+
+	svg_bar.selectAll(".bars")
+		.attr("x", function(d) {
+			return xscale_bar(d.partei);
+		})
+		.attr("y", function(d) {
+			return yscale_bar(d.value);
+		})
+		.attr("width", xscale_bar.bandwidth())
+		.attr("height", function(d) {
+			return yscale_bar(0) - yscale_bar(d.value); });
+
+	svg_bar.selectAll(".labels")
+		.attr("x", function(d) {
+			return xscale_bar(d) + xscale_bar.bandwidth() / 2;
+		})
+		.attr("y", yscale_bar(0));
+
+	svg_bar.selectAll(".values")
+		.attr("x", function(d) {
+			return xscale_bar(d.partei) + xscale_bar.bandwidth() / 2;
+		})
+		.attr("y", function(d) {
+			return yscale_bar(d.value);
+		});
+}
+
+function resize_map() {
+	width = parseInt(d3.select("#map .chart").style("width"), 10) - margin.left - margin.right;
+	height = window.innerHeight - margin.top - margin.bottom - 20;
+	var s = .95 / Math.max((b[1][0] - b[0][0]) / width, (b[1][1] - b[0][1]) / height);
+	projection.scale(s).center([(box[0][0] + box[1][0])/2, (box[0][1] + box[1][1])/2]).translate([width / 2, height / 2]);
+
+	d3.select("#svg_map")
+		.attr("width", width + margin.left + margin.right)
+		.attr("height", height + margin.top + margin.bottom)
+		.select("g")
+		.attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
+
+	svg_map.selectAll(".units").attr("d", gpath);
+
+	for (var i = 1; i < 10; i++) {
+		svg_map.select("#path" + i).attr("d", gpath);
+	}
+}
+
+function resize_spatdis() {
+	width = parseInt(d3.select("#spatdis .chart").style("width"), 10) - margin.left - margin.right;
+	height = window.innerHeight - margin.top - margin.bottom - 40 - parseInt(d3.selectAll(".desc").style("height"), 10);
+	if (height < 400) height = 400;
+
+	scale_spatdis.result.range([0, width - offset_x]);
+	scale_spatdis.y.rangeRound([margin.top, height - margin.bottom]);
+	scale_spatdis.classes.rangeRound([0, scale_spatdis.y.bandwidth()]);
+	scale_spatdis.azg.range([0, width - offset_x - 15]);
+	scale_spatdis.azg_y.rangeRound([0, 200]).paddingOuter(0).paddingInner(0.1);
+
+	d3.select("#svg_spatdis")
+		.attr("width", width + margin.left + margin.right)
+		.attr("height", height + margin.top + margin.bottom)
+		.select("g")
+		.attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
+
+	d3.select("#svg_azg")
+		.attr("width", width + margin.left + margin.right)
+		.select("g")
+		.attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
+
+	azg_spatdis.selectAll(".bg_rect")
+		.attr("y", function(d) {
+			return scale_spatdis.azg_y(d);
+		})
+		.attr("width", function(d) {
+			return scale_spatdis.azg(wbr[d]);
+		})
+		.attr("height", scale_spatdis.azg_y.bandwidth());
+
+	azg_spatdis.selectAll(".azg_rect")
+		.attr("y", function(d) {
+			return scale_spatdis.azg_y(d) + 10;
+		})
+		.attr("width", function(d) {
+			return scale_spatdis.azg(current[d]);
+		})
+		.attr("height", scale_spatdis.azg_y.bandwidth() - 20);
+
+	azg_spatdis.selectAll(".parties")
+		.attr("y", function(d) {
+			return scale_spatdis.azg_y(d) + scale_spatdis.azg_y.bandwidth() / 2;
+		})
+
+	azg_spatdis.selectAll(".values")
+		.attr("x", function(d) {
+			return scale_spatdis.azg(wbr[d]) + offset_x + 2;
+		})
+		.attr("y", function(d) {
+			return scale_spatdis.azg_y(d) + scale_spatdis.azg_y.bandwidth() / 2;
+		});
+
+	var g_spatdis = svg_spatdis.selectAll(".gs");
+	g_spatdis.attr("transform", function(d) {
+		return "translate(0, " + scale_spatdis.y(d.p) + ")";
+	});
+
+	g_spatdis.selectAll(".parties")
+		.attr("y", scale_spatdis.classes.bandwidth() * 2);
+
+	g_spatdis.selectAll(".grid")
+		.attr("x1", function(d) {
+			return offset_x + scale_spatdis.result(d.total);
+		})
+		.attr("x2", function(d) {
+			return offset_x + scale_spatdis.result(d.total);
+		})
+		.attr("y1", 0)
+		.attr("y2", scale_spatdis.y.bandwidth());
+
+	g_spatdis.selectAll(".bars")
+		.attr("y", function(d, i) {
+			return scale_spatdis.classes(i);
+		})
+		.attr("width", function(d) {
+			return scale_spatdis.result(d);
+		})
+		.attr("height", scale_spatdis.classes.bandwidth());
+
+	g_spatdis.selectAll(".result")
+		.attr("x", function(d) {
+			return offset_x + scale_spatdis.result(d) + 4;
+		})
+		.attr("y", function(d, i) {
+			return scale_spatdis.classes(i) + scale_spatdis.classes.bandwidth() / 2;
+		});
+}
+
+function resize_progress() {
+	width = parseInt(d3.select("#progress .chart").style("width"), 10) - margin.left - margin.right;
+	height = window.innerHeight - margin.top - margin.bottom - 40 - parseInt(d3.select("#desc").style("height"), 10);
+
+	scale_prog.y.rangeRound([height - margin.top, margin.bottom]);
+	scale_prog.x.range([margin.left, width - margin.right]);
+
+	d3.select("#svg_prog")
+		.attr("width", width + margin.left + margin.right)
+		.attr("height", height + margin.top + margin.bottom)
+		.select("g")
+		.attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
+
+	svg_prog.select(".captions")
+		.attr("x", scale_prog.x(1) / 2)
+		.attr("y", scale_prog.y(0));
+
+	svg_prog.select("#left_up")
+		.attr("x", scale_prog.x(0))
+		.attr("y", scale_prog.y(0));
+
+	svg_prog.select("#left_down")
+		.attr("x", scale_prog.x(0))
+		.attr("y", scale_prog.y(0));
+
+	svg_prog.select("#right_up")
+		.attr("x", scale_prog.x(1))
+		.attr("y", scale_prog.y(0));
+
+	svg_prog.select("#right_down")
+		.attr("x", scale_prog.x(1))
+		.attr("y", scale_prog.y(0));
+
+	var positioning = svg_prog.select(".captions").node().getBBox();
+	svg_prog.select("#arr_right")
+		.attr("x1", scale_prog.x(1) / 2 + positioning.width * 0.5 + 10)
+		.attr("x2", scale_prog.x(1) / 2 +  positioning.width * 2.5)
+		.attr("y1", positioning.y + positioning.height / 2)
+		.attr("y2", positioning.y + positioning.height / 2);
+
+	svg_prog.select("#arr_left")
+		.attr("x1", scale_prog.x(1) / 2 - positioning.width * 0.5 - 10)
+		.attr("x2", scale_prog.x(1) / 2 - positioning.width * 2.5)
+		.attr("y1", positioning.y + positioning.height / 2)
+		.attr("y2", positioning.y + positioning.height / 2);
+
+	svg_prog.select("#xaxis")
+		.attr("x1", scale_prog.x(0))
+		.attr("x2", scale_prog.x(1))
+		.attr("y1", scale_prog.y(0))
+		.attr("y2", scale_prog.y(0));
+
+	svg_prog.select("#yaxis")
+		.attr("x1", scale_prog.x(0))
+		.attr("x2", scale_prog.x(0))
+		.attr("y1", scale_prog.y(0))
+		.attr("y2", scale_prog.y(1));
+
+	svg_prog.selectAll(".gridv")
+		.attr("x1", function(d) { return scale_prog.x(d); })
+		.attr("x2", function(d) { return scale_prog.x(d); })
+		.attr("y1", scale_prog.y(0))
+		.attr("y2", scale_prog.y(1));
+
+	svg_prog.selectAll(".gridh")
+		.attr("x1", scale_prog.x(0))
+		.attr("x2", scale_prog.x(1))
+		.attr("y1", function(d) { return scale_prog.y(d); })
+		.attr("y2", function(d) { return scale_prog.y(d); });
+
+	svg_prog.selectAll(".labelsv")
+		.attr("x", function(d) { return scale_prog.x(d); })
+		.attr("y", scale_prog.y(0));
+
+	svg_prog.selectAll(".labelsh")
+		.attr("x", scale_prog.x(0))
+		.attr("y", function(d) { return scale_prog.y(d); });
+
+	svg_prog.selectAll(".dots")
+		.attr("cx", function(d) { return scale_prog.x(0); })
+		.attr("cy", function(d) { return scale_prog.y(+daten[0][d] / +daten[0].gueltig); });
+
+	svg_prog.select(".currenttext")
+		.attr("y", scale_prog.y(0) - 2);
+
+	for (var i = 0, len = parties.length; i < len; i++)
+		{
+		line.y(function(d) {
+			return scale_prog.y(+d[parties[i]] / +d.gueltig);
+		});
+		svg_prog.select("#line_" + parties[i])
+			.attr("d", line);
+		svg_prog.select("#endpoint_" + parties[i])
+			.attr("cx", function(d) {
+				return scale_prog.x(verlauf[verlauf.length - 1].azg);
+			})
+			.attr("cy", function(d) {
+				return scale_prog.y(+verlauf[verlauf.length - 1][parties[i]] / +verlauf[verlauf.length - 1].gueltig);
+			});
+
+		svg_prog.selectAll(".points_" + parties[i])
+			.attr("cx", function(d) {
+				return scale_prog.x(d.azg);
+			})
+			.attr("cy", function(d) {
+				return scale_prog.y(+d[parties[i]] / +d.gueltig);
+			})
+	}
+}
+
+</script>
+
 {% endblock %}
 
 {% block footer %}
+<script src="{% static 'js/app.js' %}"></script>
 {% endblock %}
-

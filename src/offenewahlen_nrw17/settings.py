@@ -63,8 +63,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-    'corsheaders',
+    #'corsheaders',
+    #'rest_framework',
     #'django.contrib.sitemaps'
     #'django.contrib.static_precompiler',
 ]
@@ -81,7 +81,7 @@ MIDDLEWARE = [
     'django.middleware.locale.LocaleMiddleware',
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True
+#CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'offenewahlen_nrw17.urls'
 
@@ -96,7 +96,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.i18n'
+                #'django.template.context_processors.i18n'
             ],
         },
     },
@@ -153,27 +153,27 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'de'
+# LANGUAGE_CODE = 'de'
+#
+# LOCALE_PATHS = (
+#     os.path.join(BASE_DIR, 'locale/'),
+# )
 
-LOCALE_PATHS = (
-    os.path.join(BASE_DIR, 'locale/'),
-)
-
-REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 100
-}
+#REST_FRAMEWORK = {
+#    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+#    'PAGE_SIZE': 100
+#}
 
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGES = (
-    ('de', _('German')),
-    ('en', _('English')),
-    ('hu', _('Hungarian')),
-    ('hr', _('Croatian')),
-    ('sl', _('Slovenia')),
-    ('sk', _('Slovak')),
-    ('cz', _('Czech')),
-)
+# LANGUAGES = (
+#     ('de', _('German')),
+#     ('en', _('English')),
+#     ('hu', _('Hungarian')),
+#     ('hr', _('Croatian')),
+#     ('sl', _('Slovenia')),
+#     ('sk', _('Slovak')),
+#     ('cz', _('Czech')),
+# )
 
 def get_cache():
   import os

@@ -1,19 +1,1 @@
-{% load i18n %}
 
-{% get_current_language as current_locale %}
-{% get_available_languages as languages %}
-
-<div class="language text-center col-xs-12 col-sm-offset-4 col-sm-4">
-	{% for lang in languages %}
-		{% language lang.0 %}
-			<a href="{% url 'waiting' %}"
-				class="{% if current_locale == lang.0 %}current-locale{% endif %}"
-				title="{% trans lang.1 %}">
-				{{ lang.0 }}
-			</a>
-			{% if languages|length != forloop.counter %}
-				|
-			{% endif %}
-		{% endlanguage %}
-	{% endfor %}
-</div>

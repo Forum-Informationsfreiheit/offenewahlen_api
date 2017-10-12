@@ -27,7 +27,7 @@ class Election(models.Model):
 class RegionalElectoralDistrict(models.Model):
 	short_code = models.CharField(primary_key=True, max_length=2)
 	name = models.CharField(max_length=100, default=None)
-	
+
 	def __str__(self):
 		return "%s" % (self.short_code)
 
@@ -133,7 +133,7 @@ class Municipality(models.Model):
 class PollingStation(models.Model):
 	id = models.AutoField(primary_key=True)
 	name = models.CharField(max_length=200, null=True, default=None)
-	type = models.CharField(max_length=30) # municipal, absentee ballot, 
+	type = models.CharField(max_length=30) # municipal, absentee ballot,
 	municipality = models.ForeignKey(Municipality, on_delete=models.PROTECT, default=None)
 
 	def __str__(self):
@@ -203,45 +203,44 @@ class RawData(models.Model):
 		verbose_name = 'raw data'
 		verbose_name_plural = 'raw data'
 
-class CheckResultFileImport(models.Model):
-	"""
-	docstring for ResultCheck
-	"""
-	id = models.AutoField(primary_key=True)
-	hash_not_present = models.BooleanField()
-	all_checks_true = models.BooleanField()
-
-	def __str__(self):
-		return "%s" % (self.id)
-
-	class Meta:
-		ordering = ['id']
-		verbose_name = 'basedata check'
-		verbose_name_plural = 'basedata checks'
-
-
-class CheckResultPollingStationImport(models.Model):
-	"""
-	docstring for ResultCheck
-	"""
-
-	id = models.AutoField(primary_key=True)
-	import_file = models.ForeignKey(CheckResultFileImport, on_delete=models.PROTECT, default=None)
-	polling_station = models.ForeignKey(PollingStation, on_delete=models.PROTECT, default=None)
-	valid_is_sumparties = models.BooleanField()
-	valid_plus_invalid_equal_votes = models.BooleanField()
-	eligiblevoters_greaterequalthan_votes = models.BooleanField()
-	allproperties_available = models.BooleanField()
-	not_more_properties_than_necessary = models.BooleanField()
-	timestamp_ascending = models.BooleanField()
-	timestamp_between_start_and_now = models.BooleanField()
-	all_checks_true = models.BooleanField()
-
-	def __str__(self):
-		return "%s" % (self.id)
-
-	class Meta:
-		ordering = ['id']
-		verbose_name = 'result check'
-		verbose_name_plural = 'result checks'
-
+# class CheckResultFileImport(models.Model):
+# 	"""
+# 	docstring for ResultCheck
+# 	"""
+# 	id = models.AutoField(primary_key=True)
+# 	hash_not_present = models.BooleanField()
+# 	all_checks_true = models.BooleanField()
+#
+# 	def __str__(self):
+# 		return "%s" % (self.id)
+#
+# 	class Meta:
+# 		ordering = ['id']
+# 		verbose_name = 'basedata check'
+# 		verbose_name_plural = 'basedata checks'
+#
+#
+# class CheckResultPollingStationImport(models.Model):
+# 	"""
+# 	docstring for ResultCheck
+# 	"""
+#
+# 	id = models.AutoField(primary_key=True)
+# 	import_file = models.ForeignKey(CheckResultFileImport, on_delete=models.PROTECT, default=None)
+# 	polling_station = models.ForeignKey(PollingStation, on_delete=models.PROTECT, default=None)
+# 	valid_is_sumparties = models.BooleanField()
+# 	valid_plus_invalid_equal_votes = models.BooleanField()
+# 	eligiblevoters_greaterequalthan_votes = models.BooleanField()
+# 	allproperties_available = models.BooleanField()
+# 	not_more_properties_than_necessary = models.BooleanField()
+# 	timestamp_ascending = models.BooleanField()
+# 	timestamp_between_start_and_now = models.BooleanField()
+# 	all_checks_true = models.BooleanField()
+#
+# 	def __str__(self):
+# 		return "%s" % (self.id)
+#
+# 	class Meta:
+# 		ordering = ['id']
+# 		verbose_name = 'result check'
+# 		verbose_name_plural = 'result checks'

@@ -75,7 +75,7 @@ function draw() {
 		.duration(t)
 		.attr("y", function(d) { return yscale(d.value); })
 		.attr("height", function(d) { return yscale(0) - yscale(d.value); })
-	
+
 	svg.selectAll(".labels")  //parteinamen
 		.data(xscale.domain())
 		.enter()
@@ -114,17 +114,17 @@ function resize() {
 		.attr("height", height + margin.top + margin.bottom)
 		.select("g")
 		.attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
-		
+
 	svg.selectAll(".bars")
 		.attr("x", function(d) { return xscale(d.partei); })
 		.attr("y", function(d) { return yscale(d.value); })
 		.attr("width", xscale.bandwidth())
 		.attr("height", function(d) { return yscale(0) - yscale(d.value); });
-		
+
 	svg.selectAll(".labels")
 		.attr("x", function(d) { return xscale(d) + xscale.bandwidth() / 2; })
 		.attr("y", yscale(0));
-		
+
 	svg.selectAll(".values")
 		.attr("x", function(d) { return xscale(d.partei) + xscale.bandwidth() / 2; })
 		.attr("y", function(d) { return yscale(d.value); });
@@ -135,4 +135,3 @@ function resize() {
 
 {% block footer %}
 {% endblock %}
-

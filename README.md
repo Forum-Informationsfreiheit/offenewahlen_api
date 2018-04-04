@@ -1,34 +1,26 @@
-# #NRW17 Visualisierung
-
-*#NRW17 Visualisierung* ist eine Visualisierung der Ergebnisse der 26. österreichischen Nationalratswahl am 15. Oktober 2017. Ziel ist es, eine spannende und informative Aufbereitung der Informationen für sämtliche BesucherInnen anzubieten. Dabei handelt es sich um eine gemeinsam entwickelte Web-App, welche die Daten am Wahltag vom Bundesinnenministerium um 17 Uhr holt, in eine Datenbank speichert und mittels verschiedenen Visualisierungen online für alle online verfügbar macht.
+# Open Election Data API
 
 ![Offene Wahlen](https://github.com/OKFNat/offenewahlen-at/blob/master/images/logos/ow-at.png)
 
-Die Visualisierung wird am 15. Oktober kurz nach 17:00 Uhr unter **[nrw17.offenewahlen.at](https://nrw17.offenewahlen.at)** online gehen.
-
-
-*#NRW17 Visualisierung* ist ein Teil von dem Projekt [Offene Wahlen Österreich](https://offenwahlen.at), koordiniert vom Verein [Open Knowledge Österreich](https://okfn.at).
-
-
-Wir möchten uns herzlich beim Bundesministerium für Inneres für den unkomplizierten Zugang zu den Ergebnissen am Wahltag bedanken!
+Open Election Data API ist ein Open Source Projekt von [Offene Wahlen Österreich](https://offenwahlen.at), koordiniert vom Verein [Open Knowledge Österreich](https://okfn.at).
 
 **Technisches**
 
-Es handelt sich um eine [Django](https://www.djangoproject.com/)-App (Python Web-Framework) mit einer [PostgreSQL](https://www.postgresql.org/)-Datenbank, die auf [Heroku](https://heroku.com) läuft. Am Frontend wird [D3.js](https://d3js.org/) mit [jQuery](http://jquery.com/) und [Bootstrap](http://getbootstrap.com) verwendet. Es wird nur Open Source Software verwendet, und auch der selbst entwickelte Code steht unter der [MIT](https://opensource.org/licenses/MIT)-Lizenz frei zur verfügung.
+Es handelt sich um eine [Django](https://www.djangoproject.com/)-App (Python Web-Framework) mit einer [PostgreSQL](https://www.postgresql.org/)-Datenbank, die auf [Heroku](https://heroku.com) läuft. Es wird nur Open Source Software verwendet, und auch der selbst entwickelte Code steht unter der [MIT](https://opensource.org/licenses/MIT)-Lizenz frei zur verfügung.
 
 **Das Repository**
 
-In diesem GitHub-Repository wird gemeinsam der Code entwickelt, die Dokumentation verwaltet sowie das Projektmanagement via dem [Wiki](https://github.com/OKFNat/offenewahlen-nrw17/wiki), den [Milestones](https://github.com/OKFNat/offenewahlen-nrw17/milestones?direction=asc&sort=due_date&state=open) und dem [Board](https://github.com/OKFNat/offenewahlen-nrw17/milestones#boards?repos=96933110) abgewickelt.
+In diesem GitHub-Repository wird gemeinsam der Code entwickelt, die Dokumentation verwaltet sowie das Projektmanagement via dem [Wiki](https://github.com/OKFNat/offenewahlen-api/wiki), den [Milestones](https://github.com/OKFNat/offenewahlen-api/milestones?direction=asc&sort=due_date&state=open) und dem [Board](https://github.com/OKFNat/offenewahlen-api/milestones#boards?repos=96933110) abgewickelt.
 
 **Ressourcen**
 
 Über die folgenden Ressourcen findest du alle relevanten Informationen zu dem Projekt:
-* [Wiki](https://github.com/OKFNat/offenewahlen-nrw17/wiki): Wiki von diesem Repository. Dient zur Verwaltung des Wissens und zur Dokumentation. Erster Anlaufpunkt, wenn man mehr über das Projekt erfahren möchte.
-* [Milestones](https://github.com/OKFNat/offenewahlen-nrw17/milestones?direction=asc&sort=due_date&state=open): Hier werden die Projekt-Milestones verwaltet. Gute Übersicht zum Projektstand.
-* [Board](https://github.com/OKFNat/offenewahlen-nrw17/milestones#boards?repos=96933110): Hier werden die Projekt-Aktivitäten mit Hilfe von Milesontes und Issues verwaltet. Hier sieht man, wer was bis wann macht und wie man sich einbringen kann.
+* [Wiki](https://github.com/OKFNat/offenewahlen-api/wiki): Wiki von diesem Repository. Dient zur Verwaltung des Wissens und zur Dokumentation. Erster Anlaufpunkt, wenn man mehr über das Projekt erfahren möchte.
+* [Milestones](https://github.com/OKFNat/offenewahlen-api/milestones?direction=asc&sort=due_date&state=open): Hier werden die Projekt-Milestones verwaltet. Gute Übersicht zum Projektstand.
+* [Board](https://github.com/OKFNat/offenewahlen-api/milestones#boards?repos=96933110): Hier werden die Projekt-Aktivitäten mit Hilfe von Milesontes und Issues verwaltet. Hier sieht man, wer was bis wann macht und wie man sich einbringen kann.
 * [OKFNat/offenewahlen-at](https://github.com/OKFNat/offenewahlen-at): Repository zum Projekt Offene Wahlen Österreich. Das dazugehörige [Wiki](https://github.com/OKFNat/offenewahlen-at/wiki) ist eine umfassende Sammlung von Wissen rund um Wahlen und Open Data - von Wahlforschung über Wahlrecht bis hin zu Visualisierungen und Tools.
 * [OKFNat/offenewahlen-wikidata](https://github.com/OKFNat/offenewahlen-wikidata): Repository rund um Wahlen und Wikidata.
-- [offenewahlen.at](http://offenewahlen.at/): Website des Projektes Offene Wahlen Österreich. Dort findest du Infos zu weiteren Aktivitäten.
+* [offenewahlen.at](http://offenewahlen.at/): Website des Projektes Offene Wahlen Österreich. Dort findest du Infos zu weiteren Aktivitäten.
 
 ## INSTALL
 
@@ -48,7 +40,7 @@ Um die App lokal auf deinem Rechner laufen zu lassen, benötigst du:
 Nach erfolgreicher Installation der benötigten Software: Öffne deine Shell und gehe in den Ordner, in dem du die App haben möchtest. Dort musst du das GitHub-Repository hinein klonen.
 
 ```bash
-git clone https://github.com/OKFNat/offenewahlen-nrw17.git
+git clone https://github.com/OKFNat/offenewahlen-api.git
 ls
 ```
 
@@ -57,7 +49,7 @@ ls
 Du solltest das runtergeladene Repository in deinem Ordner sehen. Geh in den Root-Ordner und erstelle darin das Virtual Environment.
 
 ```bash
-cd offenewahlen-nrw17/
+cd offenewahlen_api/
 virtualenv venv
 ```
 
@@ -110,24 +102,11 @@ Wenn soweit alles gepasst hat, solltest du nun die App im Browser unter [http://
 
 ### Unser Development-Workflow
 
-Um beim Entwickeln der App mitzumachen, empfiehlt es sich zuerst mal den Stand bei den [Milestones](https://github.com/OKFNat/offenewahlen-nrw17/milestones?direction=asc&sort=due_date&state=open), [Projects](https://github.com/OKFNat/offenewahlen-nrw17/projects) und das [Board](https://github.com/OKFNat/offenewahlen-nrw17/milestones#boards?repos=96933110) mit den Issues anzusehen. Mit den Milestones koordinieren wir die großen Projekt-Phasen, und ist ein guter erster Startpunkt zum Verstehen des Entwicklungs-Standes. Mit den Projekten werden die Aufgabenbereiche unterteilt und das Board ermöglicht ein einfaches verwalten der Issues und ist somit die zentrale Übersicht für die Tasks.
-
-Die Entwicklungs-Abfolge wird in folgende *Milestones* unterteilt:
-1. **[Alpha](https://github.com/OKFNat/offenewahlen-nrw17/milestone/5)**
-2. **[Interne Testwahl](https://github.com/OKFNat/offenewahlen-nrw17/milestone/22)**
-3. **[BMI Testwahl](https://github.com/OKFNat/offenewahlen-nrw17/milestone/25)**
-4. **[NRW17](https://github.com/OKFNat/offenewahlen-nrw17/milestone/24)**
-5. **[v2](https://github.com/OKFNat/offenewahlen-nrw17/milestone/26)**
-
-Die verschiedenen Tätigkeitsbereiche werden in folgende *Projects* unterteilt:
-1. **[Backend](https://github.com/OKFNat/offenewahlen-nrw17/projects/2)**
-2. **[Frontend](https://github.com/OKFNat/offenewahlen-nrw17/projects/1)**
-3. **[Projekt Koordination](https://github.com/OKFNat/offenewahlen-nrw17/projects/3)**
-4. **[Deployement](https://github.com/OKFNat/offenewahlen-nrw17/projects/4)**
+Um beim Entwickeln der App mitzumachen, empfiehlt es sich zuerst mal den Stand bei den [Milestones](https://github.com/OKFNat/offenewahlen-api/milestones?direction=asc&sort=due_date&state=open), [Projects](https://github.com/OKFNat/offenewahlen-api/projects) und das [Board](https://github.com/OKFNat/offenewahlen-api/milestones#boards?repos=96933110) mit den Issues anzusehen. Mit den Milestones koordinieren wir die großen Projekt-Phasen, und ist ein guter erster Startpunkt zum Verstehen des Entwicklungs-Standes. Mit den Projekten werden die Aufgabenbereiche unterteilt und das Board ermöglicht ein einfaches verwalten der Issues und ist somit die zentrale Übersicht für die Tasks.
 
 ### Selber coden
 
-Lies zuerst den Absatz davor (Unser Workflow). Dann *forke* dieses Repo und *clone* es auf deinen Rechner um die App lokal zum Laufen bringen (siehe [Install](#install)). Dann such dir am besten ein Issue aus dem [Board](https://github.com/OKFNat/offenewahlen-nrw17/milestones#boards?repos=96933110) und versuch es zu lösen. Wenn du Fragen hast, kannst du dich jederzeit via Email (info@offenewahlen.at) oder unter [Kontakt](http://offenewahlen.at/kontakt) melden. Nachdem du das Issue erledigt hast, musst du die Änderungen mittels Pull Request an dieses GitHub Repository hochladen. 
+Lies zuerst den Absatz davor (Unser Workflow). Dann *forke* dieses Repo und *clone* es auf deinen Rechner um die App lokal zum Laufen bringen (siehe [Install](#install)). Dann such dir am besten ein Issue aus dem [Board](https://github.com/OKFNat/offenewahlen-api/milestones#boards?repos=96933110) und versuch es zu lösen. Wenn du Fragen hast, kannst du dich jederzeit via Email (info@offenewahlen.at) oder unter [Kontakt](http://offenewahlen.at/kontakt) melden. Nachdem du das Issue erledigt hast, musst du die Änderungen mittels Pull Request an dieses GitHub Repository hochladen.
 
 Eine Person vom Team (vermutlich Stefan oder Christopher), werden dann den Pull Request reviewen. Wenn es Probleme gibt, werden wir dies im Pull Request kommentieren, wenn nicht werden wir *mergen*.
 
@@ -135,10 +114,10 @@ Eine Person vom Team (vermutlich Stefan oder Christopher), werden dann den Pull 
 **Ersten Schritte**
 
 1. Dieses Repository durchgehen.
-2. Doku in [#NRW17 Visualisierung Wiki](https://github.com/OKFNat/offenewahlen-nrw17/wiki) durchgehen.
-4. Aufgabenbereiche in [Projects](https://github.com/OKFNat/offenewahlen-nrw17/projects) ansehen.
-5. Task-Management via [Board](https://github.com/OKFNat/offenewahlen-nrw17/milestones#boards?repos=96933110) ansehen.
-4. Task-Management via [Board](https://github.com/OKFNat/offenewahlen-nrw17/milestones#boards?repos=96933110) ansehen.
+2. Doku in [API Wiki](https://github.com/OKFNat/offenewahlen-api/wiki) durchgehen.
+4. Aufgabenbereiche in [Projects](https://github.com/OKFNat/offenewahlen-api/projects) ansehen.
+5. Task-Management via [Board](https://github.com/OKFNat/offenewahlen-api/milestones#boards?repos=96933110) ansehen.
+4. Task-Management via [Board](https://github.com/OKFNat/offenewahlen-api/milestones#boards?repos=96933110) ansehen.
 
 **Ressourcen zum Lernen**
 
@@ -151,14 +130,14 @@ Eine Person vom Team (vermutlich Stefan oder Christopher), werden dann den Pull 
 ### Ordner-Struktur
 
 * `src/`
-  * `offenewahlen_nrw17/`: Hauptordner der Django-App.
-  * `viz/`: Name des Django-Projektes. Wurde von uns einfach so gewählt.
+  * `offenewahlen_api/`: Hauptordner der Django-App.
+  * `austria/`: Name des Django-Projektes. Wurde von uns einfach so gewählt.
     * `management/commands/`: enthält die Python-Scripts, welche man mittels `python manage.py` aufrufen kann.
 	* `static/`: enthält die gesammelten Files des Projektes.
 	  * `css/app.css` enthält das gesamte CSS.
 	  * `js/app.js` enthält das gesamte JavaScript.
 	  * `img/`: Logos, etc.
-	* `templates/`: 
+	* `templates/`:
 	  * `viz/`: Unterordner für Projekt. Enthält die Template-Files.
 	    * `includes/`: enthält verschiedenste Include-Files für die Templates.
 	* `tests/`: enthält die Test-Scripts.
@@ -214,20 +193,20 @@ python src/manage.py compilemessages
 
 ## DOKUMENTATION
 
-Die Dokumentation findet in diesem Repository in den Files [README.md](README.md) und [DATA.md](DATA.md) sowie dem dazugehörigen [GitHub Wiki](https://github.com/OKFNat/offenewahlen-nrw17/wiki) statt. Das Wiki ist eine frei zugängliche Wissens-Sammlung rund um die App und für alle offen zum Verwenden und Verändern. 
+Die Dokumentation findet in diesem Repository in den Files [README.md](README.md) und [DATA.md](DATA.md) sowie dem dazugehörigen [GitHub Wiki](https://github.com/OKFNat/offenewahlen-api/wiki) statt. Das Wiki ist eine frei zugängliche Wissens-Sammlung rund um die App und für alle offen zum Verwenden und Verändern.
 
 ## MITMACHEN
 
-Dies ist ein Open Source Projekt, daher lebt das Projekt von vielen helfenden Händen. 
+Dies ist ein Open Source Projekt, daher lebt das Projekt von vielen helfenden Händen.
 
-Wenn du das Projekt gerne ehrenamtlich unterstützen möchtest, melde dich einfach [direkt bei uns](http://offenewahlen.at/kontakt). Jeder noch so kleiner Beitrag ist wichtig und hilfreich. 
+Wenn du das Projekt gerne ehrenamtlich unterstützen möchtest, melde dich einfach [direkt bei uns](http://offenewahlen.at/kontakt). Jeder noch so kleiner Beitrag ist wichtig und hilfreich.
 
-Aktuell sind wir vor allem **auf der Suche nach einer Person, die uns bei Kommunikation/PR unterstützt**. 
+Aktuell sind wir vor allem **auf der Suche nach einer Person, die uns bei Kommunikation/PR unterstützt**.
 
 Anbei eine paar Ideen, wie man sich bei dem Team einbringen kann:
 * **Kommunikation:** hilf mit beim Bloggen, bei Social Media oder beim erarbeiten einer Kampagne.
-* **Fehler melden**: Wenn du einen Fehler gefunden hast, erstelle bitte ein [Issue](https://github.com/OKFNat/offenewahlen-nrw17/issues/new) dazu. Immer am besten mit Screenshot und möglichst exakter Fehlerbeschreibung.
-* **Fehler beheben**: Sieh dir die [Issues](https://github.com/OKFNat/offenewahlen-nrw17/issues) an und schließe eines. Nähere Infos unter **[Development](#development)**.
+* **Fehler melden**: Wenn du einen Fehler gefunden hast, erstelle bitte ein [Issue](https://github.com/OKFNat/offenewahlen-api/issues/new) dazu. Immer am besten mit Screenshot und möglichst exakter Fehlerbeschreibung.
+* **Fehler beheben**: Sieh dir die [Issues](https://github.com/OKFNat/offenewahlen-api/issues) an und schließe eines. Nähere Infos unter **[Development](#development)**.
 * **Web-Design / Grafik**: mach bei der Daten-Visualisierung am Frontend mit. Auch GrafikerInnen für Logos etc. sind gesucht.
 * **Web-Entwicklung, UX/UI**: alles was mit klassicher Website-Entwicklung zu tun hat - vor allem Frontend UX/UI. Von HTML5 über CSS3 bis hin zu JavaScript (jQuery, Bootstrap, D3).
 * **Django EntwicklerIn**: die App ist mit dem Web-Framework Django umgesetzt. Daher ist hier Know-How sehr gesucht.
@@ -236,16 +215,16 @@ Anbei eine paar Ideen, wie man sich bei dem Team einbringen kann:
 * **Dokumentation**: Die Dokumentation zur App wird für verschiedene User-Gruppen passend aufbereitet bzw. kann sie auch in Englisch übersetzt werden.
 * **[Newsletter](http://offenewahlen.at/newsletter)**: abonniere den Newsletter und bleib am Laufenden.
 * **Funding**: Wir suchen passende Funding-Möglichkeiten, um das Projekt kontinuierlich weiter wachsen zu lassen und zu verbessern. Wenn du eine Idee hast, wie man zu Förderungen kommt oder mit uns gemeinsam einreichen möchtest, meld dich bitte.
-* **[Spenden](https://offenewahlen.at/spenden)**: Du kannst uns auch finanziell unterstützen, indem du eine kleine Spende da lässt. Das Geld wird Projekt-bezogen verwendet und dient zum Verbessern der verschiedenen Aktivitäten von Offene Wahlen Österreich - von der #NRW17-Visualisierung über den Datenstandard bis hin zum Abhalten von Coding-Workshops.
+* **[Spenden](https://offenewahlen.at/spenden)**: Du kannst uns auch finanziell unterstützen, indem du eine kleine Spende da lässt. Das Geld wird Projekt-bezogen verwendet und dient zum Verbessern der verschiedenen Aktivitäten von Offene Wahlen Österreich - von der API über den Datenstandard bis hin zum Abhalten von Coding-Workshops.
 
 **Ersten Schritte**
 
 Es empfiehlt sich, zu Beginn die Dokumentation und unser Projekt-Management kurz anzusehen, um einen Überblick zum Projekt zu bekommen:
 1. Dieses Repository durchgehen.
-2. Doku in [#NRW17 Visualisierung Wiki](https://github.com/OKFNat/offenewahlen-nrw17/wiki) durchgehen.
-3. Entwicklungs-Stand in [Milestones](https://github.com/OKFNat/offenewahlen-nrw17/milestones?direction=asc&sort=due_date&state=open) ansehen.
-4. Aufgabenbereiche in [Projects](https://github.com/OKFNat/offenewahlen-nrw17/projects) ansehen.
-5. Task-Management via [Board](https://github.com/OKFNat/offenewahlen-nrw17/milestones#boards?repos=96933110) ansehen.
+2. Doku in [API Wiki](https://github.com/OKFNat/offenewahlen-api/wiki) durchgehen.
+3. Entwicklungs-Stand in [Milestones](https://github.com/OKFNat/offenewahlen-api/milestones?direction=asc&sort=due_date&state=open) ansehen.
+4. Aufgabenbereiche in [Projects](https://github.com/OKFNat/offenewahlen-api/projects) ansehen.
+5. Task-Management via [Board](https://github.com/OKFNat/offenewahlen-api/milestones#boards?repos=96933110) ansehen.
 6. [Offene Wahlen Österreich Wiki](https://github.com/OKFNat/offenewahlen-at/wiki) durchgehen.
 7. [offenewahlen.at](https://offenewahlen.at) besuchen und Newsletter abonnieren.
 
@@ -253,7 +232,7 @@ Wenn du Fragen hast, kannst du dich jederzeit via Email (info@offenewahlen.at) o
 
 ## DATEN
 
-Für die App werden verschiedene Daten als Grundlage verwendet. Einige werden von anderen übernommen, andere von uns selber zusammen getragen. Beachte: Wir erheben keinen Anspruch auf Vollständigkeit oder Korrektheit, die Qualität der vorhandenen Daten sollte aber recht gut sein. Unser Ziel ist es, erst mal alle notwendigen Daten für die *#NRW17 Visualisierung* zusammen zu tragen. Danach sollen diese Schritt für Schritt erweitert werden. Wir freuen uns sehr über jede Unterstützung dabei. Wenn du einen Fehler findest, oder selber spannende Daten besitzt - **meld dich bitte!** 
+Für die App werden verschiedene Daten als Grundlage verwendet. Einige werden von anderen übernommen, andere von uns selber zusammen getragen. Beachte: Wir erheben keinen Anspruch auf Vollständigkeit oder Korrektheit, die Qualität der vorhandenen Daten sollte aber recht gut sein. Unser Ziel ist es, erst mal alle notwendigen Daten für die *API* zusammen zu tragen. Danach sollen diese Schritt für Schritt erweitert werden. Wir freuen uns sehr über jede Unterstützung dabei. Wenn du einen Fehler findest, oder selber spannende Daten besitzt - **meld dich bitte!**
 
 
 Die Basis-Daten dienen zum Setup der App und als Datengrundlage, um die Ergebnisse passend visualisieren zu können. Die Test-Daten werden zum Testen der einzelnen Prozess-Schritte verwendet. Dies ermöglicht ein verifizieren der App auf seine verschiedenen Funktionen - vom Datenimport bis hin zu Visualisierung.
@@ -267,7 +246,7 @@ Nähere Infos zu den einzelnen Daten findest du unter **[DATA.md](DATA.md)**.
 
 ## COPYRIGHT
 
-Sämtlicher von uns entwickelter Quellcode ist Open Source und steht unter der [MIT](https://opensource.org/licenses/MIT)-Lizenz frei zur verfügung. 
+Sämtlicher von uns entwickelter Quellcode ist Open Source und steht unter der [MIT](https://opensource.org/licenses/MIT)-Lizenz frei zur verfügung.
 
 
 Von uns genutzte Software ist alles Open Source.
@@ -278,5 +257,4 @@ Alle Materialien wie Texte, Bilder und Folien die im Rahmen dieses Projektes ers
 
 ## CI
 
-[![Build Status](https://travis-ci.org/OKFNat/offenewahlen-nrw17.svg?branch=master)](https://travis-ci.org/OKFNat/offenewahlen-nrw17)
-
+[![Build Status](https://travis-ci.org/OKFNat/offenewahlen-api.svg?branch=master)](https://travis-ci.org/OKFNat/offenewahlen-api)

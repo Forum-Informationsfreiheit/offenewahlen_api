@@ -33,25 +33,25 @@ def load_test(request):
 	return response
 
 def index(request):
-	return render(request, 'viz/index_viz.dtl')
+	return render(request, 'austria/index_viz.dtl')
 
 def viz_overview(request):
-	return render(request, 'viz/index_viz_overview.dtl')
+	return render(request, 'austria/index_viz_overview.dtl')
 
 def viz_results_map(request):
-	return render(request, 'viz/index_viz_result_map.dtl')
+	return render(request, 'austria/index_viz_result_map.dtl')
 
 def viz_results_mapnrw13(request):
-	return render(request, 'viz/index_viz_result_mapnrw13.dtl')
+	return render(request, 'austria/index_viz_result_mapnrw13.dtl')
 
 def viz_results_mapcanvas(request):
-	return render(request, 'viz/index_viz_result_mapcanvas.dtl')
+	return render(request, 'austria/index_viz_result_mapcanvas.dtl')
 
 def viz_results_bar(request):
-	return render(request, 'viz/index_viz_result_bar.dtl')
+	return render(request, 'austria/index_viz_result_bar.dtl')
 
 def viz_results_timeseries(request):
-	return render(request, 'viz/index_viz_result_timeseries.dtl')
+	return render(request, 'austria/index_viz_result_timeseries.dtl')
 
 def serve_nrw13_csv(request):
 
@@ -65,13 +65,13 @@ def serve_nrw13_csv(request):
 	return response
 
 def waiting(request):
-	return render(request, 'viz/index_waiting.dtl')
+	return render(request, 'austria/index_waiting.dtl')
 
 def computing(request):
-	return render(request, 'viz/index_computing.dtl')
+	return render(request, 'austria/index_computing.dtl')
 
 def test(request):
-	return render(request, 'viz/index_test.dtl')
+	return render(request, 'austria/index_test.dtl')
 
 @cache_page(60 * 60) # 60mins
 def api_geom(request):

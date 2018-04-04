@@ -1,5 +1,0 @@
-<svg viewBox="0 0 100 100" class="timer-circle">
-	<circle cx="50" cy="50" r="39" stroke-width="2" stroke="#ef3340"/>
-	<circle cx="50" cy="50" r="40" stroke-width="1" stroke="#cc3340"/>
-</svg>
-

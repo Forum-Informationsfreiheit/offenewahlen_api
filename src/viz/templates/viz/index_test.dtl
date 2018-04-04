@@ -1,9 +1,0 @@
-{% extends "viz/base.dtl" %}
-
-{% block title %}NRW17 - Statistiken{% endblock %}
-
-{% block content %}
-	<h1>Tests</h1>
-	<p>Hier werden nach dem Import der Daten die Test-Ergebnisse sowie relevante statistische Metriken angezeigt. Diese Seite ist nur zur internen Verwendung des Offene Wahlen Österreich Teams gedacht.</p>
-{% endblock %}
-

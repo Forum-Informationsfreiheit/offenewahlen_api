@@ -83,7 +83,7 @@ MIDDLEWARE = [
 
 #CORS_ORIGIN_ALLOW_ALL = True
 
-ROOT_URLCONF = 'offenewahlen_nrw17.urls'
+ROOT_URLCONF = 'offenewahlen_api.urls'
 
 TEMPLATES = [
     {
@@ -102,7 +102,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'offenewahlen_nrw17.wsgi.application'
+WSGI_APPLICATION = 'offenewahlen_api.wsgi.application'
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',

@@ -1,8 +1,8 @@
 {
-  "name": "offenewahlen_nrw17",
-  "description": "Austrian National Council Election 2017 Visualization",
-  "website": "https://nrw17.offenewahlen.at",
-  "repository": "https://github.com/OKFNat/offenewahlen-nrw17",
+  "name": "offenewahlen_api",
+  "description": "Open Election Data API from Austria",
+  "website": "https://offenewahlen.at",
+  "repository": "https://github.com/OKFNat/offenewahlen-api",
   "logo": "http://offenewahlen.at/assets/logos/offene-wahlen-small.png",
   "environments": {
     "test": {
@@ -15,4 +15,3 @@
     }
   }
 }
-  

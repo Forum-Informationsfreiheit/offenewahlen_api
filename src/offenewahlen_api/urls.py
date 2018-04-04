@@ -23,7 +23,7 @@ from django.contrib import admin
 # from django.contrib.sitemaps.views import sitemap
 
 urlpatterns = [
-    url(r'^', include('viz.urls')),
+    url(r'^', include('austria.urls')),
     url(r'^admin/', admin.site.urls),
     # url(r'^i18n/', include('django.conf.urls.i18n')),
     # url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap')

@@ -10,4 +10,5 @@ notes.md
 docs/
 *.sqlite3
 config.json
-
+node_modules/
+src/static/

@@ -7,7 +7,7 @@
   "environments": {
     "test": {
       "scripts": {
-        "test": "nose viz/tests"
+        "test": "nose austria/tests"
       },
       "addons":[
         "heroku-postgresql"

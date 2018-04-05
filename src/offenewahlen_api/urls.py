@@ -30,5 +30,5 @@ urlpatterns = [
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 # urlpatterns += i18n_patterns(
-#     url(r'^', include('viz.urls')),
+#     url(r'^', include('austria.urls')),
 # )

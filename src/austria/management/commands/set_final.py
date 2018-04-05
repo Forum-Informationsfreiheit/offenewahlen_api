@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
-from viz.models import Election
+from austria.models import Election
 
 class Command(BaseCommand):
 

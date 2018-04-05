@@ -1,7 +1,7 @@
 from django.test import Client, TestCase
 from django.core.management import call_command
 from django.utils import timezone
-from viz.models import RawData, Election, PollingStationResult
+from austria.models import RawData, Election, PollingStationResult
 import datetime
 import os
 import json
@@ -26,13 +26,13 @@ class ImportTest(TestCase):
 		results_file = test_path + '/data/example_01.json'
 		mapping_file = test_path + '/data/example_config.json'
 		call_command('import_results', results_file, mapping_file)
-			
+
 
 	def test_import_json_result_data_with_mapping(self):
 		"""
 		Tests an json import of results.
 		"""
-		
+
 		number_of_results = RawData.objects.count()
 		self.assertEqual(number_of_results, 1)
 

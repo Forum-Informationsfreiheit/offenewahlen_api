@@ -1,6 +1,6 @@
 # from rest_framework import serializers
 #
-# from viz import models
+# from austria import models
 #
 #
 # class WikidataHyperlinkedIdentityField(serializers.HyperlinkedIdentityField):

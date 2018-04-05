@@ -1,4 +1,4 @@
 include LICENSE
 include README.rst
-recursive-include viz/static *
-recursive-include viz/templates *
+recursive-include austria/static *
+recursive-include austria/templates *

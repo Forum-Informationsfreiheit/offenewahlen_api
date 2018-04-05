@@ -1,20 +1,18 @@
 {% extends "austria/base.dtl" %}
 {% load staticfiles %}
-{% load i18n %}
 
-{% block title %}API - {% trans 'Website Title' %}{% endblock %}
+{% block title %}Offene Wahlen Open Data API{% endblock %}
 
 {% block head %}
 {% endblock %}
 
 {% block header %}
+<h1 class="text-center">Offene Wahlen Open Data API</h1>
 {% endblock %}
 
 {% block content %}
-<div>
-	<h1>Offene Wahlen Open Data API</h1>
-</div>
 {% endblock %}
 
 {% block footer %}
+<script src="{% static 'js/app.js' %}"></script>
 {% endblock %}

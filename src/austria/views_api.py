@@ -2,8 +2,8 @@
 # from rest_framework.views import APIView
 # from rest_framework.response import Response
 #
-# from viz import models
-# from viz import serializers
+# from austria import models
+# from austria import serializers
 #
 #
 # class ElectionInterface(viewsets.ReadOnlyModelViewSet):

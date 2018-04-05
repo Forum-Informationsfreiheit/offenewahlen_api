@@ -2,7 +2,7 @@ import datetime
 import os
 from django.test import Client, TestCase
 from django.core.management import call_command
-from viz.models import Municipality
+from austria.models import Municipality
 
 
 class SetupTest(TestCase):

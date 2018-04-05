@@ -110,7 +110,6 @@ Lies zuerst den Absatz davor (Unser Workflow). Dann *forke* dieses Repo und *clo
 
 Eine Person vom Team (vermutlich Stefan oder Christopher), werden dann den Pull Request reviewen. Wenn es Probleme gibt, werden wir dies im Pull Request kommentieren, wenn nicht werden wir *mergen*.
 
-
 **Ersten Schritte**
 
 1. Dieses Repository durchgehen.
@@ -138,7 +137,7 @@ Eine Person vom Team (vermutlich Stefan oder Christopher), werden dann den Pull 
 	  * `js/app.js` enthält das gesamte JavaScript.
 	  * `img/`: Logos, etc.
 	* `templates/`:
-	  * `viz/`: Unterordner für Projekt. Enthält die Template-Files.
+	  * `austria/`: Unterordner für Projekt. Enthält die Template-Files.
 	    * `includes/`: enthält verschiedenste Include-Files für die Templates.
 	* `tests/`: enthält die Test-Scripts.
   * `static/`: enthält die gesammelten Files aus allen Projekten (in unserem Fall ja nur ein Projekt). Wird von Python automatisch erstellt.
@@ -155,7 +154,7 @@ Eine Person vom Team (vermutlich Stefan oder Christopher), werden dann den Pull 
 
 Wenn Änderungen am Datenmodell, also an den Klassen in models.py, vorgenommen werden, müssen diese in die Datenbank migriert werden.
 ```bash
-python src/manage.py makemigrations viz
+python src/manage.py makemigrations austria
 python src/manage.py makemigrations
 python src/manage.py migrate
 ```
@@ -166,7 +165,7 @@ XML-Testergebnisse von lokalem Pfad importieren
 ```bash
 python src/manage.py importxml --local_path data/test/example_1.xml
 ```
-
+austria
 **Tests durchführen**
 
 ```bash

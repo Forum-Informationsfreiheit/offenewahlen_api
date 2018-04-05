@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.utils import timezone
-from viz.models import PollingStation, Election, Party, RegionalElectoralDistrict, State, District, Municipality, List
+from austria.models import PollingStation, Election, Party, RegionalElectoralDistrict, State, District, Municipality, List
 import json
 import datetime
 import os
@@ -45,7 +45,7 @@ class Command(BaseCommand):
 		# import parties
 		parties = self.open_jsonfile(setup_path + 'parties.json')
 		self.import_parties(parties, config)
-		
+
 		# import lists
 		lists = self.open_jsonfile(setup_path + 'lists.json')
 		self.import_lists(lists, config)
@@ -221,7 +221,7 @@ class Command(BaseCommand):
 				short_code = str(s_key),
 				name = s_val['name']
 			)
-			
+
 			if s[1] == True:
 				if config['log_detail'] == 'high':
 					print('New state entry "'+str(s_key)+'" created.')

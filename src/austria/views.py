@@ -9,7 +9,7 @@ from django.shortcuts import render
 from django.template import loader
 from django.template.context_processors import csrf
 from django.views.decorators.cache import cache_page
-from viz.models import PollingStationResult, ListResult, PollingStation, Election, Municipality, RegionalElectoralDistrict, District, State, Party, RawData, List
+from austria.models import PollingStationResult, ListResult, PollingStation, Election, Municipality, RegionalElectoralDistrict, District, State, Party, RawData, List
 from wsgiref.util import FileWrapper
 
 def export_csv(filename, data):
@@ -33,25 +33,7 @@ def load_test(request):
 	return response
 
 def index(request):
-	return render(request, 'austria/index_viz.dtl')
-
-def viz_overview(request):
-	return render(request, 'austria/index_viz_overview.dtl')
-
-def viz_results_map(request):
-	return render(request, 'austria/index_viz_result_map.dtl')
-
-def viz_results_mapnrw13(request):
-	return render(request, 'austria/index_viz_result_mapnrw13.dtl')
-
-def viz_results_mapcanvas(request):
-	return render(request, 'austria/index_viz_result_mapcanvas.dtl')
-
-def viz_results_bar(request):
-	return render(request, 'austria/index_viz_result_bar.dtl')
-
-def viz_results_timeseries(request):
-	return render(request, 'austria/index_viz_result_timeseries.dtl')
+	return render(request, 'austria/index.dtl')
 
 def serve_nrw13_csv(request):
 

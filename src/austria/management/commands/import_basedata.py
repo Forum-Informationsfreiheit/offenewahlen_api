@@ -274,11 +274,11 @@ class Command(BaseCommand):
 					print('Warning: district not found.')
 
 			m = Municipality.objects.update_or_create(
-				code = str(mun['municipality_code']),
-				kennzahl = str(mun['municipality_kennzahl']),
-				name = mun['name'],
-				regional_electoral_district = red,
-				district = d
+				code=str(mun['municipality_code']),
+				kennzahl=str(mun['municipality_kennzahl']),
+				name=mun['name'],
+				regional_electoral_district=red,
+				district=d
 			)
 			if m[1] == True:
 				if config['log_detail'] == 'high':

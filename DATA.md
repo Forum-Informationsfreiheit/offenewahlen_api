@@ -273,19 +273,6 @@ Standard-Werte:
 * id: interne ID
 * LIST_SHORT_NAME+ELECTION_SHORT_NAME: für die Listen
 
-## Test-Daten
-
-### JSON BMI
-
-Das Innenministerium liefert die Ergebnisse zum ersten Mal in JSON-Dateiformat aus.
-
-* `src/viz/tests/example_COUNTER.json`: Ergebnis-Datei
-* `src/viz/tests/example_config.json`: Config-Datei für die Ergebnis-Datei
-
-Die JSON-Dateien werden mit dem selben Dateinamen auch online unter [http://stefankasberger.at/wp-content/uploads/nrw17/](http://stefankasberger.at/wp-content/uploads/nrw17/) erreichbar gemacht.
-
-Folgende Ergebnisse sind darin enthalten:
-
 ## API 
 
 Die Django-App wird die benötigten Daten ab dem Wahltag über eine restful-API ausliefern.

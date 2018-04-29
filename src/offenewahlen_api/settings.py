@@ -44,10 +44,6 @@ SECRET_KEY = '$x33hwfkh1ov_zcs4cv9o%t%%anrwf3#($q(=sg%vv%%(ab&5b'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'nrw17-offenewahlenat-staging.herokuapp.com',
-    'nrw17-offenewahlenat.herokuapp.com',
-    'nrw17-staging.offenewahlen.at',
-    'nrw17.offenewahlen.at',
     '127.0.0.1',
     '0.0.0.0',
     'localhost'
@@ -63,10 +59,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #'corsheaders',
-    #'rest_framework',
-    #'django.contrib.sitemaps'
-    #'django.contrib.static_precompiler',
+    'rest_framework',
+    'rest_framework_swagger'
 ]
 
 MIDDLEWARE = [

@@ -33,10 +33,8 @@ class Command(BaseCommand):
 		config['ts_import'] = timezone.now()
 		config['log_detail'] = 'middle'
 
-		raw_data = self.get_data(config['file_path'])
-
-		# convert different raw data types to uniform data standard
-		data = self.standardize_raw_data(raw_data, config)
+		# import election results from file
+		data = self.open_results_file(config['file_path'])
 
 		# mapping of input data keys to database property names
 		data = self.map_keys(data, config)
@@ -47,34 +45,13 @@ class Command(BaseCommand):
 		# write election results to database
 		self.import_results(data, config)
 
-	def get_data(self, local_path):
+	def open_results_file(self, local_path):
 		"""
 		Get the data from a local directory.
 		"""
 		print('Importing data from: {}'.format(local_path))
 		with open(local_path) as data_file:
-			data = data_file.read()
-
-		return data
-
-	def standardize_raw_data(self, raw_data, config):
-		"""
-		Converts the raw data from different inputs to same data format (list of dicts())
-
-		output:
-		-
-		"""
-
-		data = []
-		input_data = json.loads(raw_data)
-
-		if config['data_format'] == 'ow-at':
-			for key, val in input_data.items():
-				tmp = val
-				tmp[config['spatial_id']] = key
-				data.append(tmp)
-		elif config['data_format'] == 'bmi':
-			data = input_data
+			data = json.loads(data_file.read())
 
 		return data
 

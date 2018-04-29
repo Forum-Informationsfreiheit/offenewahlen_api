@@ -6,8 +6,8 @@
 	"file_location": "local",
 	"file_type": "json",
 	"data_format": "ow-at",
-	"status": "official_result",
 	"eligible_voters": false,
+	"spatial_id": "municipality_code",
 	"mappings": {
 		"municipality_kennzahl": "municipality_kennzahl",
 		"municipality_code": "municipality_code",
@@ -29,14 +29,15 @@
 		"der wandel": "wandel_nrw13",
 		"slp": "slp_nrw13",
 		"bzoe": "bzoe_nrw13",
-		"neos": "neos_nrw13"
+		"neos": "neos_nrw13",
+		"spatial_id": "spatial_id"
 	},
 	"no_list": [
-		"id", 
-		"municipality_code", 
-		"municipality_kennzahl", 
-		"invalid", 
-		"valid", 
+		"id",
+		"municipality_code",
+		"municipality_kennzahl",
+		"invalid",
+		"valid",
 		"votes"
-	]	
+	]
 }

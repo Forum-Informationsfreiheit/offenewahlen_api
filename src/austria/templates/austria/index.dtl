@@ -8,8 +8,8 @@
 
 {% block header %}
 <h1 class="text-center">Offene Wahlen Open Data API</h1>
-<h3><a href="/api">API (OpenAPI 3.0)</a></h3>
-<h3><a href="/api/docs">Documentation</a></h3>
+<h3><a href="/api">API</a></h3>
+<h3><a href="/api/docs">Doc & UI</a></h3>
 {% endblock %}
 
 {% block content %}

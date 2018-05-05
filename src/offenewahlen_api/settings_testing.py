@@ -16,9 +16,11 @@ if 'TRAVIS' in os.environ:
             'PORT': '',
         }
     }
-elif os.environ['DATABASE_URL']:
-    from offenewahlen_api.settings_user import *
-    SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
 else:
     from offenewahlen_api.settings_user import *
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(BASE_DIR, 'app.db')
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'app.sqlite3')
+            }
+    }

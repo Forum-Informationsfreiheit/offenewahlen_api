@@ -16,10 +16,11 @@ install:
 
 before_script:
   - psql -c "CREATE DATABASE travis_ci_test;" -U postgres
-  - coverage run --source=. src/manage.py test austria --noinput
+
 
 script:
-  - python src/manage.py test
+  - cd src/
+  - pytest --doctest-modules --cov=austria --cov-report term-missing austria/tests/
 
 after_success:
   - coveralls

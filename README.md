@@ -151,7 +151,8 @@ python src/manage.py migrate
 **Tests durchführen**
 
 ```bash
-python src/manage.py test
+cd src/
+pytest --doctest-modules --cov=austria --cov-report term-missing austria/tests/
 ```
 
 **Coverage**

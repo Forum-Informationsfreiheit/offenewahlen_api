@@ -16,7 +16,6 @@ install:
 
 before_script:
   - psql -c "CREATE DATABASE travis_ci_test;" -U postgres
-  - python src/manage.py migrate --noinput
   - coverage run --source=. src/manage.py test austria --noinput --settings=offenewahlen_api.setting
 
 script:

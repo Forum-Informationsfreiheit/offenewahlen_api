@@ -6,6 +6,8 @@ Open Election Data API ist ein Open Source Projekt von [Offene Wahlen Österreic
 
 [![Build Status](https://travis-ci.org/OKFNat/offenewahlen-api.svg?branch=master)](https://travis-ci.org/OKFNat/offenewahlen-api)
 
+[![Coverage Status](https://coveralls.io/repos/github/OKFNat/offenewahlen_api/badge.svg?branch=master)](https://coveralls.io/github/OKFNat/offenewahlen_api?branch=master)
+
 **Technisches**
 
 Es handelt sich um eine [Django](https://www.djangoproject.com/)-App (Python Web-Framework) mit einer [PostgreSQL](https://www.postgresql.org/)-Datenbank. Es wird nur Open Source Software verwendet, und auch der selbst entwickelte Code steht unter der [MIT](https://opensource.org/licenses/MIT)-Lizenz frei zur verfügung.

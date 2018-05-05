@@ -79,7 +79,7 @@ Then set the settings file:
 * settings_production
 
 ```
-export DJANGO_SETTINGS_MODULE=offenewahlen_api.SETTINGSFILE
+export DJANGO_SETTINGS_MODULE=offenewahlen_api.settings_development
 ```
 
 **4. Datenbank initialisieren**

@@ -4,7 +4,7 @@
 
 Open Election Data API ist ein Open Source Projekt von [Offene Wahlen Österreich](https://offenwahlen.at), koordiniert vom Verein [Open Knowledge Österreich](https://okfn.at).
 
-[![Build Status](https://travis-ci.org/OKFNat/offenewahlen-api.svg?branch=master)](https://travis-ci.org/OKFNat/offenewahlen-api)
+[![Build Status](https://travis-ci.org/OKFNat/offenewahlen_api.svg?branch=master)](https://travis-ci.org/OKFNat/offenewahlen_api)
 
 [![Coverage Status](https://coveralls.io/repos/github/OKFNat/offenewahlen_api/badge.svg?branch=master)](https://coveralls.io/github/OKFNat/offenewahlen_api?branch=master)
 

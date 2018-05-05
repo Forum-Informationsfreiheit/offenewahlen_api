@@ -17,7 +17,7 @@ if 'TRAVIS' in os.environ:
 			'PORT': '',
 	}
 }
-elif os.environ.get('DATABASE_URL') is None:
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(BASE_DIR, 'app.db')
-else:
+elif os.environ['DATABASE_URL']:
     SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
+else:
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(BASE_DIR, 'app.db')

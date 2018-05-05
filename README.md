@@ -12,7 +12,7 @@ Es handelt sich um eine [Django](https://www.djangoproject.com/)-App (Python Web
 
 **Das Repository**
 
-In diesem GitHub-Repository wird gemeinsam der Code entwickelt, die Dokumentation verwaltet sowie das Projektmanagement via dem [Wiki](https://github.com/OKFNat/offenewahlen-api/wiki), den [Milestones](https://github.com/OKFNat/offenewahlen-api/milestones?direction=asc&sort=due_date&state=open) und dem [Board](https://github.com/OKFNat/offenewahlen-api/milestones#boards?repos=96933110) abgewickelt.
+In diesem GitHub-Repository wird gemeinsam der Code entwickelt, sowie das Projektmanagement mitsamt Dokumentation verwaltet.
 
 **Ressourcen**
 
@@ -21,7 +21,6 @@ In diesem GitHub-Repository wird gemeinsam der Code entwickelt, die Dokumentatio
 * [Milestones](https://github.com/OKFNat/offenewahlen-api/milestones?direction=asc&sort=due_date&state=open): Hier werden die Projekt-Milestones verwaltet. Gute Übersicht zum Projektstand.
 * [Board](https://github.com/OKFNat/offenewahlen-api/milestones#boards?repos=96933110): Hier werden die Projekt-Aktivitäten mit Hilfe von Milesontes und Issues verwaltet. Hier sieht man, wer was bis wann macht und wie man sich einbringen kann.
 * [OKFNat/offenewahlen-at](https://github.com/OKFNat/offenewahlen-at): Repository zum Projekt Offene Wahlen Österreich. Das dazugehörige [Wiki](https://github.com/OKFNat/offenewahlen-at/wiki) ist eine umfassende Sammlung von Wissen rund um Wahlen und Open Data - von Wahlforschung über Wahlrecht bis hin zu Visualisierungen und Tools.
-* [OKFNat/offenewahlen-wikidata](https://github.com/OKFNat/offenewahlen-wikidata): Repository rund um Wahlen und Wikidata.
 * [offenewahlen.at](http://offenewahlen.at/): Website des Projektes Offene Wahlen Österreich. Dort findest du Infos zu weiteren Aktivitäten.
 
 ## INSTALL
@@ -122,14 +121,6 @@ Eine Person vom Team (vermutlich Stefan oder Christopher), werden dann den Pull 
 3. Aufgabenbereiche in [Projects](https://github.com/OKFNat/offenewahlen-api/projects) ansehen.
 4. Task-Management via [Board](https://github.com/OKFNat/offenewahlen-api/milestones#boards?repos=96933110) ansehen.
 
-**Ressourcen zum Lernen**
-
-* Python: [Kurs @ Udacity](https://de.udacity.com/course/programming-foundations-with-python--ud036/), [The Hitchhiker's Guide to Python](http://docs.python-guide.org/en/latest/)
-* Django: [Tutorial](https://docs.djangoproject.com/en/1.11/intro/tutorial01/), [The Django Book](https://djangobook.com/)
-* JavaScript: [Kurs @ Udacity](https://de.udacity.com/course/javascript-basics--ud804/)
-* jQuery: [Kurs @ Udacity](https://de.udacity.com/course/intro-to-jquery--ud245/)
-* D3.js: [Kurs @ Udacity](https://de.udacity.com/course/data-visualization-and-d3js--ud507/)
-
 ### Ordner-Struktur
 
 * `src/`
@@ -156,14 +147,6 @@ python src/manage.py makemigrations austria
 python src/manage.py makemigrations
 python src/manage.py migrate
 ```
-
-**Daten importieren**
-
-XML-Testergebnisse von lokalem Pfad importieren
-```bash
-python src/manage.py importxml --local_path data/test/example_1.xml
-```
-austria
 
 **Tests durchführen**
 
@@ -216,14 +199,14 @@ Anbei eine paar Ideen, wie man sich bei dem Team einbringen kann:
 
 **Ersten Schritte**
 
-Es empfiehlt sich, zu Beginn die Dokumentation und unser Projekt-Management kurz anzusehen, um einen Überblick zum Projekt zu bekommen:
-1. Dieses Repository durchgehen.
-2. Doku in [API Wiki](https://github.com/OKFNat/offenewahlen-api/wiki) durchgehen.
-3. Entwicklungs-Stand in [Milestones](https://github.com/OKFNat/offenewahlen-api/milestones?direction=asc&sort=due_date&state=open) ansehen.
-4. Aufgabenbereiche in [Projects](https://github.com/OKFNat/offenewahlen-api/projects) ansehen.
-5. Task-Management via [Board](https://github.com/OKFNat/offenewahlen-api/milestones#boards?repos=96933110) ansehen.
-6. [Offene Wahlen Österreich Wiki](https://github.com/OKFNat/offenewahlen-at/wiki) durchgehen.
-7. [offenewahlen.at](https://offenewahlen.at) besuchen und Newsletter abonnieren.
+Es empfiehlt sich, zu Beginn die Dokumentation und unser Projekt-Management kurz anzusehen, um einen Überblick zum Projekt zu bekommen. Dies muss nicht komplett bzw. in einer gewissen Reihenfolge erfolgen.
+* Dieses Repository durchlesen.
+* Doku in [API Wiki](https://github.com/OKFNat/offenewahlen-api/wiki) durchgehen.
+* Entwicklungs-Stand in [Milestones](https://github.com/OKFNat/offenewahlen-api/milestones?direction=asc&sort=due_date&state=open) ansehen.
+* Aufgabenbereiche in [Projects](https://github.com/OKFNat/offenewahlen-api/projects) ansehen.
+* Task-Management via [Board](https://github.com/OKFNat/offenewahlen-api/milestones#boards?repos=96933110) ansehen.
+* [Offene Wahlen Österreich Wiki](https://github.com/OKFNat/offenewahlen-at/wiki) durchgehen.
+* [offenewahlen.at](https://offenewahlen.at) besuchen und Newsletter abonnieren.
 
 Wenn du Fragen hast, kannst du dich jederzeit via Email (info@offenewahlen.at) oder unter [Kontakt](http://offenewahlen.at/kontakt) melden.
 

@@ -4,9 +4,11 @@
 
 Open Election Data API ist ein Open Source Projekt von [Offene Wahlen Österreich](https://offenwahlen.at), koordiniert vom Verein [Open Knowledge Österreich](https://okfn.at).
 
+[![Build Status](https://travis-ci.org/OKFNat/offenewahlen-api.svg?branch=master)](https://travis-ci.org/OKFNat/offenewahlen-api)
+
 **Technisches**
 
-Es handelt sich um eine [Django](https://www.djangoproject.com/)-App (Python Web-Framework) mit einer [PostgreSQL](https://www.postgresql.org/)-Datenbank, die auf [Heroku](https://heroku.com) läuft. Es wird nur Open Source Software verwendet, und auch der selbst entwickelte Code steht unter der [MIT](https://opensource.org/licenses/MIT)-Lizenz frei zur verfügung.
+Es handelt sich um eine [Django](https://www.djangoproject.com/)-App (Python Web-Framework) mit einer [PostgreSQL](https://www.postgresql.org/)-Datenbank. Es wird nur Open Source Software verwendet, und auch der selbst entwickelte Code steht unter der [MIT](https://opensource.org/licenses/MIT)-Lizenz frei zur verfügung.
 
 **Das Repository**
 
@@ -33,14 +35,13 @@ Um die App lokal auf deinem Rechner laufen zu lassen, benötigst du:
 * pip ([hier](https://pip.pypa.io/en/stable/), falls nötig)
 * virtualenv ([hier](https://virtualenv.pypa.io/en/stable/) oder [hier](http://docs.python-guide.org/en/latest/dev/virtualenvs/))
 * PostgreSQL ([hier](https://www.postgresql.org/))
-* libmemcached-dev (Debian/Ubuntu, Fedora: libmemcached-devel)
 
 **2. GitHub Repository runterladen**
 
 Nach erfolgreicher Installation der benötigten Software: Öffne deine Shell und gehe in den Ordner, in dem du die App haben möchtest. Dort musst du das GitHub-Repository hinein klonen.
 
 ```bash
-git clone https://github.com/OKFNat/offenewahlen-api.git
+git clone https://github.com/OKFNat/offenewahlen_api.git
 ls
 ```
 
@@ -51,11 +52,6 @@ Du solltest das runtergeladene Repository in deinem Ordner sehen. Geh in den Roo
 ```bash
 cd offenewahlen_api/
 virtualenv venv
-```
-
-Das Virtual Environment kann nun aktiviert werden.
-
-```bash
 source venv/bin/activate
 ```
 
@@ -76,6 +72,12 @@ Nun kannst du in das Virtual Environment die benötigten Python Packages aus der
 pip install -U -r requirements.txt
 ```
 
+Then set the settings file:
+
+```
+export DJANGO_SETTINGS_MODULE=offenewahlen_api.settings
+```
+
 **4. Datenbank initialisieren**
 
 Die App ist an sich jetzt schon funktionsfähig, es muss aber noch die Datenbank initalisiert werden.
@@ -88,7 +90,7 @@ Nun sollten die Tabellen in der PostgreSQL-Datenbank angelegt sein. Mit [pgAdmin
 
 **5. Django-Befehle ausführen**
 
-Wenn du `python manage.py` aufrufst, siehst du eine Liste an Befehlen, die die die Django-App zur Verfügung stellt. Um den Server lokal zu starten, benötigst du den Befehl `runserver`. Beachte: du musst immer im `src/` Ordner sein, um `manage.py` ausführen zu können.
+Wenn du `python src/manage.py` aufrufst, siehst du eine Liste an Befehlen, die die die Django-App zur Verfügung stellt. Um den Server lokal zu starten, benötigst du den Befehl `runserver`.
 
 ```bash
 python src/manage.py runserver
@@ -100,7 +102,7 @@ Wenn soweit alles gepasst hat, solltest du nun die App im Browser unter [http://
 
 ## DEVELOPMENT
 
-### Unser Development-Workflow
+### Der Development-Workflow
 
 Um beim Entwickeln der App mitzumachen, empfiehlt es sich zuerst mal den Stand bei den [Milestones](https://github.com/OKFNat/offenewahlen-api/milestones?direction=asc&sort=due_date&state=open), [Projects](https://github.com/OKFNat/offenewahlen-api/projects) und das [Board](https://github.com/OKFNat/offenewahlen-api/milestones#boards?repos=96933110) mit den Issues anzusehen. Mit den Milestones koordinieren wir die großen Projekt-Phasen, und ist ein guter erster Startpunkt zum Verstehen des Entwicklungs-Standes. Mit den Projekten werden die Aufgabenbereiche unterteilt und das Board ermöglicht ein einfaches verwalten der Issues und ist somit die zentrale Übersicht für die Tasks.
 
@@ -130,24 +132,18 @@ Eine Person vom Team (vermutlich Stefan oder Christopher), werden dann den Pull 
 * `src/`
   * `offenewahlen_api/`: Hauptordner der Django-App.
   * `austria/`: Name des Django-Projektes. Wurde von uns einfach so gewählt.
-    * `management/commands/`: enthält die Python-Scripts, welche man mittels `python manage.py` aufrufen kann.
-	* `static/`: enthält die gesammelten Files des Projektes.
-	  * `css/app.css` enthält das gesamte CSS.
-	  * `js/app.js` enthält das gesamte JavaScript.
-	  * `img/`: Logos, etc.
-	* `templates/`:
-	  * `austria/`: Unterordner für Projekt. Enthält die Template-Files.
-	    * `includes/`: enthält verschiedenste Include-Files für die Templates.
-	* `tests/`: enthält die Test-Scripts.
-  * `static/`: enthält die gesammelten Files aus allen Projekten (in unserem Fall ja nur ein Projekt). Wird von Python automatisch erstellt.
-  * `locale/`: Ordner für die Übersetzungen. Je ein Unterordner für jede Sprache. Beispiel Deutsch: `de/LC_MESSAGES/` enthält `django.mo` (Binary-File) und `django.po` (File mit den Übersetzungen).
+    * `management/commands/`: enthält die Python-Scripts, welche man mittels `python src/manage.py` aufrufen kann.
+	* `static/`: enthält die gesammelten Files des Projektes inklusive CSS, JavaScript und Bildern.
+	* `templates/`: HTML templates mit Unterordnern für die Projekte.
+	* `tests/`: Test-Scripts.
+  * `static/`: die gesammelten Files aus allen Projekten (in unserem Fall ja nur ein Projekt). Wird von Python automatisch erstellt.
   * `migrations/`: Ordner und Inhalt werden bei einer Datenbank-Migrationen automatisch erstellt.
 * `data/`: enthält die Daten von uns.
   * `setup/`: alle Daten, die für das Setup der App notwendig sind.
   * `test/`: alle Daten, die für die Tests notwendig sind.
 * `venv/`: ist der Ordner für das Virtual Environment. Wird zu Beginn erstellt, siehe [Install](#install).
 
-### Befehle
+### Commands
 
 **Datenbank migrieren**
 
@@ -172,32 +168,21 @@ austria
 python src/manage.py test
 ```
 
-**coverage**
+**Coverage**
 
 ```
 coverage run --source=. src/manage.py test austria --noinput --settings=offenewahlen_api.setting
-```
-
-```
 coverage report -m
+coverage html
 ```
 
-### Mehrsprachigkeit
+**Documentation**
 
-Neue Übersetzung anfangen mit (Mit fr als Beispiel):
-
-```bash
-python src/manage.py makemessages --locale fr --extension dtl,py,html
 ```
-
-Alle vorhandenen Übersetzungen in den po-Dateien sammeln:
-```bash
-python src/manage.py makemessages --extension dtl,py
-```
-
-Die Sprachfiles erstellen (zu *.mo kompilieren).
-```bash
-python src/manage.py compilemessages
+cd docs/
+sphinx-build -b html docs/source docs/build
+sphinx-apidoc -f -o source ../app
+make html
 ```
 
 ## DOKUMENTATION
@@ -252,18 +237,28 @@ Die so gesammelten und kuratierten Daten werden kontinuierlich in **Wikidata** i
 
 Nähere Infos zu den einzelnen Daten findest du unter **[DATA.md](DATA.md)**.
 
-
 ## COPYRIGHT
 
 Sämtlicher von uns entwickelter Quellcode ist Open Source und steht unter der [MIT](https://opensource.org/licenses/MIT)-Lizenz frei zur verfügung.
 
-
 Von uns genutzte Software ist alles Open Source.
-
 
 Alle Materialien wie Texte, Bilder und Folien die im Rahmen dieses Projektes erstellt werden, stehen unter [Creative Commons CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), soweit nicht explizit anders erwähnt.
 
+## GLOSSAR
 
-## CI
+**Coverage.py**
 
-[![Build Status](https://travis-ci.org/OKFNat/offenewahlen-api.svg?branch=master)](https://travis-ci.org/OKFNat/offenewahlen-api)
+Coverage.py is a tool for measuring code coverage of Python programs. It monitors your program, noting which parts of the code have been executed, then analyzes the source to identify code that could have been executed but was not. Coverage measurement is typically used to gauge the effectiveness of tests. It can show which parts of your code are being exercised by tests, and which are not.
+
+**Coveralls.io**
+
+Coveralls is a web service to help you track your code coverage over time, and ensure that all your new code is fully covered.
+
+**Travis CI**
+
+Travis CI is a hosted, distributed continuous integration service used to build and test software projects hosted at GitHub.
+
+**Sphinx**
+
+Sphinx is a tool that makes it easy to create intelligent and beautiful documentation. It can create reports in pdf and html.

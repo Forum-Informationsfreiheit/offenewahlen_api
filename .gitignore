@@ -13,3 +13,5 @@ config.json
 node_modules/
 src/static/
 .coverage
+settings_user.py
+settings_production.py

@@ -15,10 +15,9 @@ install:
   - pip install -r requirements.txt
 
 before_script:
-  - python src/manage.py collectstatic --noinput --settings=offenewahlen_api.settings
-  - coverage run --source=. src/manage.py test austria --noinput --settings=offenewahlen_api.setting
   - psql -c "CREATE DATABASE travisdb;" -U postgres
   - python src/manage.py migrate --noinput
+  - coverage run --source=. src/manage.py test austria --noinput --settings=offenewahlen_api.setting
 
 script:
   - python src/manage.py test

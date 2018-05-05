@@ -17,7 +17,10 @@ if 'TRAVIS' in os.environ:
             'PORT': '',
         }
     }
-    SECRET_KEY = os.environ['SECRET_KEY']
+    if 'SECRET_KEY' in os.environ:
+        SECRET_KEY = os.getenv('SECRET_KEY')
+    else:
+        print('SECRET_KEY is missing.')
 else:
     from offenewahlen_api.settings_user import *
     DATABASES = {

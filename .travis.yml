@@ -31,3 +31,4 @@ notifications:
       - admin@stefankasberger.at
     on_success: change
     on_failure: change
+    

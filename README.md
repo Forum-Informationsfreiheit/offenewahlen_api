@@ -73,9 +73,12 @@ pip install -U -r requirements.txt
 ```
 
 Then set the settings file:
+* settings_development
+* settings_testing
+* settings_production
 
 ```
-export DJANGO_SETTINGS_MODULE=offenewahlen_api.settings
+export DJANGO_SETTINGS_MODULE=offenewahlen_api.SETTINGSFILE
 ```
 
 **4. Datenbank initialisieren**

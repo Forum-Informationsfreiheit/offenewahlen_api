@@ -1,5 +1,7 @@
 import os
-from offenewahlen_api.settings_user import *
+
+
+travis = os.getenv('TRAVIS', default=False)
 
 ALLOWED_HOSTS = [
 '127.0.0.1',
@@ -7,140 +9,83 @@ ALLOWED_HOSTS = [
 'localhost'
 ]
 
-class Config(object):
-    """
+DEFAULT_FROM_EMAIL = 'info@offenewahlen.at'
+TIME_ZONE = 'Europe/Vienna'
+USE_I18N = True
+USE_L10N = True
+USE_TZ = True
 
-    """
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-    travis = os.getenv('TRAVIS', default=False)
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.9/howto/static-files/
 
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
-    DEFAULT_FROM_EMAIL = 'info@offenewahlen.at'
-    TIME_ZONE = 'Europe/Vienna'
-    USE_I18N = True
-    USE_L10N = True
-    USE_TZ = True
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.9/howto/static-files/
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+STATIC_URL = '/static/'
 
-    # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+os.path.join(PROJECT_ROOT, 'static'),
+)
 
-    # Static files (CSS, JavaScript, Images)
-    # https://docs.djangoproject.com/en/1.9/howto/static-files/
+SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-    PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+INSTALLED_APPS = [
+    'austria.apps.AustriaConfig',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework_swagger'
+]
 
-    # Static files (CSS, JavaScript, Images)
-    # https://docs.djangoproject.com/en/1.9/howto/static-files/
-    STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
-    STATIC_URL = '/static/'
+MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
+]
 
-    # Extra places for collectstatic to find static files.
-    STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'static'),
-    )
+ROOT_URLCONF = 'offenewahlen_api.urls'
 
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
-
-    INSTALLED_APPS = [
-        'austria.apps.AustriaConfig',
-        'django.contrib.admin',
-        'django.contrib.auth',
-        'django.contrib.contenttypes',
-        'django.contrib.sessions',
-        'django.contrib.messages',
-        'django.contrib.staticfiles',
-        'rest_framework',
-        'rest_framework_swagger'
-    ]
-
-    MIDDLEWARE = [
-        'corsheaders.middleware.CorsMiddleware',
-        'django.middleware.security.SecurityMiddleware',
-        'django.contrib.sessions.middleware.SessionMiddleware',
-        'django.middleware.common.CommonMiddleware',
-        'django.middleware.csrf.CsrfViewMiddleware',
-        'django.contrib.auth.middleware.AuthenticationMiddleware',
-        'django.contrib.messages.middleware.MessageMiddleware',
-        'django.middleware.clickjacking.XFrameOptionsMiddleware',
-        'django.middleware.locale.LocaleMiddleware',
-    ]
-
-    ROOT_URLCONF = 'offenewahlen_api.urls'
-
-    TEMPLATES = [
-        {
-            'BACKEND': 'django.template.backends.django.DjangoTemplates',
-            'DIRS': [],
-            'APP_DIRS': True,
-            'OPTIONS': {
-                'context_processors': [
-                    'django.template.context_processors.debug',
-                    'django.template.context_processors.request',
-                    'django.contrib.auth.context_processors.auth',
-                    'django.contrib.messages.context_processors.messages',
-                ],
-            },
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
         },
-    ]
+    },
+]
 
-    WSGI_APPLICATION = 'offenewahlen_api.wsgi.application'
+WSGI_APPLICATION = 'offenewahlen_api.wsgi.application'
 
-    STATICFILES_FINDERS = (
-        'django.contrib.staticfiles.finders.FileSystemFinder',
-        'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-        'static_precompiler.finders.StaticPrecompilerFinder',
-    )
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'static_precompiler.finders.StaticPrecompilerFinder',
+)
 
-    REST_FRAMEWORK = {
-       'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-       'PAGE_SIZE': 100
-    }
-
-
-class Development(Config):
-    """
-
-    """
-    DEBUG = True
-    DEBUG_TB_INTERCEPT_REDIRECTS = False
-    USER_SETTINGS_EXIST = True
-
-    if os.environ.get('DATABASE_URL') is None:
-        SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(BASE_DIR, 'app.db')
-    else:
-        SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
-
-
-class Testing(Config):
-    """
-
-    """
-    TESTING = True
-    SQLALCHEMY_ECHO = True
-
-    if 'TRAVIS' in os.environ:
-    	DATABASES = {
-    		'default': {
-    			'ENGINE': 'django.db.backends.postgresql',
-    			'NAME': 'travisdb',
-    			'USER': 'postgres',
-    			'PASSWORD': '',
-    			'HOST': 'localhost',
-    			'PORT': '',
-    	}
-    }
-    elif os.environ.get('DATABASE_URL') is None:
-        SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(BASE_DIR, 'app.db')
-    else:
-        SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
-
-
-class Production(Config):
-    """
-
-    """
-    DEBUG = False
-    if os.environ.get('DATABASE_URL'):
-        SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
-    if os.environ.get('SQLALCHEMY_DATABASE_URI'):
-        SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI')
+REST_FRAMEWORK = {
+   'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+   'PAGE_SIZE': 100
+}

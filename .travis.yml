@@ -1,7 +1,13 @@
+sudo: false
+
 language: python
 
 python:
-  - 3.6
+  - 2.7
+  - 3.5
+
+addons:
+  postgresql: "10"
 
 services: postgresql
 
@@ -9,8 +15,18 @@ install:
   - pip install -r requirements.txt
 
 before_script:
-  - psql -c "CREATE DATABASE travisdb;" -U postgres
+  - psql -c "CREATE DATABASE travis_ci_test;" -U postgres
   - python src/manage.py migrate --noinput
 
 script:
   - python src/manage.py test
+
+after_success:
+  - coveralls
+
+notifications:
+  email:
+    recipients:
+      - admin@stefankasberger.at
+    on_success: change
+    on_failure: change

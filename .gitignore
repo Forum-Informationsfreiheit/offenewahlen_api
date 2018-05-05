@@ -12,3 +12,4 @@ docs/
 config.json
 node_modules/
 src/static/
+.coverage

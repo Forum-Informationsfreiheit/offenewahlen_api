@@ -165,10 +165,21 @@ XML-Testergebnisse von lokalem Pfad importieren
 python src/manage.py importxml --local_path data/test/example_1.xml
 ```
 austria
+
 **Tests durchführen**
 
 ```bash
 python src/manage.py test
+```
+
+**coverage**
+
+```
+coverage run --source=. src/manage.py test austria --noinput --settings=offenewahlen_api.setting
+```
+
+```
+coverage report -m
 ```
 
 ### Mehrsprachigkeit

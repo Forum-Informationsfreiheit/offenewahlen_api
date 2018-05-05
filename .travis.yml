@@ -19,8 +19,8 @@ before_script:
 
 
 script:
-  - cd src/
-  - pytest --doctest-modules --cov=austria --cov-report term-missing austria/tests/
+  - pytest src/austria/tests/
+  - coverage run --source=. src/manage.py test austria --noinput
 
 after_success:
   - coveralls

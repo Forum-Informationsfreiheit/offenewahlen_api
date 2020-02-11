@@ -8,7 +8,7 @@ coreapi==2.3.3
 coreschema==0.0.4
 coverage==4.0.3
 dj-database-url==0.4.2
-Django==1.11.3
+Django==1.11.28
 django-cors-headers==2.1.0
 django-pylibmc==0.6.1
 django-rest==0.0.1

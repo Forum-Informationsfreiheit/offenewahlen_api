@@ -25,7 +25,7 @@ CLASSIFIERS = [
 ]
 
 INSTALL_REQUIREMENTS = [
-    'Django==1.11.3'
+    'Django==1.11.28'
 ]
 
 setup(
